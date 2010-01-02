@@ -45,7 +45,7 @@
 @interface LCLLogFile (Internals)
 
 // A lock which is held when the log file is used, opened, etc.
-static NSRecursiveLock *_LCLLogFile_fileLock = nil;
+static NSRecursiveLock *_LCLLogFile_lock = nil;
 
 // A handle to the current log file, if opened.
 static volatile FILE *_LCLLogFile_fileHandle = NULL;
@@ -94,7 +94,7 @@ static pid_t _LCLLogFile_processId = 0;
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     // create the lock
-    _LCLLogFile_fileLock = [[NSRecursiveLock alloc] init];
+    _LCLLogFile_lock = [[NSRecursiveLock alloc] init];
     
     // get the process id
     _LCLLogFile_processId = getpid();
@@ -140,7 +140,7 @@ static pid_t _LCLLogFile_processId = 0;
 
 // Opens the log file.
 + (void)open {
-    [_LCLLogFile_fileLock lock];
+    [_LCLLogFile_lock lock];
     {
         if (_LCLLogFile_fileHandle == NULL) {
             if (!_LCLLogFile_isActive) {
@@ -158,12 +158,12 @@ static pid_t _LCLLogFile_processId = 0;
             _LCLLogFile_isActive = YES;
         }
     }
-    [_LCLLogFile_fileLock unlock];
+    [_LCLLogFile_lock unlock];
 }
 
 // Closes the log file.
 + (void)close {
-    [_LCLLogFile_fileLock lock];
+    [_LCLLogFile_lock lock];
     {
         // close the log file
         FILE *filehandle = (FILE *)_LCLLogFile_fileHandle;
@@ -175,12 +175,12 @@ static pid_t _LCLLogFile_processId = 0;
         // log file size is zero
         _LCLLogFile_fileSize = 0;
     }
-    [_LCLLogFile_fileLock unlock];
+    [_LCLLogFile_lock unlock];
 }
 
 // Resets the log file.
 + (void)reset {
-    [_LCLLogFile_fileLock lock];
+    [_LCLLogFile_lock lock];
     {
         // close the log file
         [LCLLogFile close];
@@ -188,17 +188,17 @@ static pid_t _LCLLogFile_processId = 0;
         // unlink existing log files
         unlink(_LCLLogFile_filePath_c);
         unlink(_LCLLogFile_filePath0_c);
-                
+        
         // logging is not active
         _LCLLogFile_isActive = NO;
         
     }
-    [_LCLLogFile_fileLock unlock];
+    [_LCLLogFile_lock unlock];
 }
 
 // Rotates the log file.
 + (void)rotate {
-    [_LCLLogFile_fileLock lock];
+    [_LCLLogFile_lock lock];
     {
         // close the log file
         [LCLLogFile close];
@@ -206,18 +206,18 @@ static pid_t _LCLLogFile_processId = 0;
         // keep a copy of the current log file
         rename(_LCLLogFile_filePath_c, _LCLLogFile_filePath0_c);
     }
-    [_LCLLogFile_fileLock unlock];
+    [_LCLLogFile_lock unlock];
 }
 
 // Returns the current size of the log file.
 + (size_t)size {
     size_t sz = 0;
-    [_LCLLogFile_fileLock lock];
+    [_LCLLogFile_lock lock];
     {
         // get the size
         sz = _LCLLogFile_fileSize;
     }
-    [_LCLLogFile_fileLock unlock];
+    [_LCLLogFile_lock unlock];
     return sz;
 }
 
@@ -280,7 +280,7 @@ static pid_t _LCLLogFile_processId = 0;
         size_t msg_c_time_c_len = strlen(msg_c) + sizeof(time_c);
         
         // under lock protection ...
-        [_LCLLogFile_fileLock lock];
+        [_LCLLogFile_lock lock];
         {
             FILE *filehandle = (FILE *)_LCLLogFile_fileHandle;
             
@@ -323,7 +323,7 @@ static pid_t _LCLLogFile_processId = 0;
             }
         }
         // ... done
-        [_LCLLogFile_fileLock unlock];
+        [_LCLLogFile_lock unlock];
         
         [pool release];
     }
