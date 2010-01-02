@@ -45,6 +45,9 @@
 // - Full path of the log file (type NSString)
 //   #define _LCLLogFile_LogFilePath <definition>
 //
+// - Append to an existing log file on startup? (type BOOL)
+//   #define _LCLLogFile_AppendToExistingLogFile
+//
 // - Maximum size of the log file in bytes (type size_t)
 //   #define _LCLLogFile_MaxLogFileSizeInBytes <definition>
 //
@@ -86,6 +89,9 @@
 // Returns the maximum size of the log file as defined by
 // _LCLLogFile_MaxLogFileSizeInBytes.
 + (size_t)maxSize;
+
+// Returns whether log messages get appended to an existing log file on startup.
++ (BOOL)appendsToExistingLogFile;
 
 // Returns whether log messages are mirrored to stderr.
 + (BOOL)mirrorsToStdErr;

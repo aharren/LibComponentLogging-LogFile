@@ -32,6 +32,11 @@
     [NSHomeDirectory() stringByAppendingPathComponent:                         \
         @"Library/Logs/MyApplication/MyApplication.log"]
 
+// Tell LCLLogFile whether it should append to an existing log file on startup,
+// instead of creating a new log file.
+#define _LCLLogFile_AppendToExistingLogFile                                    \
+    NO
+
 // Tell LCLLogFile the maximum size of a log file in bytes.
 #define _LCLLogFile_MaxLogFileSizeInBytes                                      \
     64 * 1024

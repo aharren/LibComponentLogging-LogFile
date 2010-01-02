@@ -29,6 +29,10 @@
 #error  '_LCLLogFile_LogFilePath' must be defined in 'lcl_config_logger.h'
 #endif
 
+#ifndef _LCLLogFile_AppendToExistingLogFile
+#error  '_LCLLogFile_AppendToExistingLogFile' must be defined in 'lcl_config_logger.h'
+#endif
+
 #ifndef _LCLLogFile_MaxLogFileSizeInBytes
 #error  '_LCLLogFile_MaxLogFileSizeInBytes' must be defined in 'lcl_config_logger.h'
 #endif
@@ -40,6 +44,7 @@
 #include <unistd.h>
 #include <mach/mach_init.h>
 #include <sys/time.h>
+#include <sys/stat.h>
 
 
 @interface LCLLogFile (Internals)
@@ -52,6 +57,9 @@ static volatile FILE *_LCLLogFile_fileHandle = NULL;
 
 // YES, if logging is active.
 static volatile BOOL _LCLLogFile_isActive = NO;
+
+// YES, if log messages should be appended to an existing log file.
+BOOL _LCLLogFile_appendToExistingLogFile = NO;
 
 // YES, if log messages should be mirrored to stderr.
 BOOL _LCLLogFile_mirrorToStdErr = NO;
@@ -105,6 +113,9 @@ static pid_t _LCLLogFile_processId = 0;
         _LCLLogFile_fileSizeMax = 4 * 1024;
     }
     
+    // get whether we should append to an existing log file
+    _LCLLogFile_appendToExistingLogFile = (_LCLLogFile_AppendToExistingLogFile);
+    
     // get whether we should mirror log messages to stderr
     _LCLLogFile_mirrorToStdErr = (_LCLLogFile_MirrorMessagesToStdErr);
     
@@ -146,16 +157,22 @@ static pid_t _LCLLogFile_processId = 0;
     [_LCLLogFile_lock lock];
     {
         if (_LCLLogFile_fileHandle == NULL) {
-            if (!_LCLLogFile_isActive) {
-                // reset the log file if this is the first call to open 
-                [LCLLogFile reset];
-            }
-            
-            // open the log file
-            _LCLLogFile_fileHandle = fopen(_LCLLogFile_filePath_c, "w");
-            
-            // log file size is zero
+            // size of log file is 0
             _LCLLogFile_fileSize = 0;
+            
+            if (_LCLLogFile_isActive || !_LCLLogFile_appendToExistingLogFile) {
+                // create a new log file
+                _LCLLogFile_fileHandle = fopen(_LCLLogFile_filePath_c, "w");
+            } else {
+                // append to existing log file, get size from file
+                _LCLLogFile_fileHandle = fopen(_LCLLogFile_filePath_c, "a");
+                
+                // try to get size of existing log file
+                struct stat64 stat;
+                if (stat64(_LCLLogFile_filePath_c, &stat) == 0) {
+                    _LCLLogFile_fileSize = (size_t)stat.st_size;
+                }
+            }
             
             // logging is active
             _LCLLogFile_isActive = YES;
@@ -227,6 +244,11 @@ static pid_t _LCLLogFile_processId = 0;
 // Returns the maximum size of the log file.
 + (size_t)maxSize {
     return _LCLLogFile_fileSizeMax;
+}
+
+// Returns whether log messages get appended to an existing log file on startup.
++ (BOOL)appendsToExistingLogFile {
+    return _LCLLogFile_appendToExistingLogFile;
 }
 
 // Returns whether log messages are mirrored to stderr.
