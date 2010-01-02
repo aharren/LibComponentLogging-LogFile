@@ -87,7 +87,7 @@
 // _LCLLogFile_MaxLogFileSizeInBytes.
 + (size_t)maxSize;
 
-// Returns whether log messages are mirrored to stderr
+// Returns whether log messages are mirrored to stderr.
 + (BOOL)mirrorsToStdErr;
 
 // Returns the version of LCLLogFile.

@@ -229,7 +229,7 @@ static pid_t _LCLLogFile_processId = 0;
     return _LCLLogFile_fileSizeMax;
 }
 
-// Returns whether log messages are mirrored to stderr
+// Returns whether log messages are mirrored to stderr.
 + (BOOL)mirrorsToStdErr {
     return _LCLLogFile_mirrorToStdErr;
 }
