@@ -101,6 +101,9 @@ static pid_t _LCLLogFile_processId = 0;
     
     // get the max file size
     _LCLLogFile_fileSizeMax = (_LCLLogFile_MaxLogFileSizeInBytes);
+    if (_LCLLogFile_fileSizeMax < 4 * 1024) {
+        _LCLLogFile_fileSizeMax = 4 * 1024;
+    }
     
     // get whether we should mirror log messages to stderr
     _LCLLogFile_mirrorToStdErr = (_LCLLogFile_MirrorMessagesToStdErr);
