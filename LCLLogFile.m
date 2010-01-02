@@ -168,9 +168,9 @@ static pid_t _LCLLogFile_processId = 0;
                 _LCLLogFile_fileHandle = fopen(_LCLLogFile_filePath_c, "a");
                 
                 // try to get size of existing log file
-                struct stat64 stat;
-                if (stat64(_LCLLogFile_filePath_c, &stat) == 0) {
-                    _LCLLogFile_fileSize = (size_t)stat.st_size;
+                struct stat stat_c;
+                if (stat(_LCLLogFile_filePath_c, &stat_c) == 0) {
+                    _LCLLogFile_fileSize = (size_t)stat_c.st_size;
                 }
             }
             
