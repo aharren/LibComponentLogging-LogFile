@@ -54,7 +54,7 @@ static volatile FILE *_LCLLogFile_fileHandle = NULL;
 static volatile BOOL _LCLLogFile_isActive = NO;
 
 // YES, if log messages should be mirrored to stderr.
-static BOOL _LCLLogFile_mirrorToStdErr = NO;
+BOOL _LCLLogFile_mirrorToStdErr = NO;
 
 // Max size of log file.
 static size_t _LCLLogFile_fileSizeMax = 0;
