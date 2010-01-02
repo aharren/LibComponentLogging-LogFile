@@ -99,7 +99,7 @@ static pid_t _LCLLogFile_processId = 0;
     // get the process id
     _LCLLogFile_processId = getpid();
     
-    // get the max file size
+    // get the max file size, at least 4k
     _LCLLogFile_fileSizeMax = (_LCLLogFile_MaxLogFileSizeInBytes);
     if (_LCLLogFile_fileSizeMax < 4 * 1024) {
         _LCLLogFile_fileSizeMax = 4 * 1024;
