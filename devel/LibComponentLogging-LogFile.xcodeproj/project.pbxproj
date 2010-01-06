@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E024691210F502E9006FBB62 /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = E024691110F502E9006FBB62 /* lcl.m */; };
+		E024692A10F5034F006FBB62 /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = E024691110F502E9006FBB62 /* lcl.m */; };
 		E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 		E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 /* End PBXBuildFile section */
@@ -22,6 +24,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E024690E10F502E9006FBB62 /* lcl_config_components.template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_components.template.h; path = Core/lcl_config_components.template.h; sourceTree = "<group>"; };
+		E024690F10F502E9006FBB62 /* lcl_config_logger.template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.template.h; path = Core/lcl_config_logger.template.h; sourceTree = "<group>"; };
+		E024691010F502E9006FBB62 /* lcl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl.h; path = Core/lcl.h; sourceTree = "<group>"; };
+		E024691110F502E9006FBB62 /* lcl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = lcl.m; path = Core/lcl.m; sourceTree = "<group>"; };
+		E024691C10F5031A006FBB62 /* lcl_config_components.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_components.h; path = "LogFile-Tests/lcl_config_components.h"; sourceTree = "<group>"; };
 		E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTests.pch; path = "LogFile-Tests/LogFileTests.pch"; sourceTree = "<group>"; };
 		E0DC99E610F4FE080088653D /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = ../lcl_config_logger.h; sourceTree = SOURCE_ROOT; };
 		E0DC99E710F4FE080088653D /* LCLLogFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCLLogFile.h; path = ../LCLLogFile.h; sourceTree = SOURCE_ROOT; };
@@ -52,12 +59,24 @@
 		29B97314FDCFA39411CA2CEA /* LogFile */ = {
 			isa = PBXGroup;
 			children = (
+				E024690C10F502DB006FBB62 /* Core */,
 				E0E417970F2128750036D6FD /* LogFile */,
 				E0EB42E310F4ABE9009540E4 /* LogFile-Tests */,
 				E0EB43E810F4B365009540E4 /* LogFile-Tests.octest */,
 				E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX-10.5.octest */,
 			);
 			name = LogFile;
+			sourceTree = "<group>";
+		};
+		E024690C10F502DB006FBB62 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E024691010F502E9006FBB62 /* lcl.h */,
+				E024691110F502E9006FBB62 /* lcl.m */,
+				E024690E10F502E9006FBB62 /* lcl_config_components.template.h */,
+				E024690F10F502E9006FBB62 /* lcl_config_logger.template.h */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 		E0E417970F2128750036D6FD /* LogFile */ = {
@@ -73,6 +92,7 @@
 		E0EB42E310F4ABE9009540E4 /* LogFile-Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E024691C10F5031A006FBB62 /* lcl_config_components.h */,
 				E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */,
 				E0EB43A810F4B1EB009540E4 /* LogFile-Tests-Info.plist */,
 			);
@@ -189,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E024692A10F5034F006FBB62 /* lcl.m in Sources */,
 				E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E024691210F502E9006FBB62 /* lcl.m in Sources */,
 				E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
