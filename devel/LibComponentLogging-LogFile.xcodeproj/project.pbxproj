@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E024691210F502E9006FBB62 /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = E024691110F502E9006FBB62 /* lcl.m */; };
 		E024692A10F5034F006FBB62 /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = E024691110F502E9006FBB62 /* lcl.m */; };
+		E024694B10F50648006FBB62 /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
+		E024694C10F5064F006FBB62 /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
 		E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 		E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 /* End PBXBuildFile section */
@@ -29,6 +31,7 @@
 		E024691010F502E9006FBB62 /* lcl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl.h; path = Core/lcl.h; sourceTree = "<group>"; };
 		E024691110F502E9006FBB62 /* lcl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = lcl.m; path = Core/lcl.m; sourceTree = "<group>"; };
 		E024691C10F5031A006FBB62 /* lcl_config_components.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_components.h; path = "LogFile-Tests/lcl_config_components.h"; sourceTree = "<group>"; };
+		E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsConfigurationTests.m; path = "LogFile-Tests/LogFileTestsConfigurationTests.m"; sourceTree = "<group>"; };
 		E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTests.pch; path = "LogFile-Tests/LogFileTests.pch"; sourceTree = "<group>"; };
 		E0DC99E610F4FE080088653D /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = ../lcl_config_logger.h; sourceTree = SOURCE_ROOT; };
 		E0DC99E710F4FE080088653D /* LCLLogFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCLLogFile.h; path = ../LCLLogFile.h; sourceTree = SOURCE_ROOT; };
@@ -95,6 +98,7 @@
 				E024691C10F5031A006FBB62 /* lcl_config_components.h */,
 				E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */,
 				E0EB43A810F4B1EB009540E4 /* LogFile-Tests-Info.plist */,
+				E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */,
 			);
 			name = "LogFile-Tests";
 			sourceTree = "<group>";
@@ -211,6 +215,7 @@
 			files = (
 				E024692A10F5034F006FBB62 /* lcl.m in Sources */,
 				E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */,
+				E024694C10F5064F006FBB62 /* LogFileTestsConfigurationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +225,7 @@
 			files = (
 				E024691210F502E9006FBB62 /* lcl.m in Sources */,
 				E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */,
+				E024694B10F50648006FBB62 /* LogFileTestsConfigurationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
