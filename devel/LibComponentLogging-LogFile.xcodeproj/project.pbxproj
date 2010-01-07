@@ -13,6 +13,8 @@
 		E024694C10F5064F006FBB62 /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
 		E024696F10F507E6006FBB62 /* LogFileTestsAllocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */; };
 		E03C9E3F10F5218F0090E09B /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
+		E03C9F6210F682FF0090E09B /* LogFileTestsAllocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */; };
+		E03C9F6310F682FF0090E09B /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
 		E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 		E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 /* End PBXBuildFile section */
@@ -221,7 +223,9 @@
 			files = (
 				E024692A10F5034F006FBB62 /* lcl.m in Sources */,
 				E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */,
+				E03C9F6210F682FF0090E09B /* LogFileTestsAllocationTests.m in Sources */,
 				E024694C10F5064F006FBB62 /* LogFileTestsConfigurationTests.m in Sources */,
+				E03C9F6310F682FF0090E09B /* LogFileTestsLoggingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,8 +235,8 @@
 			files = (
 				E024691210F502E9006FBB62 /* lcl.m in Sources */,
 				E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */,
-				E024694B10F50648006FBB62 /* LogFileTestsConfigurationTests.m in Sources */,
 				E024696F10F507E6006FBB62 /* LogFileTestsAllocationTests.m in Sources */,
+				E024694B10F50648006FBB62 /* LogFileTestsConfigurationTests.m in Sources */,
 				E03C9E3F10F5218F0090E09B /* LogFileTestsLoggingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
