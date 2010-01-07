@@ -17,11 +17,24 @@
 		E03C9F6310F682FF0090E09B /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
 		E03C9F6B10F683690090E09B /* LogFileTestsFileRotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */; };
 		E03C9F6C10F683690090E09B /* LogFileTestsFileRotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */; };
+		E03C9F7810F683B40090E09B /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = E024691110F502E9006FBB62 /* lcl.m */; };
+		E03C9F7910F683B40090E09B /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
+		E03C9F7A10F683B40090E09B /* LogFileTestsAllocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */; };
+		E03C9F7B10F683B40090E09B /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
+		E03C9F7C10F683B40090E09B /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
+		E03C9F7D10F683B40090E09B /* LogFileTestsFileRotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */; };
 		E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 		E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E03C9F8710F683FF0090E09B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device */;
+			remoteInfo = "LogFile-Tests-iPhoneOS-3.0-Device";
+		};
 		E0EB43F110F4B371009540E4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -41,6 +54,7 @@
 		E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsAllocationTests.m; path = "LogFile-Tests/LogFileTestsAllocationTests.m"; sourceTree = "<group>"; };
 		E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsLoggingTests.m; path = "LogFile-Tests/LogFileTestsLoggingTests.m"; sourceTree = "<group>"; };
 		E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFileRotationTests.m; path = "LogFile-Tests/LogFileTestsFileRotationTests.m"; sourceTree = "<group>"; };
+		E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-iPhoneOS-3.0-Device.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTests.pch; path = "LogFile-Tests/LogFileTests.pch"; sourceTree = "<group>"; };
 		E0DC99E610F4FE080088653D /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = ../lcl_config_logger.h; sourceTree = SOURCE_ROOT; };
 		E0DC99E710F4FE080088653D /* LCLLogFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCLLogFile.h; path = ../LCLLogFile.h; sourceTree = SOURCE_ROOT; };
@@ -52,6 +66,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		E00B95E20F2C88F800309460 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E03C9F7E10F683B40090E09B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,6 +97,7 @@
 				E0EB42E310F4ABE9009540E4 /* LogFile-Tests */,
 				E0EB43E810F4B365009540E4 /* LogFile-Tests.octest */,
 				E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX-10.5.octest */,
+				E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */,
 			);
 			name = LogFile;
 			sourceTree = "<group>";
@@ -136,6 +158,24 @@
 			productReference = E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX-10.5.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E03C9F8010F683B40090E09B /* Build configuration list for PBXNativeTarget "LogFile-Tests-iPhoneOS-3.0-Device" */;
+			buildPhases = (
+				E03C9F7610F683B40090E09B /* Resources */,
+				E03C9F7710F683B40090E09B /* Sources */,
+				E03C9F7E10F683B40090E09B /* Frameworks */,
+				E03C9F7F10F683B40090E09B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LogFile-Tests-iPhoneOS-3.0-Device";
+			productName = Tests;
+			productReference = E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		E0EB43E710F4B365009540E4 /* LogFile-Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0EB43EC10F4B366009540E4 /* Build configuration list for PBXNativeTarget "LogFile-Tests" */;
@@ -149,6 +189,7 @@
 			);
 			dependencies = (
 				E0EB43F210F4B371009540E4 /* PBXTargetDependency */,
+				E03C9F8810F683FF0090E09B /* PBXTargetDependency */,
 			);
 			name = "LogFile-Tests";
 			productName = "LogFile-Tests";
@@ -170,12 +211,20 @@
 			targets = (
 				E0EB43E710F4B365009540E4 /* LogFile-Tests */,
 				E00B95E40F2C88F800309460 /* LogFile-Tests-MacOSX-10.5 */,
+				E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E00B95E00F2C88F800309460 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E03C9F7610F683B40090E09B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -193,6 +242,19 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		E00B95E30F2C88F800309460 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		E03C9F7F10F683B40090E09B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -234,6 +296,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E03C9F7710F683B40090E09B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E03C9F7810F683B40090E09B /* lcl.m in Sources */,
+				E03C9F7910F683B40090E09B /* LCLLogFile.m in Sources */,
+				E03C9F7A10F683B40090E09B /* LogFileTestsAllocationTests.m in Sources */,
+				E03C9F7B10F683B40090E09B /* LogFileTestsConfigurationTests.m in Sources */,
+				E03C9F7C10F683B40090E09B /* LogFileTestsLoggingTests.m in Sources */,
+				E03C9F7D10F683B40090E09B /* LogFileTestsFileRotationTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E0EB43E410F4B365009540E4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -250,6 +325,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E03C9F8810F683FF0090E09B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device */;
+			targetProxy = E03C9F8710F683FF0090E09B /* PBXContainerItemProxy */;
+		};
 		E0EB43F210F4B371009540E4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E00B95E40F2C88F800309460 /* LogFile-Tests-MacOSX-10.5 */;
@@ -385,6 +465,103 @@
 			};
 			name = Release;
 		};
+		E03C9F8110F683B40090E09B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LogFile-Tests/LogFileTests.pch";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				INFOPLIST_FILE = "LogFile-Tests/LogFile-Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "LogFile-Tests-iPhoneOS-3.0-Device";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos3.0;
+				WARNING_CFLAGS = "-Wall";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E03C9F8210F683B40090E09B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LogFile-Tests/LogFileTests.pch";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				INFOPLIST_FILE = "LogFile-Tests/LogFile-Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "LogFile-Tests-iPhoneOS-3.0-Device";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos3.0;
+				WARNING_CFLAGS = "-Wall";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		E0EB43EA10F4B366009540E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -454,6 +631,15 @@
 			buildConfigurations = (
 				E00B95E70F2C88F900309460 /* Debug */,
 				E00B95E80F2C88F900309460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E03C9F8010F683B40090E09B /* Build configuration list for PBXNativeTarget "LogFile-Tests-iPhoneOS-3.0-Device" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E03C9F8110F683B40090E09B /* Debug */,
+				E03C9F8210F683B40090E09B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
