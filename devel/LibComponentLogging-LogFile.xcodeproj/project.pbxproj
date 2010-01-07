@@ -32,7 +32,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device */;
+			remoteGlobalIDString = E03C9F7510F683B40090E09B;
 			remoteInfo = "LogFile-Tests-iPhoneOS-3.0-Device";
 		};
 		E0EB43F110F4B371009540E4 /* PBXContainerItemProxy */ = {
