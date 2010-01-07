@@ -1,0 +1,151 @@
+//
+//
+// LogFileTestsLoggingTests.m
+//
+//
+// Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+#import "lcl.h"
+#import <SenTestingKit/SenTestingKit.h>
+
+extern BOOL _LCLLogFile_appendToExistingLogFile;
+
+
+@interface LogFileTestsLoggingTests : SenTestCase {
+    
+}
+
+@end
+
+
+@implementation LogFileTestsLoggingTests
+
+- (void)setUp {
+    // don't append to an existing log file
+    _LCLLogFile_appendToExistingLogFile = NO;
+    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, nil);
+    
+    // reset log file
+    [LCLLogFile reset];
+    STAssertEquals([LCLLogFile size], (size_t)0, nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    
+    // create existing log file
+    [@"content of existing log file\n" writeToFile:[LCLLogFile path] atomically:NO encoding:NSUTF8StringEncoding error:NULL];
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    STAssertEqualObjects([NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL], @"content of existing log file\n", nil);
+    
+    // enable logging for component Main
+    lcl_configure_by_name("*", lcl_vOff);
+    lcl_configure_by_component(lcl_cMain, lcl_vDebug);
+}
+
+- (void)testLoggingWithExplicitOpenAndClose {
+    // open log file manually
+    [LCLLogFile open];
+    STAssertEquals([LCLLogFile size], (size_t)0, nil);
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertEqualObjects([NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL], @"", nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    
+    // write log entry
+    [LCLLogFile writeComponent:lcl_cMain level:lcl_vCritical path:"path1" line:100 message:@"message after open, %d", 1];
+    STAssertTrue(0 < [LCLLogFile size], nil);
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    
+    // check log file
+    NSString *firstLog = nil;
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"C Main"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"path1"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"100"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"message after open, 1"].location, nil);
+        
+        firstLog = currentLog;
+    }
+    
+    // close log file manually
+    [LCLLogFile close];
+    STAssertEquals([LCLLogFile size], (size_t)0, nil);
+    
+    // check log file (unchanged)
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    STAssertEqualObjects([NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL], firstLog, nil);
+    
+    // write log entry (not written)
+    [LCLLogFile writeComponent:lcl_cMain level:lcl_vCritical path:"path2" line:200 message:@"message after close, %d", 2];
+    STAssertEquals([LCLLogFile size], (size_t)0, nil);
+    
+    // check log file (unchanged)
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);    
+    STAssertEqualObjects([NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL], firstLog, nil);
+}
+
+- (void)testLoggingWithAutomaticOpen {
+    // write log entry
+    [LCLLogFile writeComponent:lcl_cMain level:lcl_vCritical path:"path3" line:300 message:@"message after automatic open, %d", 1];
+    STAssertTrue(0 < [LCLLogFile size], nil);
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    
+    // check log file
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"C Main"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"path3"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"300"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"message after automatic open, 1"].location, nil);
+    }
+}
+
+- (void)testLoggingWithLogMacro {
+    lcl_log(lcl_cMain, lcl_vInfo, @"message with macro, %d", 1);
+    STAssertTrue(0 < [LCLLogFile size], nil);
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    
+    // check log file
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"I Main"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"LogFileTestsLoggingTests.m"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"132"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"message with macro, 1"].location, nil);
+    }
+}
+
+@end
+
