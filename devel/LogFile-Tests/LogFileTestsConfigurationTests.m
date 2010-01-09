@@ -36,31 +36,54 @@
 
 @implementation LogFileTestsConfigurationTests
 
-- (void)setUp {
-    // configure the logger
-    [LogFileTestsLoggerConfiguration initialize];
-    [LogFileTestsLoggerConfiguration setLogFilePath:[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"]];
-    [LogFileTestsLoggerConfiguration setMaxLogFileSizeInBytes:(size_t)(2 * 1024 * 1024)];
-    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:YES];
-    [LogFileTestsLoggerConfiguration setMirrorMessagesToStdErr:YES];
-    [LCLLogFile initialize];
-}
-
 - (void)testConfigurationMaxLogFileSize {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setMaxLogFileSizeInBytes:(size_t)(128 * 1024)];
+    [LCLLogFile initialize];
+    STAssertEquals([LCLLogFile maxSize], (size_t)(128 * 1024), nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setMaxLogFileSizeInBytes:(size_t)(2 * 1024 * 1024)];
+    [LCLLogFile initialize];
     STAssertEquals([LCLLogFile maxSize], (size_t)(2 * 1024 * 1024), nil);
 }
 
 - (void)testConfigurationLogFilePaths {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setLogFilePath:@"File.log"];
+    [LCLLogFile initialize];
+    STAssertEqualObjects([LCLLogFile path], @"File.log", nil);
+    STAssertEqualObjects([LCLLogFile path0], @"File.log.0", nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setLogFilePath:[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"]];
+    [LCLLogFile initialize];
     STAssertEqualObjects([LCLLogFile path], [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"], nil);
     STAssertEqualObjects([LCLLogFile path0], [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log.0"], nil);
 }
 
 - (void)testConfigurationAppendsToExistingLogFile {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:YES];
+    [LCLLogFile initialize];
     STAssertEquals((int)[LCLLogFile appendsToExistingLogFile], (int)YES, nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile appendsToExistingLogFile], (int)NO, nil);
 }
 
 - (void)testConfigurationMirrorsToStdErr {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setMirrorMessagesToStdErr:YES];
+    [LCLLogFile initialize];
     STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)YES, nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setMirrorMessagesToStdErr:NO];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
 }
 
 @end
