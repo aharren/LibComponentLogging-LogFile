@@ -102,7 +102,8 @@
 // Writes the given log message to the log file.
 + (void)logWithComponent:(_lcl_component_t)component level:(_lcl_level_t)level
                     path:(const char *)path line:(uint32_t)line
-                  format:(NSString *)format, ... __attribute__((format(__NSString__, 5, 6)));
+                function:(const char *)function
+                  format:(NSString *)format, ... __attribute__((format(__NSString__, 6, 7)));
 
 @end
 
@@ -119,6 +120,7 @@
                            level:_level                                        \
                             path:__FILE__                                      \
                             line:__LINE__                                      \
+                        function:__FUNCTION__                                  \
                           format:_format,                                      \
                               ## __VA_ARGS__];                                 \
     [pool release];                                                            \
