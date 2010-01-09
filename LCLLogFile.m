@@ -49,6 +49,12 @@
 
 @interface LCLLogFile (Internals)
 
+// Initializes the class.
++ (void)initialize;
+
+@end
+
+
 // A lock which is held when the log file is used, opened, etc.
 static NSRecursiveLock *_LCLLogFile_lock = nil;
 
@@ -78,11 +84,6 @@ static const char *_LCLLogFile_filePath0_c = NULL;
 
 // The process id.
 static pid_t _LCLLogFile_processId = 0;
-
-// Initializes the class.
-+ (void)initialize;
-
-@end
 
 
 @implementation LCLLogFile
