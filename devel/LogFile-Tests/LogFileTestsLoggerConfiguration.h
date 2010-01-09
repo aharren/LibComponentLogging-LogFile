@@ -1,6 +1,6 @@
 //
 //
-// LogFileTestsAllocationTests.m
+// LogFileTestsLoggerConfiguration.h
 //
 //
 // Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
@@ -23,37 +23,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "lcl.h"
-#import <SenTestingKit/SenTestingKit.h>
+#import <Foundation/Foundation.h>
 
 
-@interface LogFileTestsAllocationTests : SenTestCase {
+@interface LogFileTestsLoggerConfiguration : NSObject {
     
 }
 
-@end
++ (NSString *)logFilePath;
++ (void)setLogFilePath:(NSString *)path;
 
++ (BOOL)appendToExistingLogFile;
++ (void)setAppendToExistingLogFile:(BOOL)append;
 
-@implementation LogFileTestsAllocationTests
++ (size_t)maxLogFileSizeInBytes;
++ (void)setMaxLogFileSizeInBytes:(size_t)size;
 
-- (void)setUp {
-    // configure the logger
-    [LogFileTestsLoggerConfiguration initialize];
-    [LCLLogFile initialize];
-}
-
-- (void)testAllocationAllocNotRecognized {
-    @try {
-        [LCLLogFile alloc];
-        STFail(@"[alloc] should throw NSInvalidArgumentException");
-        
-    } @catch (NSException *exception) {
-        STAssertEquals([exception name], NSInvalidArgumentException, nil);
-        
-    } @catch (...) {
-        STFail(@"[alloc] should throw NSInvalidArgumentException");
-    }
-}
++ (BOOL)mirrorMessagesToStdErr;
++ (void)setMirrorMessagesToStdErr:(BOOL)mirror;
 
 @end
 

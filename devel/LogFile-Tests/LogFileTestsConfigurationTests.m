@@ -36,8 +36,18 @@
 
 @implementation LogFileTestsConfigurationTests
 
+- (void)setUp {
+    // configure the logger
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setLogFilePath:[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"]];
+    [LogFileTestsLoggerConfiguration setMaxLogFileSizeInBytes:(size_t)(2 * 1024 * 1024)];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:YES];
+    [LogFileTestsLoggerConfiguration setMirrorMessagesToStdErr:YES];
+    [LCLLogFile initialize];
+}
+
 - (void)testConfigurationMaxLogFileSize {
-    STAssertEquals([LCLLogFile maxSize], (size_t)(64 * 1024), nil);
+    STAssertEquals([LCLLogFile maxSize], (size_t)(2 * 1024 * 1024), nil);
 }
 
 - (void)testConfigurationLogFilePaths {
@@ -46,11 +56,11 @@
 }
 
 - (void)testConfigurationAppendsToExistingLogFile {
-    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, nil);
+    STAssertEquals((int)[LCLLogFile appendsToExistingLogFile], (int)YES, nil);
 }
 
 - (void)testConfigurationMirrorsToStdErr {
-    STAssertEquals([LCLLogFile mirrorsToStdErr], NO, nil);
+    STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)YES, nil);
 }
 
 @end

@@ -26,8 +26,6 @@
 #import "lcl.h"
 #import <SenTestingKit/SenTestingKit.h>
 
-extern BOOL _LCLLogFile_appendToExistingLogFile;
-
 
 @interface LogFileTestsLoggingTests : SenTestCase {
     
@@ -39,9 +37,11 @@ extern BOOL _LCLLogFile_appendToExistingLogFile;
 @implementation LogFileTestsLoggingTests
 
 - (void)setUp {
-    // don't append to an existing log file
-    _LCLLogFile_appendToExistingLogFile = NO;
-    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, nil);
+    // configure the logger
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
+    [LogFileTestsLoggerConfiguration setMirrorMessagesToStdErr:NO];
+    [LCLLogFile initialize];
     
     // reset log file
     [LCLLogFile reset];
@@ -61,6 +61,8 @@ extern BOOL _LCLLogFile_appendToExistingLogFile;
 }
 
 - (void)testLoggingWithExplicitOpenAndClose {
+    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, @"precondition");
+    
     // open log file manually
     [LCLLogFile open];
     STAssertEquals([LCLLogFile size], (size_t)0, nil);
@@ -109,6 +111,8 @@ extern BOOL _LCLLogFile_appendToExistingLogFile;
 }
 
 - (void)testLoggingWithAutomaticOpen {
+    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, @"precondition");
+    
     // write log entry
     [LCLLogFile writeComponent:lcl_cMain level:lcl_vCritical path:"path3" line:300 message:@"message after automatic open, %d", 1];
     STAssertTrue(0 < [LCLLogFile size], nil);
@@ -129,6 +133,8 @@ extern BOOL _LCLLogFile_appendToExistingLogFile;
 }
 
 - (void)testLoggingWithLogMacro {
+    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, @"precondition");
+    
     lcl_log(lcl_cMain, lcl_vInfo, @"message with macro, %d", 1);
     STAssertTrue(0 < [LCLLogFile size], nil);
     STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
@@ -142,7 +148,7 @@ extern BOOL _LCLLogFile_appendToExistingLogFile;
         STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
         STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"I Main"].location, nil);
         STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"LogFileTestsLoggingTests.m"].location, nil);
-        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"132"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"138"].location, nil);
         STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"message with macro, 1"].location, nil);
     }
 }

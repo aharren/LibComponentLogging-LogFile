@@ -1,6 +1,6 @@
 //
 //
-// LogFileTestsAllocationTests.m
+// lcl_config_logger.h
 //
 //
 // Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
@@ -23,37 +23,28 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "lcl.h"
-#import <SenTestingKit/SenTestingKit.h>
+
+// Use LCLLogFile as the logging backend.
+#import "LCLLogFile.h"
+
+// Tell LCLLogFile the path of the log file as an NSString.
+#define _LCLLogFile_LogFilePath /* (NSString *) */                             \
+    [LogFileTestsLoggerConfiguration logFilePath]
+
+// Tell LCLLogFile whether it should append to an existing log file on startup,
+// instead of creating a new log file.
+#define _LCLLogFile_AppendToExistingLogFile /* (BOOL) */                       \
+    [LogFileTestsLoggerConfiguration appendToExistingLogFile]
+
+// Tell LCLLogFile the maximum size of a log file in bytes.
+#define _LCLLogFile_MaxLogFileSizeInBytes /* (size_t) */                       \
+    [LogFileTestsLoggerConfiguration maxLogFileSizeInBytes]
+
+// Tell LCLLogFile whether it should mirror the log messages to stderr.
+#define _LCLLogFile_MirrorMessagesToStdErr /* (BOOL) */                        \
+    [LogFileTestsLoggerConfiguration mirrorMessagesToStdErr]
 
 
-@interface LogFileTestsAllocationTests : SenTestCase {
-    
-}
-
-@end
-
-
-@implementation LogFileTestsAllocationTests
-
-- (void)setUp {
-    // configure the logger
-    [LogFileTestsLoggerConfiguration initialize];
-    [LCLLogFile initialize];
-}
-
-- (void)testAllocationAllocNotRecognized {
-    @try {
-        [LCLLogFile alloc];
-        STFail(@"[alloc] should throw NSInvalidArgumentException");
-        
-    } @catch (NSException *exception) {
-        STAssertEquals([exception name], NSInvalidArgumentException, nil);
-        
-    } @catch (...) {
-        STFail(@"[alloc] should throw NSInvalidArgumentException");
-    }
-}
-
-@end
+// LogFileTestsLoggerConfiguration holds the configuration data.
+#import "LogFileTestsLoggerConfiguration.h"
 

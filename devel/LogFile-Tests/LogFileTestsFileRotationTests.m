@@ -26,8 +26,6 @@
 #import "lcl.h"
 #import <SenTestingKit/SenTestingKit.h>
 
-extern BOOL _LCLLogFile_appendToExistingLogFile;
-
 
 @interface LogFileTestsFileRotationTests : SenTestCase {
     
@@ -39,8 +37,14 @@ extern BOOL _LCLLogFile_appendToExistingLogFile;
 @implementation LogFileTestsFileRotationTests
 
 - (void)setUp {
+    // configure the logger
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setMaxLogFileSizeInBytes:(size_t)(64 * 1024)];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
+    [LogFileTestsLoggerConfiguration setMirrorMessagesToStdErr:NO];
+    [LCLLogFile initialize];
+    
     // don't append to an existing log file
-    _LCLLogFile_appendToExistingLogFile = NO;
     STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, nil);
     
     // reset log file
@@ -56,7 +60,7 @@ extern BOOL _LCLLogFile_appendToExistingLogFile;
 }
 
 - (void)testFileRotation {
-    STAssertEquals([LCLLogFile maxSize], (size_t)64*1024, @"precondition");
+    STAssertEquals([LCLLogFile maxSize], (size_t)64 * 1024, @"precondition");
     
     size_t fileSizeInitial;
     size_t fileSize;

@@ -29,6 +29,10 @@
 		E0B0BCF810F8CEF2002B788C /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
 		E0B0BCF910F8CEF2002B788C /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
 		E0B0BCFA10F8CEF2002B788C /* LogFileTestsFileRotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */; };
+		E0B0BD2510F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0BD2410F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m */; };
+		E0B0BD2610F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0BD2410F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m */; };
+		E0B0BD2710F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0BD2410F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m */; };
+		E0B0BD3D10F8D460002B788C /* LogFileTestsLoggerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0BD2410F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m */; };
 		E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 		E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 /* End PBXBuildFile section */
@@ -70,7 +74,10 @@
 		E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-iPhoneOS-3.0-Device.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTests.pch; path = "LogFile-Tests/LogFileTests.pch"; sourceTree = "<group>"; };
 		E0B0BD0010F8CEF2002B788C /* LogFile-Tests-MacOSX-10.6-ClangLLVM.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-MacOSX-10.6-ClangLLVM.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0DC99E610F4FE080088653D /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = ../lcl_config_logger.h; sourceTree = SOURCE_ROOT; };
+		E0B0BD2210F8D179002B788C /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = "LogFile-Tests/lcl_config_logger.h"; sourceTree = "<group>"; };
+		E0B0BD2310F8D1F0002B788C /* LogFileTestsLoggerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsLoggerConfiguration.h; path = "LogFile-Tests/LogFileTestsLoggerConfiguration.h"; sourceTree = "<group>"; };
+		E0B0BD2410F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsLoggerConfiguration.m; path = "LogFile-Tests/LogFileTestsLoggerConfiguration.m"; sourceTree = "<group>"; };
+		E0DC99E610F4FE080088653D /* lcl_config_logger.template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.template.h; path = ../lcl_config_logger.template.h; sourceTree = SOURCE_ROOT; };
 		E0DC99E710F4FE080088653D /* LCLLogFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCLLogFile.h; path = ../LCLLogFile.h; sourceTree = SOURCE_ROOT; };
 		E0DC99E810F4FE080088653D /* LCLLogFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCLLogFile.m; path = ../LCLLogFile.m; sourceTree = SOURCE_ROOT; };
 		E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX-10.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-MacOSX-10.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +147,7 @@
 			children = (
 				E0DC99E710F4FE080088653D /* LCLLogFile.h */,
 				E0DC99E810F4FE080088653D /* LCLLogFile.m */,
-				E0DC99E610F4FE080088653D /* lcl_config_logger.h */,
+				E0DC99E610F4FE080088653D /* lcl_config_logger.template.h */,
 			);
 			name = LogFile;
 			sourceTree = "<group>";
@@ -149,8 +156,11 @@
 			isa = PBXGroup;
 			children = (
 				E024691C10F5031A006FBB62 /* lcl_config_components.h */,
+				E0B0BD2210F8D179002B788C /* lcl_config_logger.h */,
 				E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */,
 				E0EB43A810F4B1EB009540E4 /* LogFile-Tests-Info.plist */,
+				E0B0BD2310F8D1F0002B788C /* LogFileTestsLoggerConfiguration.h */,
+				E0B0BD2410F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m */,
 				E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */,
 				E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */,
 				E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */,
@@ -351,6 +361,7 @@
 			files = (
 				E024692A10F5034F006FBB62 /* lcl.m in Sources */,
 				E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */,
+				E0B0BD2610F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m in Sources */,
 				E03C9F6210F682FF0090E09B /* LogFileTestsAllocationTests.m in Sources */,
 				E024694C10F5064F006FBB62 /* LogFileTestsConfigurationTests.m in Sources */,
 				E03C9F6310F682FF0090E09B /* LogFileTestsLoggingTests.m in Sources */,
@@ -364,6 +375,7 @@
 			files = (
 				E03C9F7810F683B40090E09B /* lcl.m in Sources */,
 				E03C9F7910F683B40090E09B /* LCLLogFile.m in Sources */,
+				E0B0BD2510F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m in Sources */,
 				E03C9F7A10F683B40090E09B /* LogFileTestsAllocationTests.m in Sources */,
 				E03C9F7B10F683B40090E09B /* LogFileTestsConfigurationTests.m in Sources */,
 				E03C9F7C10F683B40090E09B /* LogFileTestsLoggingTests.m in Sources */,
@@ -377,6 +389,7 @@
 			files = (
 				E0B0BCF510F8CEF2002B788C /* lcl.m in Sources */,
 				E0B0BCF610F8CEF2002B788C /* LCLLogFile.m in Sources */,
+				E0B0BD3D10F8D460002B788C /* LogFileTestsLoggerConfiguration.m in Sources */,
 				E0B0BCF710F8CEF2002B788C /* LogFileTestsAllocationTests.m in Sources */,
 				E0B0BCF810F8CEF2002B788C /* LogFileTestsConfigurationTests.m in Sources */,
 				E0B0BCF910F8CEF2002B788C /* LogFileTestsLoggingTests.m in Sources */,
@@ -394,6 +407,7 @@
 				E024694B10F50648006FBB62 /* LogFileTestsConfigurationTests.m in Sources */,
 				E03C9E3F10F5218F0090E09B /* LogFileTestsLoggingTests.m in Sources */,
 				E03C9F6B10F683690090E09B /* LogFileTestsFileRotationTests.m in Sources */,
+				E0B0BD2710F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,25 +23,29 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+//
+// lcl_config_logger.h template for the LCLLogFile logging backend.
+//
+
 
 // Use LCLLogFile as the logging backend.
 #import "LCLLogFile.h"
 
-// Tell LCLLogFile the path of the log file as an NSString.
-#define _LCLLogFile_LogFilePath                                                \
+// Tell LCLLogFile the path of the log file.
+#define _LCLLogFile_LogFilePath /* (NSString *) */                             \
     [NSHomeDirectory() stringByAppendingPathComponent:                         \
         @"Library/Logs/MyApplication/MyApplication.log"]
 
 // Tell LCLLogFile whether it should append to an existing log file on startup,
 // instead of creating a new log file.
-#define _LCLLogFile_AppendToExistingLogFile                                    \
-    NO
+#define _LCLLogFile_AppendToExistingLogFile /* (BOOL) */                       \
+    YES
 
 // Tell LCLLogFile the maximum size of a log file in bytes.
-#define _LCLLogFile_MaxLogFileSizeInBytes                                      \
-    64 * 1024
+#define _LCLLogFile_MaxLogFileSizeInBytes /* (size_t) */                       \
+    2 * 1024 * 1024
 
-// Tell LCLLogFile whether it should mirror the log messages to stderr
-#define _LCLLogFile_MirrorMessagesToStdErr                                     \
+// Tell LCLLogFile whether it should mirror the log messages to stderr.
+#define _LCLLogFile_MirrorMessagesToStdErr /* (BOOL) */                        \
     NO
 
