@@ -65,10 +65,10 @@ static volatile FILE *_LCLLogFile_fileHandle = NULL;
 static volatile BOOL _LCLLogFile_isActive = NO;
 
 // YES, if log messages should be appended to an existing log file.
-BOOL _LCLLogFile_appendToExistingLogFile = NO;
+static BOOL _LCLLogFile_appendToExistingLogFile = NO;
 
 // YES, if log messages should be mirrored to stderr.
-BOOL _LCLLogFile_mirrorToStdErr = NO;
+static BOOL _LCLLogFile_mirrorToStdErr = NO;
 
 // Max size of log file.
 static size_t _LCLLogFile_fileSizeMax = 0;
