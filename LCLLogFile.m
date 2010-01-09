@@ -267,9 +267,9 @@ static pid_t _LCLLogFile_processId = 0;
 }
 
 // Writes the given log message to the log file (checked).
-+ (void)writeComponent:(_lcl_component_t)component level:(_lcl_level_t)level
-                  path:(const char *)path line:(uint32_t)line
-               message:(NSString *)message, ... {
++ (void)logWithComponent:(_lcl_component_t)component level:(_lcl_level_t)level
+                    path:(const char *)path line:(uint32_t)line
+                  format:(NSString *)format, ... {
     // open the log file
     if (!_LCLLogFile_isActive) {
         [LCLLogFile open];
@@ -290,7 +290,7 @@ static pid_t _LCLLogFile_processId = 0;
         
         // create log message
         va_list args;
-        va_start(args, message);
+        va_start(args, format);
         NSString *msg = [NSString stringWithFormat:@" %u:%x %s %s:%s:%u %@\n",
                          _LCLLogFile_processId,
                          mach_thread_self(),
@@ -298,7 +298,7 @@ static pid_t _LCLLogFile_processId = 0;
                          _lcl_component_header[component],
                          file,
                          line,
-                         [[[NSString alloc] initWithFormat:message arguments:args] autorelease]];
+                         [[[NSString alloc] initWithFormat:format arguments:args] autorelease]];
         va_end(args);
         
         // create log message as C string
