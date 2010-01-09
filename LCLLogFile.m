@@ -289,23 +289,29 @@ static pid_t _LCLLogFile_processId = 0;
         const char *file = strrchr(path, '/');
         file = (file != NULL) ? (file + 1) : (path);
         
+        // create prefix
+        NSString *prefix = [NSString stringWithFormat:@" %u:%x %s %s:%s:%u:%s ",
+                            _LCLLogFile_processId,
+                            mach_thread_self(),
+                            _lcl_level_header_1[level],
+                            _lcl_component_header[component],
+                            file,
+                            line,
+                            function];
+        
         // create log message
         va_list args;
         va_start(args, format);
-        NSString *msg = [NSString stringWithFormat:@" %u:%x %s %s:%s:%u:%s %@\n",
-                         _LCLLogFile_processId,
-                         mach_thread_self(),
-                         _lcl_level_header_1[level],
-                         _lcl_component_header[component],
-                         file,
-                         line,
-                         function,
-                         [[[NSString alloc] initWithFormat:format arguments:args] autorelease]];
+        NSString *message = [[[NSString alloc] initWithFormat:format arguments:args] autorelease];
         va_end(args);
         
-        // create log message as C string
-        const char *msg_c = [msg UTF8String];
-        size_t msg_c_time_c_len = strlen(msg_c) + sizeof(time_c);
+        // create C strings
+        const char *message_c = [message UTF8String];
+        const char *prefix_c = [prefix UTF8String];
+        
+        // get size of log entry
+        const int backslash_n_len = 1;
+        size_t entry_len = sizeof(time_c) + strlen(prefix_c) + strlen(message_c) + backslash_n_len;
         
         // under lock protection ...
         [_LCLLogFile_lock lock];
@@ -314,7 +320,7 @@ static pid_t _LCLLogFile_processId = 0;
             
             // rotate the log file if required
             if (filehandle) {
-                if (_LCLLogFile_fileSize + msg_c_time_c_len > _LCLLogFile_fileSizeMax) {
+                if (_LCLLogFile_fileSize + entry_len > _LCLLogFile_fileSizeMax) {
                     [LCLLogFile rotate];
                     [LCLLogFile open];
                     filehandle = (FILE *)_LCLLogFile_fileHandle;
@@ -324,7 +330,7 @@ static pid_t _LCLLogFile_processId = 0;
             // write the log message 
             if (filehandle) {
                 // increase file size
-                _LCLLogFile_fileSize += msg_c_time_c_len;
+                _LCLLogFile_fileSize += entry_len;
                 
                 // get current time
                 gettimeofday(&now, NULL);
@@ -339,7 +345,7 @@ static pid_t _LCLLogFile_processId = 0;
                          now.tv_usec / 1000);
                 
                 // write current time and log message
-                fprintf(filehandle, "%s%s", time_c, msg_c);
+                fprintf(filehandle, "%s%s%s\n", time_c, prefix_c, message_c);
                 
                 // flush the file
                 fflush(filehandle);
@@ -347,7 +353,7 @@ static pid_t _LCLLogFile_processId = 0;
             
             // mirror to stderr?
             if (_LCLLogFile_mirrorToStdErr) {
-                fprintf(stderr, "%s%s", time_c, msg_c);
+                fprintf(stderr, "%s%s%s\n", time_c, prefix_c, message_c);
             }
         }
         // ... done
