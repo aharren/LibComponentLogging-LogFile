@@ -28,6 +28,11 @@
 //
 
 
+// Rename the LCLLogFile class by adding your application/framework's unique
+// prefix in order to avoid duplicate symbols in the global class namespace.
+#define LCLLogFile                                                             \
+    <UniquePrefix>LCLLogFile
+
 // Use LCLLogFile as the logging backend.
 #import "LCLLogFile.h"
 

@@ -25,6 +25,10 @@
 
 #import "lcl.h"
 
+#ifndef LCLLogFile
+#error  'LCLLogFile' must be defined in 'lcl_config_logger.h'
+#endif
+
 #ifndef _LCLLogFile_LogFilePath
 #error  '_LCLLogFile_LogFilePath' must be defined in 'lcl_config_logger.h'
 #endif
