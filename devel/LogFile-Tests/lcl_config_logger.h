@@ -57,6 +57,10 @@
     [LogFileTestsLoggerConfiguration showFunctionNames]
 
 
+// Override CFStringGetFileSystemRepresentation
+#define CFStringGetFileSystemRepresentation LogFileTestsLoggerConfiguration_CFStringGetFileSystemRepresentation
+
+
 // LogFileTestsLoggerConfiguration holds the configuration data.
 #import "LogFileTestsLoggerConfiguration.h"
 

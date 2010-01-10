@@ -152,20 +152,53 @@ static pid_t _LCLLogFile_processId = 0;
 
     // get the full path of the log file
     NSString *path = (_LCLLogFile_LogFilePath);
-    path = [path stringByStandardizingPath];
     
-    // create parent paths for the log file
-    NSString *parentpath = [path stringByDeletingLastPathComponent];
-    [[NSFileManager defaultManager] createDirectoryAtPath:parentpath
-                              withIntermediateDirectories:YES 
-                                               attributes:nil
-                                                    error:NULL];
+    // create log file paths
+    _LCLLogFile_filePath = nil;
+    _LCLLogFile_filePath_c = NULL;
+    _LCLLogFile_filePath0 = nil;
+    _LCLLogFile_filePath0_c = NULL;
+    if (path != nil) {
+        // standardize the given path
+        path = [path stringByStandardizingPath];
+        
+        // create parent paths
+        NSString *parentpath = [path stringByDeletingLastPathComponent];
+        [[NSFileManager defaultManager] createDirectoryAtPath:parentpath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:NULL];
+        
+        // create the path of the backup file
+        NSString *path0 = [path stringByAppendingString:@".0"];
+        
+        // create the paths' file system representations
+        CFIndex path_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path);
+        CFIndex path0_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path);
+        
+        char *path_c = malloc(path_c_max_len);
+        char *path0_c = malloc(path0_c_max_len);
+        
+        Boolean path_fsr_created = CFStringGetFileSystemRepresentation((CFStringRef)path, path_c, path_c_max_len);
+        Boolean path0_fsr_created = CFStringGetFileSystemRepresentation((CFStringRef)path0, path0_c, path0_c_max_len);
+        
+        // create local copies of the paths
+        if (path_fsr_created && path0_fsr_created) {
+            _LCLLogFile_filePath = [path copy];
+            _LCLLogFile_filePath_c = strdup(path_c);
+            _LCLLogFile_filePath0 = [path0 copy];
+            _LCLLogFile_filePath0_c = strdup(path0_c);
+        }
+        
+        free(path_c);
+        free(path0_c);
+    }
     
-    // create local copies of the log file paths
-    _LCLLogFile_filePath = [path copy];
-    _LCLLogFile_filePath_c = strdup([_LCLLogFile_filePath fileSystemRepresentation]);
-    _LCLLogFile_filePath0 = [[path stringByAppendingString:@".0"] copy];
-    _LCLLogFile_filePath0_c = strdup([_LCLLogFile_filePath0 fileSystemRepresentation]);
+    // creation of paths failed? fall back to stderr
+    if (_LCLLogFile_filePath_c == NULL) {
+        NSLog(@"error: invalid log file path '%@'", path);
+        _LCLLogFile_mirrorToStdErr = YES;
+    }
     
     // log file size is zero
     _LCLLogFile_fileSize = 0;
@@ -193,14 +226,20 @@ static pid_t _LCLLogFile_processId = 0;
             
             if (_LCLLogFile_isActive || !_LCLLogFile_appendToExistingLogFile) {
                 // create a new log file
-                _LCLLogFile_fileHandle = fopen(_LCLLogFile_filePath_c, "w");
+                _LCLLogFile_fileHandle = NULL;
+                if (_LCLLogFile_filePath_c != NULL) {
+                    _LCLLogFile_fileHandle = fopen(_LCLLogFile_filePath_c, "w");
+                }
             } else {
                 // append to existing log file, get size from file
-                _LCLLogFile_fileHandle = fopen(_LCLLogFile_filePath_c, "a");
+                _LCLLogFile_fileHandle = NULL;
+                if (_LCLLogFile_filePath_c != NULL) {
+                    _LCLLogFile_fileHandle = fopen(_LCLLogFile_filePath_c, "a");
+                }
                 
                 // try to get size of existing log file
                 struct stat stat_c;
-                if (stat(_LCLLogFile_filePath_c, &stat_c) == 0) {
+                if (_LCLLogFile_filePath_c != NULL && stat(_LCLLogFile_filePath_c, &stat_c) == 0) {
                     _LCLLogFile_fileSize = (size_t)stat_c.st_size;
                 }
             }
@@ -237,8 +276,12 @@ static pid_t _LCLLogFile_processId = 0;
         [LCLLogFile close];
         
         // unlink existing log files
-        unlink(_LCLLogFile_filePath_c);
-        unlink(_LCLLogFile_filePath0_c);
+        if (_LCLLogFile_filePath_c != NULL) {
+            unlink(_LCLLogFile_filePath_c);
+        }
+        if (_LCLLogFile_filePath0_c != NULL) {
+            unlink(_LCLLogFile_filePath0_c);
+        }
         
         // logging is not active
         _LCLLogFile_isActive = NO;
@@ -255,7 +298,9 @@ static pid_t _LCLLogFile_processId = 0;
         [LCLLogFile close];
         
         // keep a copy of the current log file
-        rename(_LCLLogFile_filePath_c, _LCLLogFile_filePath0_c);
+        if (_LCLLogFile_filePath_c != NULL && _LCLLogFile_filePath0_c != NULL) {
+            rename(_LCLLogFile_filePath_c, _LCLLogFile_filePath0_c);
+        }
     }
     [_LCLLogFile_lock unlock];
 }
@@ -321,8 +366,8 @@ static pid_t _LCLLogFile_processId = 0;
         [LCLLogFile open];
     }
     
-    // write log message if the log file is opened
-    if (_LCLLogFile_fileHandle) {
+    // write log message if the log file is opened or mirroring is enabled
+    if (_LCLLogFile_fileHandle || _LCLLogFile_mirrorToStdErr) {
         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
         
         // variables for current time
