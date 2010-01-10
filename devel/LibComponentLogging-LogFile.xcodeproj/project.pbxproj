@@ -53,7 +53,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E0B0BCF210F8CEF2002B788C /* LogFile-Tests-MacOSX-10.6-Clang */;
+			remoteGlobalIDString = E0B0BCF210F8CEF2002B788C;
 			remoteInfo = "LogFile-Tests-MacOSX-10.6-Clang";
 		};
 		E0EB43F110F4B371009540E4 /* PBXContainerItemProxy */ = {
