@@ -156,5 +156,37 @@
     }
 }
 
+- (void)testLoggingWithAppendToExistingFile {
+    // re-configure the logger
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:YES];
+    [LCLLogFile initialize];
+    
+    STAssertEquals([LCLLogFile appendsToExistingLogFile], YES, @"precondition");
+    
+    // open log file manually
+    [LCLLogFile open];
+    STAssertEquals([LCLLogFile size], (size_t)29, nil);
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    
+    // write log entry
+    lcl_log(lcl_cMain, lcl_vInfo, @"message with append");
+    STAssertTrue(29 < [LCLLogFile size], nil);
+    STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
+    STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
+    
+    // check log file
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)2, nil);
+        STAssertEqualObjects([logLines objectAtIndex:0], @"content of existing log file", nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:1] rangeOfString:@"I Main"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:1] rangeOfString:@"message with append"].location, nil);
+    }
+}
+
 @end
 
