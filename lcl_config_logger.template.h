@@ -49,3 +49,15 @@
 #define _LCLLogFile_MirrorMessagesToStdErr /* (BOOL) */                        \
     NO
 
+// Tell LCLLogFile whether it should show file names.
+#define _LCLLogFile_ShowFileNames /* (BOOL) */                                 \
+    YES
+
+// Tell LCLLogFile whether it should show line numbers.
+#define _LCLLogFile_ShowLineNumbers /* (BOOL) */                               \
+    YES
+
+// Tell LCLLogFile whether it should show function names.
+#define _LCLLogFile_ShowFunctionNames /* (BOOL) */                             \
+    YES
+

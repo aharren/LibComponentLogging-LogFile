@@ -44,6 +44,18 @@
 #define _LCLLogFile_MirrorMessagesToStdErr /* (BOOL) */                        \
     [LogFileTestsLoggerConfiguration mirrorMessagesToStdErr]
 
+// Tell LCLLogFile whether it should show file names.
+#define _LCLLogFile_ShowFileNames /* (BOOL) */                                 \
+    [LogFileTestsLoggerConfiguration showFileNames]
+
+// Tell LCLLogFile whether it should show line numbers.
+#define _LCLLogFile_ShowLineNumbers /* (BOOL) */                               \
+    [LogFileTestsLoggerConfiguration showLineNumbers]
+
+// Tell LCLLogFile whether it should show function names.
+#define _LCLLogFile_ShowFunctionNames /* (BOOL) */                             \
+    [LogFileTestsLoggerConfiguration showFunctionNames]
+
 
 // LogFileTestsLoggerConfiguration holds the configuration data.
 #import "LogFileTestsLoggerConfiguration.h"

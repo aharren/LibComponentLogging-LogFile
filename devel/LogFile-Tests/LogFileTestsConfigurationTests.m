@@ -86,5 +86,41 @@
     STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
 }
 
+- (void)testShowsFileNames {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setShowFileNames:YES];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile showsFileNames], (int)YES, nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setShowFileNames:NO];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile showsFileNames], (int)NO, nil);
+}
+
+- (void)testShowsLineNumbers {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setShowLineNumbers:YES];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile showsLineNumbers], (int)YES, nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setShowLineNumbers:NO];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile showsLineNumbers], (int)NO, nil);
+}
+
+- (void)testShowsFunctionNames {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setShowFunctionNames:YES];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile showsFunctionNames], (int)YES, nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setShowFunctionNames:NO];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile showsFunctionNames], (int)NO, nil);
+}
+
 @end
 

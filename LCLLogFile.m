@@ -41,6 +41,18 @@
 #error  '_LCLLogFile_MirrorMessagesToStdErr' must be defined in 'lcl_config_logger.h'
 #endif
 
+#ifndef _LCLLogFile_ShowFileNames
+#error  '_LCLLogFile_ShowFileNames' must be defined in 'lcl_config_logger.h'
+#endif
+
+#ifndef _LCLLogFile_ShowLineNumbers
+#error  '_LCLLogFile_ShowLineNumbers' must be defined in 'lcl_config_logger.h'
+#endif
+
+#ifndef _LCLLogFile_ShowFunctionNames
+#error  '_LCLLogFile_ShowFunctionNames' must be defined in 'lcl_config_logger.h'
+#endif
+
 #include <unistd.h>
 #include <mach/mach_init.h>
 #include <sys/time.h>
@@ -69,6 +81,15 @@ static BOOL _LCLLogFile_appendToExistingLogFile = NO;
 
 // YES, if log messages should be mirrored to stderr.
 static BOOL _LCLLogFile_mirrorToStdErr = NO;
+
+// YES, if the file name should be shown.
+static BOOL _LCLLogFile_showFileName = NO;
+
+// YES, if the line number should be shown.
+static BOOL _LCLLogFile_showLineNumber = NO;
+
+// YES, if the function name should be shown.
+static BOOL _LCLLogFile_showFunctionName = NO;
 
 // Max size of log file.
 static size_t _LCLLogFile_fileSizeMax = 0;
@@ -119,7 +140,16 @@ static pid_t _LCLLogFile_processId = 0;
     
     // get whether we should mirror log messages to stderr
     _LCLLogFile_mirrorToStdErr = (_LCLLogFile_MirrorMessagesToStdErr);
+
+    // get whether we should show file names
+    _LCLLogFile_showFileName = (_LCLLogFile_ShowFileNames);
+
+    // get whether we should show line numbers
+    _LCLLogFile_showLineNumber = (_LCLLogFile_ShowLineNumbers);
     
+    // get whether we should show function names
+    _LCLLogFile_showFunctionName = (_LCLLogFile_ShowFunctionNames);
+
     // get the full path of the log file
     NSString *path = (_LCLLogFile_LogFilePath);
     path = [path stringByStandardizingPath];
@@ -257,6 +287,21 @@ static pid_t _LCLLogFile_processId = 0;
     return _LCLLogFile_mirrorToStdErr;
 }
 
+// Returns whether file names are shown.
++ (BOOL)showsFileNames {
+    return _LCLLogFile_showFileName;
+}
+
+// Returns whether line numbers are shown.
++ (BOOL)showsLineNumbers {
+    return _LCLLogFile_showLineNumber;
+}
+
+// Returns whether function names are shown.
++ (BOOL)showsFunctionNames {
+    return _LCLLogFile_showFunctionName;
+}
+
 // Returns the version of LCLLogFile.
 + (NSString *)version {
 #define __lcl_version_to_string( _text) __lcl_version_to_string0(_text)
@@ -286,18 +331,33 @@ static pid_t _LCLLogFile_processId = 0;
         char time_c[24];        
         
         // get file from path
-        const char *file = strrchr(path, '/');
-        file = (file != NULL) ? (file + 1) : (path);
+        const char *file_c = "";
+        if (_LCLLogFile_showFileName) {
+            file_c = path != NULL ? strrchr(path, '/') : NULL;
+            file_c = (file_c != NULL) ? (file_c + 1) : (path);
+        }
+        
+        // get line
+        char line_c[11];
+        if (_LCLLogFile_showLineNumber) {
+            snprintf(line_c, sizeof(line_c), "%u", line);
+            line_c[sizeof(line_c) - 1] = '\0';
+        } else {
+            line_c[0] = '\0';
+        }
         
         // create prefix
-        NSString *prefix = [NSString stringWithFormat:@" %u:%x %s %s:%s:%u:%s ",
+        NSString *prefix = [NSString stringWithFormat:@" %u:%x %s %s%s%s%s%s%s%s ",
                             _LCLLogFile_processId,
                             mach_thread_self(),
                             _lcl_level_header_1[level],
                             _lcl_component_header[component],
-                            file,
-                            line,
-                            function];
+                            _LCLLogFile_showFileName ? ":" : "",
+                            file_c,
+                            _LCLLogFile_showLineNumber ? ":" : "",
+                            line_c,
+                            _LCLLogFile_showFunctionName ? ":" : "",
+                            _LCLLogFile_showFunctionName ? function : ""];
         
         // create log message
         va_list args;

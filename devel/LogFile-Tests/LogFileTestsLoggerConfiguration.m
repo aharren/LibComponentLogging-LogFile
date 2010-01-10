@@ -30,6 +30,9 @@ static NSString *LogFileTestsLoggerConfiguration_logFilePath = nil;
 static BOOL LogFileTestsLoggerConfiguration_appendToExistingLogFile = NO;
 static size_t LogFileTestsLoggerConfiguration_maxLogFileSizeInBytes = 0;
 static BOOL LogFileTestsLoggerConfiguration_mirrorMessagesToStdErr = NO;
+static BOOL LogFileTestsLoggerConfiguration_showFileNames = NO;
+static BOOL LogFileTestsLoggerConfiguration_showLineNumbers = NO;
+static BOOL LogFileTestsLoggerConfiguration_showFunctionNames = NO;
 
 @implementation LogFileTestsLoggerConfiguration
 
@@ -40,6 +43,9 @@ static BOOL LogFileTestsLoggerConfiguration_mirrorMessagesToStdErr = NO;
     LogFileTestsLoggerConfiguration_appendToExistingLogFile = NO;
     LogFileTestsLoggerConfiguration_maxLogFileSizeInBytes = 0;
     LogFileTestsLoggerConfiguration_mirrorMessagesToStdErr = NO;
+    LogFileTestsLoggerConfiguration_showFileNames = YES;
+    LogFileTestsLoggerConfiguration_showLineNumbers = YES;
+    LogFileTestsLoggerConfiguration_showFunctionNames = YES;
 }
 
 + (NSString *)logFilePath {
@@ -73,6 +79,30 @@ static BOOL LogFileTestsLoggerConfiguration_mirrorMessagesToStdErr = NO;
 
 + (void)setMirrorMessagesToStdErr:(BOOL)mirror {
     LogFileTestsLoggerConfiguration_mirrorMessagesToStdErr = mirror;
+}
+
++ (BOOL)showFileNames {
+    return LogFileTestsLoggerConfiguration_showFileNames;
+}
+
++ (void)setShowFileNames:(BOOL)show {
+    LogFileTestsLoggerConfiguration_showFileNames = show;
+}
+
++ (BOOL)showLineNumbers {
+    return LogFileTestsLoggerConfiguration_showLineNumbers;
+}
+
++ (void)setShowLineNumbers:(BOOL)show {
+    LogFileTestsLoggerConfiguration_showLineNumbers = show;
+}
+
++ (BOOL)showFunctionNames {
+    return LogFileTestsLoggerConfiguration_showFunctionNames;
+}
+
++ (void)setShowFunctionNames:(BOOL)show {
+    LogFileTestsLoggerConfiguration_showFunctionNames = show;
 }
 
 @end

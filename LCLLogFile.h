@@ -42,7 +42,7 @@
 // LCLLogFile is configured via the following defines which should be specified
 // in lcl_config_logger.h:
 //
-// - Full path of the log file (type NSString)
+// - Full path of the log file (type NSString *)
 //   #define _LCLLogFile_LogFilePath <definition>
 //
 // - Append to an existing log file on startup? (type BOOL)
@@ -53,6 +53,15 @@
 //
 // - Mirror log messages to stderr? (type BOOL)
 //   #define _LCLLogFile_MirrorMessagesToStdErr <definition>
+//
+// - Show file names in the log messages? (type BOOL)
+//   #define _LCLLogFile_ShowFileNames <definition>
+//
+// - Show line numbers in the log messages? (type BOOL)
+//   #define _LCLLogFile_ShowLineNumbers <definition>
+//
+// - Show function names in the log messages? (type BOOL)
+//   #define _LCLLogFile_ShowFunctionNames <definition>
 //
 
 
@@ -95,6 +104,15 @@
 
 // Returns whether log messages are mirrored to stderr.
 + (BOOL)mirrorsToStdErr;
+
+// Returns whether file names are shown.
++ (BOOL)showsFileNames;
+
+// Returns whether line numbers are shown.
++ (BOOL)showsLineNumbers;
+
+// Returns whether function names are shown.
++ (BOOL)showsFunctionNames;
 
 // Returns the version of LCLLogFile.
 + (NSString *)version;
