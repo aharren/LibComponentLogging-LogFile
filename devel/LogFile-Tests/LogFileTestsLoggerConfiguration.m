@@ -107,12 +107,3 @@ static BOOL LogFileTestsLoggerConfiguration_showFunctionNames = NO;
 
 @end
 
-Boolean LogFileTestsLoggerConfiguration_CFStringGetFileSystemRepresentation(CFStringRef string, char *buffer, CFIndex maxBufLen) {
-    if ([(NSString *)string isEqualToString:@"bad-file-path"]) {
-        return false;
-    }
-
-#   undef CFStringGetFileSystemRepresentation
-    return CFStringGetFileSystemRepresentation(string, buffer, maxBufLen);
-}
-
