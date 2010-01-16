@@ -63,6 +63,18 @@
     STAssertTrue([LCLLogFile defaultPathComponentFromPathBundle:nil fileBundle:nil] == nil, nil);
 }
 
+- (void)testDefaultPathWithPathPrefixWithMainBundle {
+    NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.yourcompany.yourapplication"];
+    [NSBundle setMainBundle:bundle];
+    
+    NSString *expectedPath = @"prefix/YourApplication/YourApplication.log";
+    STAssertEqualObjects([LCLLogFile defaultPathWithPathPrefix:@"prefix"], expectedPath, nil);
+}
+
+- (void)testDefaultPathWithPathPrefixWithoutPrefix {
+    STAssertTrue([LCLLogFile defaultPathWithPathPrefix:nil] == nil, nil);
+}
+
 - (void)testDefaultPathInHomeLibraryLogsWithMainBundle {
     NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.yourcompany.yourapplication"];
     [NSBundle setMainBundle:bundle];

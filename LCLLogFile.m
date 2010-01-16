@@ -405,32 +405,51 @@ const char * const _LCLLogFile_levelHeader[] = {
 
 // Returns a default path for a log file which is based on the Info.plist
 // files which are associated with this class. The returned path has the form
-//   ~/Library/Logs/<main>/<this>.log
+//   <path>/<main>/<this>.log
 // where
+//   <path> is the given path prefix,
 //   <main> is the name (or identifier) of the application's main bundle, and
 //   <this> is the name (or identifier) of the bundle to which this LCLLogFile
 //          class belongs.
 // If the name or identifier cannot be retrieved from the main bundle, the
 // returned default path has the form
-//   ~/Library/Logs/<this>/<this>.<pid>.log
+//   <path>/<this>/<this>.<pid>.log
 // where
 //   <pid> is the current process id.
 // If the name or identifier cannot be retrieved from the bundle which
 // corresponds to this LCLLogFile class,
 //   nil
 // is returned.
-+ (NSString *)defaultPathInHomeLibraryLogs {
-    // build the path name from the main bundle and the bundle which corresponds
-    // to this class
-    NSString *pathComponent = [LCLLogFile defaultPathComponentFromPathBundle:[NSBundle mainBundle]
-                                                                  fileBundle:[NSBundle bundleForClass:[LCLLogFile class]]];
+// If the given path prefix <path> is nil,
+//   nil
+// is returned.
++ (NSString *)defaultPathWithPathPrefix:(NSString *)pathPrefix {
+    // get the main bundle and the bundle which corresponds to this class
+    NSBundle *pathBundle = [NSBundle mainBundle];
+    NSBundle *fileBunlde = [NSBundle bundleForClass:[LCLLogFile class]];
     
-    if (pathComponent != nil) {
-        return [[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs"]
-                stringByAppendingPathComponent:pathComponent];
+    NSString *pathComponent = [LCLLogFile defaultPathComponentFromPathBundle:pathBundle
+                                                                  fileBundle:fileBunlde];
+    
+    if (pathPrefix != nil && pathComponent != nil) {
+        return [pathPrefix stringByAppendingPathComponent:pathComponent];
     } else {
         return nil;
     }
+}
+
+// Returns a default path for a log file which is based on the Info.plist
+// files which are associated with this class. The returned path has the form
+//   ~/Library/Logs/<main>/<this>.log
+// where
+//   <main> is the name (or identifier) of the application's main bundle, and
+//   <this> is the name (or identifier) of the bundle to which this LCLLogFile
+//          class belongs.
+// This method is a convenience method which calls defaultPathWithPathPrefix
+// with the prefix ~/Library/Logs.
++ (NSString *)defaultPathInHomeLibraryLogs {
+    return [LCLLogFile defaultPathWithPathPrefix:
+            [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs"]];
 }
 
 // Returns the version of LCLLogFile.
