@@ -351,6 +351,78 @@ static pid_t _LCLLogFile_processId = 0;
     return _LCLLogFile_showFunctionName;
 }
 
+// Returns the name from the given bundle's Info.plist file. If the name doesn't
+// exist, the bundle's identifier is returned. If the identifier doesn't exist,
+// nil is returned.
++ (NSString *)nameOrIdentifierFromBundle:(NSBundle *)bundle {
+    id bundleName = [bundle objectForInfoDictionaryKey:@"CFBundleName"];
+    if (bundleName != nil && [bundleName isKindOfClass:[NSString class]]) {
+        return (NSString *)bundleName;
+    }
+    return [bundle bundleIdentifier];
+}
+
+// Returns a default path component for a log file which is based on the given
+// bundles' Info.plist files. The returned path has the form
+//   <path>/<file>.log
+// where
+//   <path> is the name (or identifier) of the given path bundle, and
+//   <file> is the name (or identifier) of the given file bundle.
+// If the name or identifier cannot be retrieved from the path bundle, the
+// returned default path has the form
+//   <file>/<file>.<pid>.log
+// where
+//   <pid> is the current process id.
+// If the name or identifier cannot be retrieved from the file bundle,
+//   nil
+// is returned.
++ (NSString *)defaultPathComponentFromPathBundle:(NSBundle *)pathBundle fileBundle:(NSBundle *)fileBundle {
+    NSString *pathName = [LCLLogFile nameOrIdentifierFromBundle:pathBundle];
+    NSString *fileName = [LCLLogFile nameOrIdentifierFromBundle:fileBundle];
+    
+    if (pathName != nil && fileName != nil) {
+        // we have a path name and a file name
+        return [NSString stringWithFormat:@"%@/%@.log", pathName, fileName];
+    } else if (pathName == nil && fileName != nil) {
+        // we don't have a path name, but a file name, use the file name as
+        // the path name and append the pid to the file name to avoid collisions
+        return [NSString stringWithFormat:@"%@/%@.%u.log", fileName, fileName, getpid()];
+    } else {
+        // no information from the bundles, fail
+        return nil;
+    }
+}
+
+// Returns a default path for a log file which is based on the Info.plist
+// files which are associated with this class. The returned path has the form
+//   ~/Library/Logs/<main>/<this>.log
+// where
+//   <main> is the name (or identifier) of the application's main bundle, and
+//   <this> is the name (or identifier) of the bundle to which this LCLLogFile
+//          class belongs.
+// If the name or identifier cannot be retrieved from the main bundle, the
+// returned default path has the form
+//   ~/Library/Logs/<this>/<this>.<pid>.log
+// where
+//   <pid> is the current process id.
+// If the name or identifier cannot be retrieved from the bundle which
+// corresponds to this LCLLogFile class,
+//   nil
+// is returned.
++ (NSString *)defaultPathInHomeLibraryLogs {
+    // build the path name from the main bundle and the bundle which corresponds
+    // to this class
+    NSString *pathComponent = [LCLLogFile defaultPathComponentFromPathBundle:[NSBundle mainBundle]
+                                                                  fileBundle:[NSBundle bundleForClass:[LCLLogFile class]]];
+    
+    if (pathComponent != nil) {
+        return [[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs"]
+                stringByAppendingPathComponent:pathComponent];
+    } else {
+        return nil;
+    }
+}
+
 // Returns the version of LCLLogFile.
 + (NSString *)version {
 #define __lcl_version_to_string( _text) __lcl_version_to_string0(_text)

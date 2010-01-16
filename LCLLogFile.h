@@ -114,6 +114,45 @@
 // Returns whether function names are shown.
 + (BOOL)showsFunctionNames;
 
+// Returns the name from the given bundle's Info.plist file. If the name doesn't
+// exist, the bundle's identifier is returned. If the identifier doesn't exist,
+// nil is returned.
++ (NSString *)nameOrIdentifierFromBundle:(NSBundle *)bundle;
+
+// Returns a default path component for a log file which is based on the given
+// bundles' Info.plist files. The returned path has the form
+//   <path>/<file>.log
+// where
+//   <path> is the name (or identifier) of the given path bundle, and
+//   <file> is the name (or identifier) of the given file bundle.
+// If the name or identifier cannot be retrieved from the path bundle, the
+// returned default path has the form
+//   <file>/<file>.<pid>.log
+// where
+//   <pid> is the current process id.
+// If the name or identifier cannot be retrieved from the file bundle,
+//   nil
+// is returned.
++ (NSString *)defaultPathComponentFromPathBundle:(NSBundle *)pathBundle fileBundle:(NSBundle *)fileBundle;
+
+// Returns a default path for a log file which is based on the Info.plist
+// files which are associated with this class. The returned path has the form
+//   ~/Library/Logs/<main>/<this>.log
+// where
+//   <main> is the name (or identifier) of the application's main bundle, and
+//   <this> is the name (or identifier) of the bundle to which this LCLLogFile
+//          class belongs.
+// If the name or identifier cannot be retrieved from the main bundle, the
+// returned default path has the form
+//   ~/Library/Logs/<this>/<this>.<pid>.log
+// where
+//   <pid> is the current process id.
+// If the name or identifier cannot be retrieved from the bundle which
+// corresponds to this LCLLogFile class,
+//   nil
+// is returned.
++ (NSString *)defaultPathInHomeLibraryLogs;
+
 // Returns the version of LCLLogFile.
 + (NSString *)version;
 
