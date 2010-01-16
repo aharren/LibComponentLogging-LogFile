@@ -56,10 +56,10 @@
     STAssertEqualObjects([LCLLogFile path0], @"File.log.0", nil);
     
     [LogFileTestsLoggerConfiguration initialize];
-    [LogFileTestsLoggerConfiguration setLogFilePath:[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"]];
+    [LogFileTestsLoggerConfiguration setLogFilePath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"]];
     [LCLLogFile initialize];
-    STAssertEqualObjects([LCLLogFile path], [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"], nil);
-    STAssertEqualObjects([LCLLogFile path0], [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log.0"], nil);
+    STAssertEqualObjects([LCLLogFile path], [NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"], nil);
+    STAssertEqualObjects([LCLLogFile path0], [NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log.0"], nil);
 }
 
 - (void)testConfigurationLogFilePathsWithNilPath {
