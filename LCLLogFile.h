@@ -157,7 +157,7 @@
 + (NSString *)version;
 
 // Writes the given log message to the log file.
-+ (void)logWithComponent:(_lcl_component_t)component level:(_lcl_level_t)level
++ (void)logWithComponent:(const char *)component level:(uint32_t)level
                     path:(const char *)path line:(uint32_t)line
                 function:(const char *)function
                   format:(NSString *)format, ... __attribute__((format(__NSString__, 6, 7)));
@@ -173,7 +173,7 @@
 // Definition of _lcl_logger.
 #define _lcl_logger(_component, _level, _format, ...) {                        \
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];                \
-    [LCLLogFile logWithComponent:_component                                    \
+    [LCLLogFile logWithComponent:_lcl_component_header[_component]             \
                            level:_level                                        \
                             path:__FILE__                                      \
                             line:__LINE__                                      \

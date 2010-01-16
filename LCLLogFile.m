@@ -110,6 +110,16 @@ static const char *_LCLLogFile_filePath0_c = NULL;
 // The process id.
 static pid_t _LCLLogFile_processId = 0;
 
+// The log level headers we use.
+const char * const _LCLLogFile_levelHeader[] = {
+    "-",
+    "C",
+    "E",
+    "W",
+    "I",
+    "D",
+    "T"
+};
 
 @implementation LCLLogFile
 
@@ -433,7 +443,7 @@ static pid_t _LCLLogFile_processId = 0;
 }
 
 // Writes the given log message to the log file (checked).
-+ (void)logWithComponent:(_lcl_component_t)component level:(_lcl_level_t)level
++ (void)logWithComponent:(const char *)component level:(uint32_t)level
                     path:(const char *)path line:(uint32_t)line
                 function:(const char *)function
                   format:(NSString *)format, ... {
@@ -467,12 +477,24 @@ static pid_t _LCLLogFile_processId = 0;
             line_c[0] = '\0';
         }
         
+        // get the level header
+        char level_ca[11];
+        const char *level_c;
+        if (level < sizeof(_LCLLogFile_levelHeader)/sizeof(const char *)) {
+            // a known level, e.g. E, W, I
+            level_c = _LCLLogFile_levelHeader[level];
+        } else {
+            // unknown level, use the level number
+            snprintf(level_ca, sizeof(level_ca), "%u", level);
+            level_c = level_ca;
+        }
+        
         // create prefix
         NSString *prefix = [NSString stringWithFormat:@" %u:%x %s %s%s%s%s%s%s%s ",
                             _LCLLogFile_processId,
                             mach_thread_self(),
-                            _lcl_level_header_1[level],
-                            _lcl_component_header[component],
+                            level_c,
+                            component,
                             _LCLLogFile_showFileName ? ":" : "",
                             file_c,
                             _LCLLogFile_showLineNumber ? ":" : "",

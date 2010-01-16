@@ -71,7 +71,7 @@
     STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
     
     // write log entry
-    [LCLLogFile logWithComponent:lcl_cMain level:lcl_vCritical path:"path1" line:100 function:"function1" format:@"message after open, %d", 1];
+    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vCritical path:"path1" line:100 function:"function1" format:@"message after open, %d", 1];
     STAssertTrue(0 < [LCLLogFile size], nil);
     STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
     STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
@@ -102,7 +102,7 @@
     STAssertEqualObjects([NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL], firstLog, nil);
     
     // write log entry (not written)
-    [LCLLogFile logWithComponent:lcl_cMain level:lcl_vCritical path:"path2" line:200 function:"function2" format:@"message after close, %d", 2];
+    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vCritical path:"path2" line:200 function:"function2" format:@"message after close, %d", 2];
     STAssertEquals([LCLLogFile size], (size_t)0, nil);
     
     // check log file (unchanged)
@@ -115,7 +115,7 @@
     STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, @"precondition");
     
     // write log entry
-    [LCLLogFile logWithComponent:lcl_cMain level:lcl_vCritical path:"path3" line:300 function:"function3" format:@"message after automatic open, %d", 1];
+    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vCritical path:"path3" line:300 function:"function3" format:@"message after automatic open, %d", 1];
     STAssertTrue(0 < [LCLLogFile size], nil);
     STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path]], nil);
     STAssertFalse([[NSFileManager defaultManager] fileExistsAtPath:[LCLLogFile path0]], nil);
