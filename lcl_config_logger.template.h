@@ -40,8 +40,7 @@
 
 // Tell LCLLogFile the path of the log file.
 #define _LCLLogFile_LogFilePath /* (NSString *) */                             \
-    [NSHomeDirectory() stringByAppendingPathComponent:                         \
-        @"Library/Logs/MyApplication/MyApplication.log"]
+    [LCLLogFile defaultPathInHomeLibraryLogs]
 
 // Tell LCLLogFile whether it should append to an existing log file on startup,
 // instead of creating a new log file.
