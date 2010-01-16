@@ -23,6 +23,15 @@
 		E03C9F7B10F683B40090E09B /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
 		E03C9F7C10F683B40090E09B /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
 		E03C9F7D10F683B40090E09B /* LogFileTestsFileRotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */; };
+		E06517BE1101E228003357A7 /* LogFile-Tests-Framework-MacOSX-10.5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E06517B51101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5.framework */; };
+		E06517DA1101E2C5003357A7 /* LogFileTestsFrameworkMain.h in Headers */ = {isa = PBXBuildFile; fileRef = E06517D81101E2C5003357A7 /* LogFileTestsFrameworkMain.h */; };
+		E06517DB1101E2C5003357A7 /* LogFileTestsFrameworkMain.m in Sources */ = {isa = PBXBuildFile; fileRef = E06517D91101E2C5003357A7 /* LogFileTestsFrameworkMain.m */; };
+		E06517F51101E6FC003357A7 /* LogFileTestsFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = E06517931101E10C003357A7 /* LogFileTestsFramework.h */; };
+		E06517F61101E707003357A7 /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
+		E06517F71101E70C003357A7 /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = E024691110F502E9006FBB62 /* lcl.m */; };
+		E06518021101E8B5003357A7 /* LogFileTestsFrameworkInjections.h in Headers */ = {isa = PBXBuildFile; fileRef = E06518001101E8B5003357A7 /* LogFileTestsFrameworkInjections.h */; };
+		E06518031101E8B5003357A7 /* LogFileTestsFrameworkInjections.m in Sources */ = {isa = PBXBuildFile; fileRef = E06518011101E8B5003357A7 /* LogFileTestsFrameworkInjections.m */; };
+		E065188B1101F0D7003357A7 /* LogFileTestsFrameworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E06517941101E137003357A7 /* LogFileTestsFrameworkTests.m */; };
 		E0B0BCF510F8CEF2002B788C /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = E024691110F502E9006FBB62 /* lcl.m */; };
 		E0B0BCF610F8CEF2002B788C /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 		E0B0BCF710F8CEF2002B788C /* LogFileTestsAllocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */; };
@@ -57,6 +66,20 @@
 			remoteGlobalIDString = E03C9F7510F683B40090E09B;
 			remoteInfo = "LogFile-Tests-iPhoneOS-3.0-Device";
 		};
+		E06517BC1101E21E003357A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E06517B41101E1E8003357A7 /* LogFile-Tests-Framework */;
+			remoteInfo = "LogFile-Tests-Framework";
+		};
+		E06517D01101E2A1003357A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E06517B41101E1E8003357A7 /* LogFile-Tests-Framework */;
+			remoteInfo = "LogFile-Tests-Framework";
+		};
 		E0B0BD0510F8CF91002B788C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -78,15 +101,27 @@
 		E024690F10F502E9006FBB62 /* lcl_config_logger.template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.template.h; path = Core/lcl_config_logger.template.h; sourceTree = "<group>"; };
 		E024691010F502E9006FBB62 /* lcl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl.h; path = Core/lcl.h; sourceTree = "<group>"; };
 		E024691110F502E9006FBB62 /* lcl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = lcl.m; path = Core/lcl.m; sourceTree = "<group>"; };
-		E024691C10F5031A006FBB62 /* lcl_config_components.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_components.h; path = "LogFile-Tests/lcl_config_components.h"; sourceTree = "<group>"; };
+		E024691C10F5031A006FBB62 /* LogFileTestsConfigComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsConfigComponents.h; path = "LogFile-Tests/LogFileTestsConfigComponents.h"; sourceTree = "<group>"; };
 		E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsConfigurationTests.m; path = "LogFile-Tests/LogFileTestsConfigurationTests.m"; sourceTree = "<group>"; };
 		E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsAllocationTests.m; path = "LogFile-Tests/LogFileTestsAllocationTests.m"; sourceTree = "<group>"; };
 		E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsLoggingTests.m; path = "LogFile-Tests/LogFileTestsLoggingTests.m"; sourceTree = "<group>"; };
 		E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFileRotationTests.m; path = "LogFile-Tests/LogFileTestsFileRotationTests.m"; sourceTree = "<group>"; };
 		E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-iPhoneOS-3.0-Device.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E06517931101E10C003357A7 /* LogFileTestsFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFramework.h; path = "LogFile-Tests/Framework/LogFileTestsFramework.h"; sourceTree = "<group>"; };
+		E06517941101E137003357A7 /* LogFileTestsFrameworkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFrameworkTests.m; path = "LogFile-Tests/LogFileTestsFrameworkTests.m"; sourceTree = "<group>"; };
+		E06517B51101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "LogFile-Tests-Framework-MacOSX-10.5.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E06517BB1101E205003357A7 /* LogFile-Tests-Framework-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "LogFile-Tests-Framework-Info.plist"; path = "LogFile-Tests/Framework/LogFile-Tests-Framework-Info.plist"; sourceTree = "<group>"; };
+		E06517D81101E2C5003357A7 /* LogFileTestsFrameworkMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFrameworkMain.h; path = "LogFile-Tests/Framework/LogFileTestsFrameworkMain.h"; sourceTree = "<group>"; };
+		E06517D91101E2C5003357A7 /* LogFileTestsFrameworkMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFrameworkMain.m; path = "LogFile-Tests/Framework/LogFileTestsFrameworkMain.m"; sourceTree = "<group>"; };
+		E06517F81101E772003357A7 /* lcl_config_components.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_components.h; path = "LogFile-Tests/lcl_config_components.h"; sourceTree = "<group>"; };
+		E06517F91101E772003357A7 /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = "LogFile-Tests/lcl_config_logger.h"; sourceTree = "<group>"; };
+		E06517FE1101E82F003357A7 /* LogFileTestsFrameworkConfigComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFrameworkConfigComponents.h; path = "LogFile-Tests/Framework/LogFileTestsFrameworkConfigComponents.h"; sourceTree = "<group>"; };
+		E06517FF1101E82F003357A7 /* LogFileTestsFrameworkConfigLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFrameworkConfigLogger.h; path = "LogFile-Tests/Framework/LogFileTestsFrameworkConfigLogger.h"; sourceTree = "<group>"; };
+		E06518001101E8B5003357A7 /* LogFileTestsFrameworkInjections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFrameworkInjections.h; path = "LogFile-Tests/Framework/LogFileTestsFrameworkInjections.h"; sourceTree = "<group>"; };
+		E06518011101E8B5003357A7 /* LogFileTestsFrameworkInjections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFrameworkInjections.m; path = "LogFile-Tests/Framework/LogFileTestsFrameworkInjections.m"; sourceTree = "<group>"; };
 		E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTests.pch; path = "LogFile-Tests/LogFileTests.pch"; sourceTree = "<group>"; };
 		E0B0BD0010F8CEF2002B788C /* LogFile-Tests-MacOSX-10.6-ClangLLVM.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-MacOSX-10.6-ClangLLVM.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0B0BD2210F8D179002B788C /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = "LogFile-Tests/lcl_config_logger.h"; sourceTree = "<group>"; };
+		E0B0BD2210F8D179002B788C /* LogFileTestsConfigLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsConfigLogger.h; path = "LogFile-Tests/LogFileTestsConfigLogger.h"; sourceTree = "<group>"; };
 		E0B0BD2310F8D1F0002B788C /* LogFileTestsLoggerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsLoggerConfiguration.h; path = "LogFile-Tests/LogFileTestsLoggerConfiguration.h"; sourceTree = "<group>"; };
 		E0B0BD2410F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsLoggerConfiguration.m; path = "LogFile-Tests/LogFileTestsLoggerConfiguration.m"; sourceTree = "<group>"; };
 		E0B0BE0C10F90822002B788C /* LogFileTestsLogFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsLogFormatTests.m; path = "LogFile-Tests/LogFileTestsLogFormatTests.m"; sourceTree = "<group>"; };
@@ -106,10 +141,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E06517BE1101E228003357A7 /* LogFile-Tests-Framework-MacOSX-10.5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E03C9F7E10F683B40090E09B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E06517B31101E1E8003357A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -143,6 +186,7 @@
 				E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX-10.5.octest */,
 				E0B0BD0010F8CEF2002B788C /* LogFile-Tests-MacOSX-10.6-ClangLLVM.octest */,
 				E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */,
+				E06517B51101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5.framework */,
 			);
 			name = LogFile;
 			sourceTree = "<group>";
@@ -158,6 +202,21 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		E06517911101E0E1003357A7 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				E06517BB1101E205003357A7 /* LogFile-Tests-Framework-Info.plist */,
+				E06517FE1101E82F003357A7 /* LogFileTestsFrameworkConfigComponents.h */,
+				E06517FF1101E82F003357A7 /* LogFileTestsFrameworkConfigLogger.h */,
+				E06517931101E10C003357A7 /* LogFileTestsFramework.h */,
+				E06518001101E8B5003357A7 /* LogFileTestsFrameworkInjections.h */,
+				E06518011101E8B5003357A7 /* LogFileTestsFrameworkInjections.m */,
+				E06517D81101E2C5003357A7 /* LogFileTestsFrameworkMain.h */,
+				E06517D91101E2C5003357A7 /* LogFileTestsFrameworkMain.m */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
 		E0E417970F2128750036D6FD /* LogFile */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,8 +230,10 @@
 		E0EB42E310F4ABE9009540E4 /* LogFile-Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E024691C10F5031A006FBB62 /* lcl_config_components.h */,
-				E0B0BD2210F8D179002B788C /* lcl_config_logger.h */,
+				E06517F81101E772003357A7 /* lcl_config_components.h */,
+				E06517F91101E772003357A7 /* lcl_config_logger.h */,
+				E024691C10F5031A006FBB62 /* LogFileTestsConfigComponents.h */,
+				E0B0BD2210F8D179002B788C /* LogFileTestsConfigLogger.h */,
 				E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */,
 				E0EB43A810F4B1EB009540E4 /* LogFile-Tests-Info.plist */,
 				E0B0BD2310F8D1F0002B788C /* LogFileTestsLoggerConfiguration.h */,
@@ -185,11 +246,26 @@
 				E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */,
 				E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */,
 				E0B0BE0C10F90822002B788C /* LogFileTestsLogFormatTests.m */,
+				E06517911101E0E1003357A7 /* Framework */,
+				E06517941101E137003357A7 /* LogFileTestsFrameworkTests.m */,
 			);
 			name = "LogFile-Tests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E06517B01101E1E8003357A7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E06517F51101E6FC003357A7 /* LogFileTestsFramework.h in Headers */,
+				E06517DA1101E2C5003357A7 /* LogFileTestsFrameworkMain.h in Headers */,
+				E06518021101E8B5003357A7 /* LogFileTestsFrameworkInjections.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		E00B95E40F2C88F800309460 /* LogFile-Tests-MacOSX-10.5 */ = {
@@ -204,6 +280,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E06517BD1101E21E003357A7 /* PBXTargetDependency */,
 			);
 			name = "LogFile-Tests-MacOSX-10.5";
 			productName = Tests;
@@ -227,6 +304,24 @@
 			productName = Tests;
 			productReference = E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */;
 			productType = "com.apple.product-type.bundle";
+		};
+		E06517B41101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E06517B91101E1E9003357A7 /* Build configuration list for PBXNativeTarget "LogFile-Tests-Framework-MacOSX-10.5" */;
+			buildPhases = (
+				E06517B01101E1E8003357A7 /* Headers */,
+				E06517B11101E1E8003357A7 /* Resources */,
+				E06517B21101E1E8003357A7 /* Sources */,
+				E06517B31101E1E8003357A7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LogFile-Tests-Framework-MacOSX-10.5";
+			productName = "LogFile-Tests-Framework";
+			productReference = E06517B51101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		E0B0BCF210F8CEF2002B788C /* LogFile-Tests-MacOSX-10.6-ClangLLVM */ = {
 			isa = PBXNativeTarget;
@@ -258,6 +353,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E06517D11101E2A1003357A7 /* PBXTargetDependency */,
 				E0EB43F210F4B371009540E4 /* PBXTargetDependency */,
 				E0B0BD0610F8CF91002B788C /* PBXTargetDependency */,
 				E03C9F8810F683FF0090E09B /* PBXTargetDependency */,
@@ -284,6 +380,7 @@
 				E00B95E40F2C88F800309460 /* LogFile-Tests-MacOSX-10.5 */,
 				E0B0BCF210F8CEF2002B788C /* LogFile-Tests-MacOSX-10.6-ClangLLVM */,
 				E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device */,
+				E06517B41101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5 */,
 			);
 		};
 /* End PBXProject section */
@@ -297,6 +394,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E03C9F7610F683B40090E09B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E06517B11101E1E8003357A7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,6 +493,7 @@
 				E0B0BE0D10F90822002B788C /* LogFileTestsLogFormatTests.m in Sources */,
 				E0BB0FAB1100F744008BAE92 /* LogFileTestsInjections.m in Sources */,
 				E0BB0FE01100FB91008BAE92 /* LogFileTestsDefaultPathTests.m in Sources */,
+				E065188B1101F0D7003357A7 /* LogFileTestsFrameworkTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +511,17 @@
 				E0B0BE0E10F90822002B788C /* LogFileTestsLogFormatTests.m in Sources */,
 				E0BB0FAD1100F744008BAE92 /* LogFileTestsInjections.m in Sources */,
 				E0BB0FE21100FB91008BAE92 /* LogFileTestsDefaultPathTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E06517B21101E1E8003357A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E06517DB1101E2C5003357A7 /* LogFileTestsFrameworkMain.m in Sources */,
+				E06517F61101E707003357A7 /* LCLLogFile.m in Sources */,
+				E06517F71101E70C003357A7 /* lcl.m in Sources */,
+				E06518031101E8B5003357A7 /* LogFileTestsFrameworkInjections.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +566,16 @@
 			isa = PBXTargetDependency;
 			target = E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device */;
 			targetProxy = E03C9F8710F683FF0090E09B /* PBXContainerItemProxy */;
+		};
+		E06517BD1101E21E003357A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E06517B41101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5 */;
+			targetProxy = E06517BC1101E21E003357A7 /* PBXContainerItemProxy */;
+		};
+		E06517D11101E2A1003357A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E06517B41101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5 */;
+			targetProxy = E06517D01101E2A1003357A7 /* PBXContainerItemProxy */;
 		};
 		E0B0BD0610F8CF91002B788C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -500,7 +626,10 @@
 					ppc,
 				);
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/build/Debug\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -552,7 +681,10 @@
 				);
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/build/Debug\"",
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -684,6 +816,70 @@
 				SDKROOT = iphoneos3.0;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		E06517B71101E1E9003357A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					i386,
+					x86_64,
+					ppc,
+				);
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = LOGFILE_TESTS_FRAMEWORK_BUILD;
+				INFOPLIST_FILE = "LogFile-Tests/Framework/LogFile-Tests-Framework-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "LogFile-Tests-Framework-MacOSX-10.5";
+			};
+			name = Debug;
+		};
+		E06517B81101E1E9003357A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					i386,
+					x86_64,
+					ppc,
+				);
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = LOGFILE_TESTS_FRAMEWORK_BUILD;
+				INFOPLIST_FILE = "LogFile-Tests/Framework/LogFile-Tests-Framework-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "LogFile-Tests-Framework-MacOSX-10.5";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -869,6 +1065,15 @@
 			buildConfigurations = (
 				E03C9F8110F683B40090E09B /* Debug */,
 				E03C9F8210F683B40090E09B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E06517B91101E1E9003357A7 /* Build configuration list for PBXNativeTarget "LogFile-Tests-Framework-MacOSX-10.5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E06517B71101E1E9003357A7 /* Debug */,
+				E06517B81101E1E9003357A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

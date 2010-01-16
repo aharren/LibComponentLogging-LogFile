@@ -1,6 +1,6 @@
 //
 //
-// lcl_config_logger.h
+// LogFileTestsFrameworkMain.h
 //
 //
 // Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
@@ -23,9 +23,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#ifdef LOGFILE_TESTS_FRAMEWORK_BUILD
-#include "Framework/LogFileTestsFrameworkConfigLogger.h"
-#else
-#include "LogFileTestsConfigLogger.h"
-#endif
+#import <Foundation/Foundation.h>
+
+
+@interface LogFileTestsFrameworkMain : NSObject {
+    
+}
+
+// Returns the path of the framework's internal log file.
+- (NSString *)loggerLogPath;
+
+// Resets the framework's internal log file.
+- (void)resetLogFile;
+
+// Does something in the framework which also writes some messages to the
+// framework's log file.
+- (void)doSomething;
+
+// Returns the shared instance.
++ (LogFileTestsFrameworkMain *)sharedFrameworkMain;
+
+@end
 

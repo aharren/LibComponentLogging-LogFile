@@ -1,6 +1,6 @@
 //
 //
-// lcl_config_logger.h
+// LogFileTestsFrameworkInjections.h
 //
 //
 // Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
@@ -23,9 +23,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#ifdef LOGFILE_TESTS_FRAMEWORK_BUILD
-#include "Framework/LogFileTestsFrameworkConfigLogger.h"
-#else
-#include "LogFileTestsConfigLogger.h"
-#endif
+#import <Foundation/Foundation.h>
+
+
+// Override NSBundle methods
+#define mainBundle LogFileTestsFrameworkInjections_mainBundle
+
+@interface NSBundle (LogFileTestsFrameworkInjections)
+
++ (NSBundle *)LogFileTestsFrameworkInjections_mainBundle;
+
+@end
 

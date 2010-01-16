@@ -1,6 +1,6 @@
 //
 //
-// lcl_config_logger.h
+// lcl_config_components.h
 //
 //
 // Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
@@ -23,9 +23,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#ifdef LOGFILE_TESTS_FRAMEWORK_BUILD
-#include "Framework/LogFileTestsFrameworkConfigLogger.h"
-#else
-#include "LogFileTestsConfigLogger.h"
-#endif
+
+_lcl_component(Main,            "Main",             "Main")
+_lcl_component(MainComponent1,  "Main:Component1",  "Main/Component1")
+_lcl_component(MainComponent2,  "Main:Component2",  "Main/Component2")
+
+_lcl_component(Main2,           "Main2",            "Main2")
 
