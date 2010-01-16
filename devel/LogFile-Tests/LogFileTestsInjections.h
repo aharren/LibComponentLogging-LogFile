@@ -31,3 +31,14 @@
 
 Boolean LogFileTestsInjections_CFStringGetFileSystemRepresentation(CFStringRef string, char *buffer, CFIndex maxBufLen);
 
+
+// Override NSBundle methods
+#define mainBundle LogFileTestsInjections_mainBundle
+
+@interface NSBundle (LogFileTestsInjections)
+
++ (NSBundle *)LogFileTestsInjections_mainBundle;
++ (void)setMainBundle:(NSBundle *)bundle;
+
+@end
+

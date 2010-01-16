@@ -36,3 +36,25 @@ Boolean LogFileTestsInjections_CFStringGetFileSystemRepresentation(CFStringRef s
     return CFStringGetFileSystemRepresentation(string, buffer, maxBufLen);
 }
 
+
+#undef mainBundle
+
+static NSBundle *NSBundle_LogFileTestsInjections_mainBundle = nil;
+
+@implementation NSBundle (LogFileTestsInjections)
+
++ (NSBundle *)LogFileTestsInjections_mainBundle {
+    if (NSBundle_LogFileTestsInjections_mainBundle != nil) {
+        return [[NSBundle_LogFileTestsInjections_mainBundle retain] autorelease];
+    }
+    
+    return [NSBundle mainBundle];
+}
+
++ (void)setMainBundle:(NSBundle *)bundle {
+    [NSBundle_LogFileTestsInjections_mainBundle release];
+    NSBundle_LogFileTestsInjections_mainBundle = [bundle retain];
+}
+
+@end
+
