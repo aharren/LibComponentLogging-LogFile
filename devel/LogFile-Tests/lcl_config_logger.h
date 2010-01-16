@@ -25,6 +25,8 @@
 
 #ifdef LOGFILE_TESTS_FRAMEWORK_BUILD
 #include "Framework/LogFileTestsFrameworkConfigLogger.h"
+#elif LOGFILE_TESTS_TEMPLATES_BUILD
+#include "lcl_config_logger.template.h"
 #else
 #include "LogFileTestsConfigLogger.h"
 #endif
