@@ -161,19 +161,19 @@ const char * const _LCLLogFile_levelHeader[] = {
     
     // get whether we should mirror log messages to stderr
     _LCLLogFile_mirrorToStdErr = (_LCLLogFile_MirrorMessagesToStdErr);
-
+    
     // get whether we should escape special characters in log messages
     _LCLLogFile_escapeSpecialCharacters = (_LCLLogFile_EscapeSpecialCharacters);
     
     // get whether we should show file names
     _LCLLogFile_showFileName = (_LCLLogFile_ShowFileNames);
-
+    
     // get whether we should show line numbers
     _LCLLogFile_showLineNumber = (_LCLLogFile_ShowLineNumbers);
     
     // get whether we should show function names
     _LCLLogFile_showFunctionName = (_LCLLogFile_ShowFunctionNames);
-
+    
     // get the full path of the log file
     NSString *path = (_LCLLogFile_LogFilePath);
     
