@@ -24,7 +24,7 @@
 // THE SOFTWARE.
 
 //
-// lcl_config_logger.h template for the LCLLogFile logging backend.
+// lcl_config_logger.h template for the LCLLogFile logging back-end.
 //
 
 
@@ -35,7 +35,7 @@
     <UniquePrefix>LCLLogFile
 #endif
 
-// Use LCLLogFile as the logging backend.
+// Use LCLLogFile as the logging back-end.
 #import "LCLLogFile.h"
 
 // Tell LCLLogFile the path of the log file.

@@ -29,7 +29,7 @@
 #define LCLLogFile                                                             \
     LogFileTestsLCLLogFile
 
-// Use LCLLogFile as the logging backend.
+// Use LCLLogFile as the logging back-end.
 #import "LCLLogFile.h"
 
 // Tell LCLLogFile the path of the log file as an NSString.
