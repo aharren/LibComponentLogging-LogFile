@@ -192,6 +192,14 @@
 + (void)logWithComponent:(const char *)component level:(uint32_t)level
                     path:(const char *)path line:(uint32_t)line
                 function:(const char *)function
+                 message:(NSString *)message;
++ (void)logWithComponent:(const char *)component level:(uint32_t)level
+                    path:(const char *)path line:(uint32_t)line
+                function:(const char *)function
+                  format:(NSString *)format args:(va_list)args;
++ (void)logWithComponent:(const char *)component level:(uint32_t)level
+                    path:(const char *)path line:(uint32_t)line
+                function:(const char *)function
                   format:(NSString *)format, ... __attribute__((format(__NSString__, 6, 7)));
 
 @end

@@ -485,7 +485,175 @@ const char * const _LCLLogFile_levelHeader[] = {
         "." __lcl_version_to_string(_LCLLOGFILE_VERSION_BUILD);
 }
 
-// Writes the given log message to the log file (checked).
+// Writes the given log message to the log file (internal).
+static void _LCLLogFile_log(const char *component, uint32_t level,
+                            const char *path, uint32_t line,
+                            const char *function,
+                            NSString *message) {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    // variables for current time
+    struct timeval now;
+    struct tm now_tm;
+    char time_c[24];
+    
+    // get file from path
+    const char *file_c = "";
+    if (_LCLLogFile_showFileName) {
+        file_c = path != NULL ? strrchr(path, '/') : NULL;
+        file_c = (file_c != NULL) ? (file_c + 1) : (path);
+    }
+    
+    // get line
+    char line_c[11];
+    if (_LCLLogFile_showLineNumber) {
+        snprintf(line_c, sizeof(line_c), "%u", line);
+        line_c[sizeof(line_c) - 1] = '\0';
+    } else {
+        line_c[0] = '\0';
+    }
+    
+    // get the level header
+    char level_ca[11];
+    const char *level_c;
+    if (level < sizeof(_LCLLogFile_levelHeader)/sizeof(const char *)) {
+        // a known level, e.g. E, W, I
+        level_c = _LCLLogFile_levelHeader[level];
+    } else {
+        // unknown level, use the level number
+        snprintf(level_ca, sizeof(level_ca), "%u", level);
+        level_c = level_ca;
+    }
+    
+    // create prefix
+    NSString *prefix = [NSString stringWithFormat:@" %u:%x %s %s%s%s%s%s%s%s ",
+                        _LCLLogFile_processId,
+                        mach_thread_self(),
+                        level_c,
+                        component,
+                        _LCLLogFile_showFileName ? ":" : "",
+                        file_c,
+                        _LCLLogFile_showLineNumber ? ":" : "",
+                        line_c,
+                        _LCLLogFile_showFunctionName ? ":" : "",
+                        _LCLLogFile_showFunctionName ? function : ""];
+    
+    // restrict size of log message
+    if (_LCLLogFile_maxMessageSize != 0) {
+        NSUInteger message_len = [message length];
+        if (message_len > _LCLLogFile_maxMessageSize) {
+            message = [message substringToIndex:_LCLLogFile_maxMessageSize];
+        }
+    }
+    
+    // escape special characters
+    if (_LCLLogFile_escapeSpecialCharacters) {
+        NSMutableString *emessage = [[[NSMutableString alloc] initWithCapacity:[message length] * 2] autorelease];
+        [emessage appendString:message];
+        [emessage replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:0 range:NSMakeRange(0, [emessage length])];
+        [emessage replaceOccurrencesOfString:@"\n" withString:@"\\n" options:0 range:NSMakeRange(0, [emessage length])];
+        [emessage replaceOccurrencesOfString:@"\r" withString:@"\\r" options:0 range:NSMakeRange(0, [emessage length])];
+        message = emessage;
+    }
+    
+    // create C strings
+    const char *message_c = [message UTF8String];
+    const char *prefix_c = [prefix UTF8String];
+    
+    // get size of log entry
+    const int backslash_n_len = 1;
+    size_t entry_len = sizeof(time_c) + strlen(prefix_c) + strlen(message_c) + backslash_n_len;
+    
+    // under lock protection ...
+    [_LCLLogFile_lock lock];
+    {
+        FILE *filehandle = (FILE *)_LCLLogFile_fileHandle;
+        
+        // rotate the log file if required
+        if (filehandle) {
+            if (_LCLLogFile_fileSize + entry_len > _LCLLogFile_fileSizeMax) {
+                [LCLLogFile rotate];
+                [LCLLogFile open];
+                filehandle = (FILE *)_LCLLogFile_fileHandle;
+            }
+        }
+        
+        // write the log message
+        if (filehandle) {
+            // increase file size
+            _LCLLogFile_fileSize += entry_len;
+            
+            // get current time
+            gettimeofday(&now, NULL);
+            localtime_r(&now.tv_sec, &now_tm);
+            snprintf(time_c, sizeof(time_c), "%04d-%02d-%02d %02d:%02d:%02d.%03d",
+                     now_tm.tm_year + 1900,
+                     now_tm.tm_mon + 1,
+                     now_tm.tm_mday,
+                     now_tm.tm_hour,
+                     now_tm.tm_min,
+                     now_tm.tm_sec,
+                     now.tv_usec / 1000);
+            
+            // write current time and log message
+            fprintf(filehandle, "%s%s%s\n", time_c, prefix_c, message_c);
+            
+            // flush the file
+            fflush(filehandle);
+        }
+        
+        // mirror to stderr?
+        if (_LCLLogFile_mirrorToStdErr) {
+            fprintf(stderr, "%s%s%s\n", time_c, prefix_c, message_c);
+        }
+    }
+    // ... done
+    [_LCLLogFile_lock unlock];
+    
+    [pool release];
+}
+
+// Writes the given log message to the log file (message).
++ (void)logWithComponent:(const char *)component level:(uint32_t)level
+                    path:(const char *)path line:(uint32_t)line
+                function:(const char *)function
+                 message:(NSString *)message {
+    // open the log file
+    if (!_LCLLogFile_isActive) {
+        [LCLLogFile open];
+    }
+    
+    // write log message if the log file is opened or mirroring is enabled
+    if (_LCLLogFile_fileHandle || _LCLLogFile_mirrorToStdErr) {
+        // write log message
+        _LCLLogFile_log(component, level, path, line, function, message);
+    }
+}
+
+// Writes the given log message to the log file (format & va_list var args).
++ (void)logWithComponent:(const char *)component level:(uint32_t)level
+                    path:(const char *)path line:(uint32_t)line
+                function:(const char *)function
+                  format:(NSString *)format args:(va_list)args {
+    // open the log file
+    if (!_LCLLogFile_isActive) {
+        [LCLLogFile open];
+    }
+    
+    // write log message if the log file is opened or mirroring is enabled
+    if (_LCLLogFile_fileHandle || _LCLLogFile_mirrorToStdErr) {
+        // create log message
+        NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+        
+        // write log message
+        _LCLLogFile_log(component, level, path, line, function, message);
+        
+        // release local objects
+        [message release];
+    }
+}
+
+// Writes the given log message to the log file (format & ... var args).
 + (void)logWithComponent:(const char *)component level:(uint32_t)level
                     path:(const char *)path line:(uint32_t)line
                 function:(const char *)function
@@ -497,134 +665,19 @@ const char * const _LCLLogFile_levelHeader[] = {
     
     // write log message if the log file is opened or mirroring is enabled
     if (_LCLLogFile_fileHandle || _LCLLogFile_mirrorToStdErr) {
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-        
-        // variables for current time
-        struct timeval now;
-        struct tm now_tm;
-        char time_c[24];        
-        
-        // get file from path
-        const char *file_c = "";
-        if (_LCLLogFile_showFileName) {
-            file_c = path != NULL ? strrchr(path, '/') : NULL;
-            file_c = (file_c != NULL) ? (file_c + 1) : (path);
-        }
-        
-        // get line
-        char line_c[11];
-        if (_LCLLogFile_showLineNumber) {
-            snprintf(line_c, sizeof(line_c), "%u", line);
-            line_c[sizeof(line_c) - 1] = '\0';
-        } else {
-            line_c[0] = '\0';
-        }
-        
-        // get the level header
-        char level_ca[11];
-        const char *level_c;
-        if (level < sizeof(_LCLLogFile_levelHeader)/sizeof(const char *)) {
-            // a known level, e.g. E, W, I
-            level_c = _LCLLogFile_levelHeader[level];
-        } else {
-            // unknown level, use the level number
-            snprintf(level_ca, sizeof(level_ca), "%u", level);
-            level_c = level_ca;
-        }
-        
-        // create prefix
-        NSString *prefix = [NSString stringWithFormat:@" %u:%x %s %s%s%s%s%s%s%s ",
-                            _LCLLogFile_processId,
-                            mach_thread_self(),
-                            level_c,
-                            component,
-                            _LCLLogFile_showFileName ? ":" : "",
-                            file_c,
-                            _LCLLogFile_showLineNumber ? ":" : "",
-                            line_c,
-                            _LCLLogFile_showFunctionName ? ":" : "",
-                            _LCLLogFile_showFunctionName ? function : ""];
-        
         // create log message
         va_list args;
         va_start(args, format);
-        NSString *message = [[[NSString alloc] initWithFormat:format arguments:args] autorelease];
+        NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
         va_end(args);
         
-        // restrict size of log message
-        if (_LCLLogFile_maxMessageSize != 0) {
-            NSUInteger message_len = [message length];
-            if (message_len > _LCLLogFile_maxMessageSize) {
-                message = [message substringToIndex:_LCLLogFile_maxMessageSize];
-            }
-        }
+        // write log message
+        _LCLLogFile_log(component, level, path, line, function, message);
         
-        // escape special characters
-        if (_LCLLogFile_escapeSpecialCharacters) {
-            NSMutableString *emessage = [[[NSMutableString alloc] initWithCapacity:[message length] * 2] autorelease];
-            [emessage appendString:message];
-            [emessage replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:0 range:NSMakeRange(0, [emessage length])];
-            [emessage replaceOccurrencesOfString:@"\n" withString:@"\\n" options:0 range:NSMakeRange(0, [emessage length])];
-            [emessage replaceOccurrencesOfString:@"\r" withString:@"\\r" options:0 range:NSMakeRange(0, [emessage length])];
-            message = emessage;
-        }
-        
-        // create C strings
-        const char *message_c = [message UTF8String];
-        const char *prefix_c = [prefix UTF8String];
-        
-        // get size of log entry
-        const int backslash_n_len = 1;
-        size_t entry_len = sizeof(time_c) + strlen(prefix_c) + strlen(message_c) + backslash_n_len;
-        
-        // under lock protection ...
-        [_LCLLogFile_lock lock];
-        {
-            FILE *filehandle = (FILE *)_LCLLogFile_fileHandle;
-            
-            // rotate the log file if required
-            if (filehandle) {
-                if (_LCLLogFile_fileSize + entry_len > _LCLLogFile_fileSizeMax) {
-                    [LCLLogFile rotate];
-                    [LCLLogFile open];
-                    filehandle = (FILE *)_LCLLogFile_fileHandle;
-                }
-            }
-            
-            // write the log message 
-            if (filehandle) {
-                // increase file size
-                _LCLLogFile_fileSize += entry_len;
-                
-                // get current time
-                gettimeofday(&now, NULL);
-                localtime_r(&now.tv_sec, &now_tm);
-                snprintf(time_c, sizeof(time_c), "%04d-%02d-%02d %02d:%02d:%02d.%03d", 
-                         now_tm.tm_year + 1900,
-                         now_tm.tm_mon + 1,
-                         now_tm.tm_mday,
-                         now_tm.tm_hour,
-                         now_tm.tm_min,
-                         now_tm.tm_sec,
-                         now.tv_usec / 1000);
-                
-                // write current time and log message
-                fprintf(filehandle, "%s%s%s\n", time_c, prefix_c, message_c);
-                
-                // flush the file
-                fflush(filehandle);
-            }
-            
-            // mirror to stderr?
-            if (_LCLLogFile_mirrorToStdErr) {
-                fprintf(stderr, "%s%s%s\n", time_c, prefix_c, message_c);
-            }
-        }
-        // ... done
-        [_LCLLogFile_lock unlock];
-        
-        [pool release];
+        // release local objects
+        [message release];
     }
 }
 
 @end
+

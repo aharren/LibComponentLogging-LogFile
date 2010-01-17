@@ -156,6 +156,70 @@
     }
 }
 
+- (void)testLoggingWithVarArgsLogMethod {
+    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, @"precondition");
+    
+    [LCLLogFile logWithComponent:"Main" level:lcl_vInfo path:"path" line:100 function:"function" format:@"format %d %@", 1, @"message"];
+    
+    // check log file
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"I Main"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"path"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"100"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"function"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"format 1 message"].location, nil);
+    }
+}
+
+- (void)loggingWithVaListVarArgsLogMethodHelper:(NSString *)format, ... {
+    va_list args;
+    va_start(args, format);
+    [LCLLogFile logWithComponent:"Main" level:lcl_vInfo path:"path" line:200 function:"function" format:format args:args];
+    va_end(args);
+}
+
+- (void)testLoggingWithVaListVarArgsLogMethod {
+    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, @"precondition");
+    
+    [self loggingWithVaListVarArgsLogMethodHelper:@"message %d %@ %d", 2, @"abc", 3];
+    
+    // check log file
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"I Main"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"path"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"200"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"function"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"message 2 abc 3"].location, nil);
+    }
+}
+
+- (void)testLoggingWithMessage {
+    STAssertEquals([LCLLogFile appendsToExistingLogFile], NO, @"precondition");
+    
+    [LCLLogFile logWithComponent:"Main" level:lcl_vInfo path:"path" line:300 function:"function" message:@"message %d %@"];
+    
+    // check log file
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"I Main"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"path"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"300"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"function"].location, nil);
+        STAssertTrue(NSNotFound != [[logLines objectAtIndex:0] rangeOfString:@"message %d %@"].location, nil);
+    }
+}
+
 - (void)testLoggingWithAppendToExistingFile {
     // re-configure the logger
     [LogFileTestsLoggerConfiguration initialize];
