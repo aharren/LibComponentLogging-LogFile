@@ -26,39 +26,39 @@
 #import "lcl.h"
 
 #ifndef LCLLogFile
-#error  'LCLLogFile' must be defined in 'lcl_config_logger.h'
+#error  'LCLLogFile' must be defined
 #endif
 
 #ifndef _LCLLogFile_LogFilePath
-#error  '_LCLLogFile_LogFilePath' must be defined in 'lcl_config_logger.h'
+#error  '_LCLLogFile_LogFilePath' must be defined
 #endif
 
 #ifndef _LCLLogFile_AppendToExistingLogFile
-#error  '_LCLLogFile_AppendToExistingLogFile' must be defined in 'lcl_config_logger.h'
+#error  '_LCLLogFile_AppendToExistingLogFile' must be defined
 #endif
 
 #ifndef _LCLLogFile_MaxLogFileSizeInBytes
-#error  '_LCLLogFile_MaxLogFileSizeInBytes' must be defined in 'lcl_config_logger.h'
+#error  '_LCLLogFile_MaxLogFileSizeInBytes' must be defined
 #endif
 
 #ifndef _LCLLogFile_MirrorMessagesToStdErr
-#error  '_LCLLogFile_MirrorMessagesToStdErr' must be defined in 'lcl_config_logger.h'
+#error  '_LCLLogFile_MirrorMessagesToStdErr' must be defined
 #endif
 
 #ifndef _LCLLogFile_EscapeSpecialCharacters
-#error  '__LCLLogFile_EscapeSpecialCharacters' must be defined in 'lcl_config_logger.h'
+#error  '__LCLLogFile_EscapeSpecialCharacters' must be defined
 #endif
 
 #ifndef _LCLLogFile_ShowFileNames
-#error  '_LCLLogFile_ShowFileNames' must be defined in 'lcl_config_logger.h'
+#error  '_LCLLogFile_ShowFileNames' must be defined
 #endif
 
 #ifndef _LCLLogFile_ShowLineNumbers
-#error  '_LCLLogFile_ShowLineNumbers' must be defined in 'lcl_config_logger.h'
+#error  '_LCLLogFile_ShowLineNumbers' must be defined
 #endif
 
 #ifndef _LCLLogFile_ShowFunctionNames
-#error  '_LCLLogFile_ShowFunctionNames' must be defined in 'lcl_config_logger.h'
+#error  '_LCLLogFile_ShowFunctionNames' must be defined
 #endif
 
 #include <unistd.h>
