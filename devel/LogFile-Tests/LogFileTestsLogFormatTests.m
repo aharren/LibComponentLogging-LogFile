@@ -259,5 +259,34 @@
     }
 }
 
+- (void)testLogFormatMaxMessageSize {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
+    [LogFileTestsLoggerConfiguration setShowFileNames:NO];
+    [LogFileTestsLoggerConfiguration setShowLineNumbers:NO];
+    [LogFileTestsLoggerConfiguration setShowFunctionNames:NO];
+    [LogFileTestsLoggerConfiguration setMaxMessageSize:30];
+    [LCLLogFile initialize];
+    
+    lcl_log(lcl_cMain, lcl_vInfo, @"A23456789a123456789b123456789c123456789d123456789e");
+    lcl_log(lcl_cMain, lcl_vInfo, @"B23456789a123456789b123456789c123456789d");
+    lcl_log(lcl_cMain, lcl_vInfo, @"C23456789a123456789b123456789c");
+    lcl_log(lcl_cMain, lcl_vInfo, @"D23456789a123456789b");
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)4, nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
+                             @"I Main A23456789a123456789b123456789c", nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:1]],
+                             @"I Main B23456789a123456789b123456789c", nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:2]],
+                             @"I Main C23456789a123456789b123456789c", nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:3]],
+                             @"I Main D23456789a123456789b", nil);
+    }
+}
+
 @end
 

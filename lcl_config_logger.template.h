@@ -55,6 +55,10 @@
 #define _LCLLogFile_MirrorMessagesToStdErr /* (BOOL) */                        \
     NO
 
+// Tell LCLLogFile the maximum size of a log message in characters.
+#define _LCLLogFile_MaxMessageSizeInCharacters /* NSUInteger */                \
+    0
+
 // Tell LCLLogFile whether it should escape special characters.
 #define _LCLLogFile_EscapeSpecialCharacters /* BOOL */                         \
     NO

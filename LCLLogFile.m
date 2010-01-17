@@ -49,6 +49,10 @@
 #error  '__LCLLogFile_EscapeSpecialCharacters' must be defined
 #endif
 
+#ifndef _LCLLogFile_MaxMessageSizeInCharacters
+#error  '_LCLLogFile_MaxMessageSizeInCharacters' must be defined
+#endif
+
 #ifndef _LCLLogFile_ShowFileNames
 #error  '_LCLLogFile_ShowFileNames' must be defined
 #endif
@@ -93,6 +97,9 @@ static BOOL _LCLLogFile_showLineNumber = NO;
 
 // YES, if the function name should be shown.
 static BOOL _LCLLogFile_showFunctionName = NO;
+
+// Max size of a log message (without prefixes).
+static NSUInteger _LCLLogFile_maxMessageSize = 0;
 
 // Max size of log file.
 static size_t _LCLLogFile_fileSizeMax = 0;
@@ -157,6 +164,9 @@ const char * const _LCLLogFile_levelHeader[] = {
     
     // get whether we should escape special characters in log messages
     _LCLLogFile_escapeSpecialCharacters = (_LCLLogFile_EscapeSpecialCharacters);
+    
+    // get max size of a log message
+    _LCLLogFile_maxMessageSize = (_LCLLogFile_MaxMessageSizeInCharacters);
     
     // get whether we should show file names
     _LCLLogFile_showFileName = (_LCLLogFile_ShowFileNames);
@@ -354,6 +364,12 @@ const char * const _LCLLogFile_levelHeader[] = {
     return _LCLLogFile_escapeSpecialCharacters;
 }
 
+// Returns the maximum size of a log message in characters (without prefixes).
+// Returns 0 if there is no maximum size for log messages.
++ (NSUInteger)maxMessageSize {
+    return _LCLLogFile_maxMessageSize;
+}
+
 // Returns whether file names are shown.
 + (BOOL)showsFileNames {
     return _LCLLogFile_showFileName;
@@ -534,6 +550,14 @@ const char * const _LCLLogFile_levelHeader[] = {
         va_start(args, format);
         NSString *message = [[[NSString alloc] initWithFormat:format arguments:args] autorelease];
         va_end(args);
+        
+        // restrict size of log message
+        if (_LCLLogFile_maxMessageSize != 0) {
+            NSUInteger message_len = [message length];
+            if (message_len > _LCLLogFile_maxMessageSize) {
+                message = [message substringToIndex:_LCLLogFile_maxMessageSize];
+            }
+        }
         
         // escape special characters
         if (_LCLLogFile_escapeSpecialCharacters) {

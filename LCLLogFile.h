@@ -58,6 +58,9 @@
 // - Escape special characters in log messages (type BOOL)
 //   #define _LCLLogFile_EscapeSpecialCharacters <definition>
 //
+// - Maximum size of a log message in characters (type NSUInteger)
+//   #define _LCLLogFile_MaxMessageSizeInCharacters <definition or 0>
+//
 // - Show file names in the log messages? (type BOOL)
 //   #define _LCLLogFile_ShowFileNames <definition>
 //
@@ -114,6 +117,10 @@
 
 // Returns whether special characters are escaped in log messages.
 + (BOOL)escapesSpecialCharacters;
+
+// Returns the maximum size of a log message in characters (without prefixes).
+// Returns 0 if there is no maximum size for log messages.
++ (NSUInteger)maxMessageSize;
 
 // Returns whether file names are shown.
 + (BOOL)showsFileNames;

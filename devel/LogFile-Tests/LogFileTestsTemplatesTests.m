@@ -62,6 +62,10 @@
     STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)NO, nil);
 }
 
+- (void)testConfigurationMaxMessageSize {
+    STAssertEquals([LCLLogFile maxMessageSize], (NSUInteger)0, nil);
+}
+
 - (void)testShowsFileNames {
     STAssertEquals((int)[LCLLogFile showsFileNames], (int)YES, nil);
 }

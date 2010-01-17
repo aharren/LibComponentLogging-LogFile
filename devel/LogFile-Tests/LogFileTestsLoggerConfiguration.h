@@ -45,6 +45,9 @@
 + (BOOL)escapeSpecialCharacters;
 + (void)setEscapeSpecialCharacters:(BOOL)escape;
 
++ (BOOL)maxMessageSize;
++ (void)setMaxMessageSize:(NSUInteger)size;
+
 + (BOOL)showFileNames;
 + (void)setShowFileNames:(BOOL)show;
 

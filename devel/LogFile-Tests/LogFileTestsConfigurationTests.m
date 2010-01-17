@@ -124,6 +124,18 @@
     STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)NO, nil);
 }
 
+- (void)testConfigurationMaxMessageSize {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setMaxMessageSize:0];
+    [LCLLogFile initialize];
+    STAssertEquals([LCLLogFile maxMessageSize], (NSUInteger)0, nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setMaxMessageSize:100];
+    [LCLLogFile initialize];
+    STAssertEquals([LCLLogFile maxMessageSize], (NSUInteger)100, nil);
+}
+
 - (void)testShowsFileNames {
     [LogFileTestsLoggerConfiguration initialize];
     [LogFileTestsLoggerConfiguration setShowFileNames:YES];

@@ -54,6 +54,10 @@
 #define _LCLLogFile_EscapeSpecialCharacters /* BOOL */                         \
     NO
 
+// Tell LCLLogFile the maximum size of a log message in characters.
+#define _LCLLogFile_MaxMessageSizeInCharacters /* NSUInteger */                \
+    0
+
 // Tell LCLLogFile whether it should show file names.
 #define _LCLLogFile_ShowFileNames /* (BOOL) */                                 \
     YES
