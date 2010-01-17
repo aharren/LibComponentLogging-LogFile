@@ -30,8 +30,10 @@
 //
 // LCLLogFile
 //
-// LCLLogFile is a LibComponentLogging logger implementation which writes
-// log messages to an application-specific log file.
+// LCLLogFile is a logging back-end implementation which writes log messages to
+// an application-specific log file. LCLLogFile can be used as a logging
+// back-end for LibComponentLogging, but it is also useable as a standalone
+// logging class without the Core files of LibComponentLogging.
 //
 // The log file is opened automatically when the first log message needs to be
 // written to the log file. There is no need to call open, close, reset, etc.
@@ -39,8 +41,7 @@
 //
 // The log file gets rotated if a given maximum file size is reached.
 //
-// LCLLogFile is configured via the following defines which should be specified
-// in lcl_config_logger.h:
+// LCLLogFile is configured via the following #defines:
 //
 // - Full path of the log file (type NSString *)
 //   #define _LCLLogFile_LogFilePath <definition>
@@ -65,6 +66,9 @@
 //
 // - Show function names in the log messages? (type BOOL)
 //   #define _LCLLogFile_ShowFunctionNames <definition>
+//
+// When using LCLLogFile as a back-end for LibComponentLogging, these #defines
+// should be specified in the lcl_config_logger.h configuration file.
 //
 
 
