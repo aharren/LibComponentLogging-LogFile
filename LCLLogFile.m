@@ -67,14 +67,6 @@
 #include <sys/stat.h>
 
 
-@interface LCLLogFile (Internals)
-
-// Initializes the class.
-+ (void)initialize;
-
-@end
-
-
 // A lock which is held when the log file is used, opened, etc.
 static NSRecursiveLock *_LCLLogFile_lock = nil;
 
@@ -127,6 +119,7 @@ const char * const _LCLLogFile_levelHeader[] = {
     "D",
     "T"
 };
+
 
 @implementation LCLLogFile
 
