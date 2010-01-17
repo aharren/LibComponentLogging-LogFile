@@ -56,6 +56,3 @@
 
 @end
 
-
-Boolean LogFileTestsLoggerConfiguration_CFStringGetFileSystemRepresentation(CFStringRef string, char *buffer, CFIndex maxBufLen);
-
