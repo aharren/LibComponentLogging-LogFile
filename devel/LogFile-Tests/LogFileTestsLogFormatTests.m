@@ -239,5 +239,25 @@
     }
 }
 
+- (void)testLogFormatEscapedSpecialCharacters {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
+    [LogFileTestsLoggerConfiguration setShowFileNames:NO];
+    [LogFileTestsLoggerConfiguration setShowLineNumbers:NO];
+    [LogFileTestsLoggerConfiguration setShowFunctionNames:NO];
+    [LogFileTestsLoggerConfiguration setEscapeSpecialCharacters:YES];
+    [LCLLogFile initialize];
+
+    lcl_log(lcl_cMain, lcl_vInfo, @"message \\ \n \r \n");
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
+                             @"I Main message \\\\ \\n \\r \\n", nil);
+    }
+}
+
 @end
 

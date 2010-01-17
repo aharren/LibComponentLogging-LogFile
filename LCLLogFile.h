@@ -105,6 +105,9 @@
 // Returns whether log messages are mirrored to stderr.
 + (BOOL)mirrorsToStdErr;
 
+// Returns whether special characters are escaped in log messages.
++ (BOOL)escapesSpecialCharacters;
+
 // Returns whether file names are shown.
 + (BOOL)showsFileNames;
 

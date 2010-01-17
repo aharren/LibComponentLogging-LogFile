@@ -45,6 +45,10 @@
 #error  '_LCLLogFile_MirrorMessagesToStdErr' must be defined in 'lcl_config_logger.h'
 #endif
 
+#ifndef _LCLLogFile_EscapeSpecialCharacters
+#error  '__LCLLogFile_EscapeSpecialCharacters' must be defined in 'lcl_config_logger.h'
+#endif
+
 #ifndef _LCLLogFile_ShowFileNames
 #error  '_LCLLogFile_ShowFileNames' must be defined in 'lcl_config_logger.h'
 #endif
@@ -85,6 +89,9 @@ static BOOL _LCLLogFile_appendToExistingLogFile = NO;
 
 // YES, if log messages should be mirrored to stderr.
 static BOOL _LCLLogFile_mirrorToStdErr = NO;
+
+// YES, if special characters should be escaped in log messages.
+static BOOL _LCLLogFile_escapeSpecialCharacters = NO;
 
 // YES, if the file name should be shown.
 static BOOL _LCLLogFile_showFileName = NO;
@@ -155,6 +162,9 @@ const char * const _LCLLogFile_levelHeader[] = {
     // get whether we should mirror log messages to stderr
     _LCLLogFile_mirrorToStdErr = (_LCLLogFile_MirrorMessagesToStdErr);
 
+    // get whether we should escape special characters in log messages
+    _LCLLogFile_escapeSpecialCharacters = (_LCLLogFile_EscapeSpecialCharacters);
+    
     // get whether we should show file names
     _LCLLogFile_showFileName = (_LCLLogFile_ShowFileNames);
 
@@ -346,6 +356,11 @@ const char * const _LCLLogFile_levelHeader[] = {
     return _LCLLogFile_mirrorToStdErr;
 }
 
+// Returns whether special characters are escaped in log messages.
++ (BOOL)escapesSpecialCharacters {
+    return _LCLLogFile_escapeSpecialCharacters;
+}
+
 // Returns whether file names are shown.
 + (BOOL)showsFileNames {
     return _LCLLogFile_showFileName;
@@ -526,6 +541,16 @@ const char * const _LCLLogFile_levelHeader[] = {
         va_start(args, format);
         NSString *message = [[[NSString alloc] initWithFormat:format arguments:args] autorelease];
         va_end(args);
+        
+        // escape special characters
+        if (_LCLLogFile_escapeSpecialCharacters) {
+            NSMutableString *emessage = [[[NSMutableString alloc] initWithCapacity:[message length] * 2] autorelease];
+            [emessage appendString:message];
+            [emessage replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:0 range:NSMakeRange(0, [emessage length])];
+            [emessage replaceOccurrencesOfString:@"\n" withString:@"\\n" options:0 range:NSMakeRange(0, [emessage length])];
+            [emessage replaceOccurrencesOfString:@"\r" withString:@"\\r" options:0 range:NSMakeRange(0, [emessage length])];
+            message = emessage;
+        }
         
         // create C strings
         const char *message_c = [message UTF8String];

@@ -112,6 +112,18 @@
     STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
 }
 
+- (void)testConfigurationEscapesSpecialCharacters {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setEscapeSpecialCharacters:YES];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)YES, nil);
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setEscapeSpecialCharacters:NO];
+    [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)NO, nil);
+}
+
 - (void)testShowsFileNames {
     [LogFileTestsLoggerConfiguration initialize];
     [LogFileTestsLoggerConfiguration setShowFileNames:YES];

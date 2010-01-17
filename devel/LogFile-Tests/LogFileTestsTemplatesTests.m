@@ -58,6 +58,10 @@
     STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
 }
 
+- (void)testConfigurationEscapesSpecialCharacters {
+    STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)NO, nil);
+}
+
 - (void)testShowsFileNames {
     STAssertEquals((int)[LCLLogFile showsFileNames], (int)YES, nil);
 }

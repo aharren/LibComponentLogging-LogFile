@@ -42,6 +42,9 @@
 + (BOOL)mirrorMessagesToStdErr;
 + (void)setMirrorMessagesToStdErr:(BOOL)mirror;
 
++ (BOOL)escapeSpecialCharacters;
++ (void)setEscapeSpecialCharacters:(BOOL)escape;
+
 + (BOOL)showFileNames;
 + (void)setShowFileNames:(BOOL)show;
 
