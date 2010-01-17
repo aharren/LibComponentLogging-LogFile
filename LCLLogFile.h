@@ -54,6 +54,9 @@
 // - Mirror log messages to stderr? (type BOOL)
 //   #define _LCLLogFile_MirrorMessagesToStdErr <definition>
 //
+// - Escape special characters in log messages (type BOOL)
+//   #define _LCLLogFile_EscapeSpecialCharacters <definition>
+//
 // - Show file names in the log messages? (type BOOL)
 //   #define _LCLLogFile_ShowFileNames <definition>
 //
