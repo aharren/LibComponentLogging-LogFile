@@ -46,7 +46,8 @@
                                getpid()]];
     NSString *expectedPath0 = [NSHomeDirectory() stringByAppendingPathComponent:
                                [NSString stringWithFormat:@"Library/Logs/YourApplication/YourApplication.%u.log.0",
-                                getpid()]];    STAssertEqualObjects([LCLLogFile path], expectedPath, nil);
+                                getpid()]];
+    STAssertEqualObjects([LCLLogFile path], expectedPath, nil);
     STAssertEqualObjects([LCLLogFile path0], expectedPath0, nil);
 }
 
