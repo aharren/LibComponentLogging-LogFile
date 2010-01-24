@@ -58,7 +58,7 @@
 
 // Tell LCLLogFile whether it should escape special characters.
 #define _LCLLogFile_EscapeSpecialCharacters /* BOOL */                         \
-    NO
+    YES
 
 // Tell LCLLogFile whether it should show file names.
 #define _LCLLogFile_ShowFileNames /* (BOOL) */                                 \

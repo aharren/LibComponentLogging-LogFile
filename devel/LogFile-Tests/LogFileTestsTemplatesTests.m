@@ -59,7 +59,7 @@
 }
 
 - (void)testConfigurationEscapesSpecialCharacters {
-    STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)NO, nil);
+    STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)YES, nil);
 }
 
 - (void)testConfigurationMaxMessageSize {
