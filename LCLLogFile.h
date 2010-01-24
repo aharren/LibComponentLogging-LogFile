@@ -140,8 +140,9 @@
 
 // Returns the name from the given bundle's Info.plist file. If the name doesn't
 // exist, the bundle's identifier is returned. If the identifier doesn't exist,
-// nil is returned.
-+ (NSString *)nameOrIdentifierFromBundle:(NSBundle *)bundle;
+// the given fallback string is returned.
++ (NSString *)nameOrIdentifierFromBundle:(NSBundle *)bundle
+                                orString:(NSString *)string;
 
 // Returns a default path component for a log file which is based on the given
 // bundles' Info.plist files. The returned path has the form
@@ -154,10 +155,11 @@
 //   <file>/<file>.<pid>.log
 // where
 //   <pid> is the current process id.
-// If the name or identifier cannot be retrieved from the file bundle,
-//   nil
-// is returned.
-+ (NSString *)defaultPathComponentFromPathBundle:(NSBundle *)pathBundle fileBundle:(NSBundle *)fileBundle;
+// If the name or identifier cannot be retrieved from the file bundle, the
+// given fallback path component is returned.
++ (NSString *)defaultPathComponentFromPathBundle:(NSBundle *)pathBundle
+                                      fileBundle:(NSBundle *)fileBundle
+                                 orPathComponent:(NSString *)pathComponent;
 
 // Returns a default path for a log file which is based on the Info.plist
 // files which are associated with this class. The returned path has the form
@@ -173,13 +175,10 @@
 // where
 //   <pid> is the current process id.
 // If the name or identifier cannot be retrieved from the bundle which
-// corresponds to this LCLLogFile class,
-//   nil
-// is returned.
-// If the given path prefix <path> is nil,
-//   nil
-// is returned.
-+ (NSString *)defaultPathWithPathPrefix:(NSString *)pathPrefix;
+// corresponds to this LCLLogFile class, or if the given path prefix <path> is
+// nil, the given fallback path is returned.
++ (NSString *)defaultPathWithPathPrefix:(NSString *)pathPrefix
+                                 orPath:(NSString *)path;
 
 // Returns a default path for a log file which is based on the Info.plist
 // files which are associated with this class. The returned path has the form
@@ -189,8 +188,8 @@
 //   <this> is the name (or identifier) of the bundle to which this LCLLogFile
 //          class belongs.
 // This method is a convenience method which calls defaultPathWithPathPrefix
-// with the prefix ~/Library/Logs.
-+ (NSString *)defaultPathInHomeLibraryLogs;
+// with the prefix ~/Library/Logs and the given fallback path.
++ (NSString *)defaultPathInHomeLibraryLogsOrPath:(NSString *)path;
 
 // Returns the version of LCLLogFile.
 + (NSString *)version;

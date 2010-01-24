@@ -40,7 +40,9 @@
 - (void)testDefaultPathComponentWithPathAndFileBundle {
     NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.yourcompany.yourapplication"];
     
-    STAssertEqualObjects([LCLLogFile defaultPathComponentFromPathBundle:bundle fileBundle:bundle],
+    STAssertEqualObjects([LCLLogFile defaultPathComponentFromPathBundle:bundle
+                                                             fileBundle:bundle
+                                                        orPathComponent:nil],
                          @"YourApplication/YourApplication.log", nil);
 }
 
@@ -49,18 +51,25 @@
     
     NSString *expectedPath = [NSString stringWithFormat:@"YourApplication/YourApplication.%u.log",
                               getpid()];
-    STAssertEqualObjects([LCLLogFile defaultPathComponentFromPathBundle:nil fileBundle:bundle],
+    STAssertEqualObjects([LCLLogFile defaultPathComponentFromPathBundle:nil
+                                                             fileBundle:bundle
+                                                        orPathComponent:nil],
                          expectedPath, nil);
 }
 
 - (void)testDefaultPathComponentWithNilFileBundle {
     NSBundle *bundle = [NSBundle bundleWithIdentifier:@"com.yourcompany.yourapplication"];
-    
-    STAssertTrue([LCLLogFile defaultPathComponentFromPathBundle:bundle fileBundle:nil] == nil, nil);
+    NSString *fallback = @"path component";
+    STAssertTrue([LCLLogFile defaultPathComponentFromPathBundle:bundle
+                                                     fileBundle:nil
+                                                orPathComponent:fallback] == fallback, nil);
 }
 
 - (void)testDefaultPathComponentWithNilBundles {
-    STAssertTrue([LCLLogFile defaultPathComponentFromPathBundle:nil fileBundle:nil] == nil, nil);
+    NSString *fallback = @"path component";
+    STAssertTrue([LCLLogFile defaultPathComponentFromPathBundle:nil
+                                                     fileBundle:nil
+                                                orPathComponent:fallback] == fallback, nil);
 }
 
 - (void)testDefaultPathWithPathPrefixWithMainBundle {
@@ -68,11 +77,14 @@
     [NSBundle setMainBundle:bundle];
     
     NSString *expectedPath = @"prefix/YourApplication/YourApplication.log";
-    STAssertEqualObjects([LCLLogFile defaultPathWithPathPrefix:@"prefix"], expectedPath, nil);
+    STAssertEqualObjects([LCLLogFile defaultPathWithPathPrefix:@"prefix"
+                                                        orPath:nil], expectedPath, nil);
 }
 
 - (void)testDefaultPathWithPathPrefixWithoutPrefix {
-    STAssertTrue([LCLLogFile defaultPathWithPathPrefix:nil] == nil, nil);
+    NSString *fallback = @"path";
+    STAssertTrue([LCLLogFile defaultPathWithPathPrefix:nil
+                                                orPath:fallback] == fallback, nil);
 }
 
 - (void)testDefaultPathInHomeLibraryLogsWithMainBundle {
@@ -81,7 +93,7 @@
     
     NSString *expectedPath = [NSHomeDirectory() stringByAppendingPathComponent:
                               @"Library/Logs/YourApplication/YourApplication.log"];
-    STAssertEqualObjects([LCLLogFile defaultPathInHomeLibraryLogs], expectedPath, nil);
+    STAssertEqualObjects([LCLLogFile defaultPathInHomeLibraryLogsOrPath:nil], expectedPath, nil);
 }
 
 - (void)testDefaultPathInHomeLibraryLogsWithFallbackForMainBundle {
@@ -90,7 +102,7 @@
     NSString *expectedPath = [NSHomeDirectory() stringByAppendingPathComponent:
                               [NSString stringWithFormat:@"Library/Logs/YourApplication/YourApplication.%u.log",
                                getpid()]];
-    STAssertEqualObjects([LCLLogFile defaultPathInHomeLibraryLogs], expectedPath, nil);
+    STAssertEqualObjects([LCLLogFile defaultPathInHomeLibraryLogsOrPath:nil], expectedPath, nil);
 }
 
 @end

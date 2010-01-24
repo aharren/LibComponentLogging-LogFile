@@ -387,13 +387,18 @@ const char * const _LCLLogFile_levelHeader[] = {
 
 // Returns the name from the given bundle's Info.plist file. If the name doesn't
 // exist, the bundle's identifier is returned. If the identifier doesn't exist,
-// nil is returned.
-+ (NSString *)nameOrIdentifierFromBundle:(NSBundle *)bundle {
+// the given fallback string is returned.
++ (NSString *)nameOrIdentifierFromBundle:(NSBundle *)bundle
+                                orString:(NSString *)string {
     id bundleName = [bundle objectForInfoDictionaryKey:@"CFBundleName"];
     if (bundleName != nil && [bundleName isKindOfClass:[NSString class]]) {
         return (NSString *)bundleName;
     }
-    return [bundle bundleIdentifier];
+    NSString *bundleIdentifier = [bundle bundleIdentifier];
+    if (bundleIdentifier != nil) {
+        return bundleIdentifier;
+    }
+    return string;
 }
 
 // Returns a default path component for a log file which is based on the given
@@ -407,12 +412,15 @@ const char * const _LCLLogFile_levelHeader[] = {
 //   <file>/<file>.<pid>.log
 // where
 //   <pid> is the current process id.
-// If the name or identifier cannot be retrieved from the file bundle,
-//   nil
-// is returned.
-+ (NSString *)defaultPathComponentFromPathBundle:(NSBundle *)pathBundle fileBundle:(NSBundle *)fileBundle {
-    NSString *pathName = [LCLLogFile nameOrIdentifierFromBundle:pathBundle];
-    NSString *fileName = [LCLLogFile nameOrIdentifierFromBundle:fileBundle];
+// If the name or identifier cannot be retrieved from the file bundle, the
+// given fallback path component is returned.
++ (NSString *)defaultPathComponentFromPathBundle:(NSBundle *)pathBundle
+                                      fileBundle:(NSBundle *)fileBundle
+                                 orPathComponent:(NSString *)pathComponent {
+    NSString *pathName = [LCLLogFile nameOrIdentifierFromBundle:pathBundle
+                                                       orString:nil];
+    NSString *fileName = [LCLLogFile nameOrIdentifierFromBundle:fileBundle
+                                                       orString:nil];
     
     if (pathName != nil && fileName != nil) {
         // we have a path name and a file name
@@ -423,7 +431,7 @@ const char * const _LCLLogFile_levelHeader[] = {
         return [NSString stringWithFormat:@"%@/%@.%u.log", fileName, fileName, getpid()];
     } else {
         // no information from the bundles, fail
-        return nil;
+        return pathComponent;
     }
 }
 
@@ -441,24 +449,22 @@ const char * const _LCLLogFile_levelHeader[] = {
 // where
 //   <pid> is the current process id.
 // If the name or identifier cannot be retrieved from the bundle which
-// corresponds to this LCLLogFile class,
-//   nil
-// is returned.
-// If the given path prefix <path> is nil,
-//   nil
-// is returned.
-+ (NSString *)defaultPathWithPathPrefix:(NSString *)pathPrefix {
+// corresponds to this LCLLogFile class, or if the given path prefix <path> is
+// nil, the given fallback path is returned.
++ (NSString *)defaultPathWithPathPrefix:(NSString *)pathPrefix
+                                 orPath:(NSString *)path {
     // get the main bundle and the bundle which corresponds to this class
     NSBundle *pathBundle = [NSBundle mainBundle];
     NSBundle *fileBunlde = [NSBundle bundleForClass:[LCLLogFile class]];
     
     NSString *pathComponent = [LCLLogFile defaultPathComponentFromPathBundle:pathBundle
-                                                                  fileBundle:fileBunlde];
+                                                                  fileBundle:fileBunlde
+                                                             orPathComponent:nil];
     
     if (pathPrefix != nil && pathComponent != nil) {
         return [pathPrefix stringByAppendingPathComponent:pathComponent];
     } else {
-        return nil;
+        return path;
     }
 }
 
@@ -470,10 +476,11 @@ const char * const _LCLLogFile_levelHeader[] = {
 //   <this> is the name (or identifier) of the bundle to which this LCLLogFile
 //          class belongs.
 // This method is a convenience method which calls defaultPathWithPathPrefix
-// with the prefix ~/Library/Logs.
-+ (NSString *)defaultPathInHomeLibraryLogs {
+// with the prefix ~/Library/Logs and the given fallback path.
++ (NSString *)defaultPathInHomeLibraryLogsOrPath:(NSString *)path {
     return [LCLLogFile defaultPathWithPathPrefix:
-            [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs"]];
+            [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Logs"]
+                                          orPath:path];
 }
 
 // Returns the version of LCLLogFile.
