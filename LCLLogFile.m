@@ -486,7 +486,7 @@ const char * const _LCLLogFile_levelHeader[] = {
 }
 
 // Writes the given log message to the log file (internal).
-static void _LCLLogFile_log(const char *component, uint32_t level,
+static void _LCLLogFile_log(const char *identifier, uint32_t level,
                             const char *path, uint32_t line,
                             const char *function,
                             NSString *message) {
@@ -530,7 +530,7 @@ static void _LCLLogFile_log(const char *component, uint32_t level,
                         _LCLLogFile_processId,
                         mach_thread_self(),
                         level_c,
-                        component,
+                        identifier,
                         _LCLLogFile_showFileName ? ":" : "",
                         file_c,
                         _LCLLogFile_showLineNumber ? ":" : "",
@@ -614,10 +614,10 @@ static void _LCLLogFile_log(const char *component, uint32_t level,
 }
 
 // Writes the given log message to the log file (message).
-+ (void)logWithComponent:(const char *)component level:(uint32_t)level
-                    path:(const char *)path line:(uint32_t)line
-                function:(const char *)function
-                 message:(NSString *)message {
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                  message:(NSString *)message {
     // open the log file
     if (!_LCLLogFile_isActive) {
         [LCLLogFile open];
@@ -626,15 +626,15 @@ static void _LCLLogFile_log(const char *component, uint32_t level,
     // write log message if the log file is opened or mirroring is enabled
     if (_LCLLogFile_fileHandle || _LCLLogFile_mirrorToStdErr) {
         // write log message
-        _LCLLogFile_log(component, level, path, line, function, message);
+        _LCLLogFile_log(identifier, level, path, line, function, message);
     }
 }
 
 // Writes the given log message to the log file (format & va_list var args).
-+ (void)logWithComponent:(const char *)component level:(uint32_t)level
-                    path:(const char *)path line:(uint32_t)line
-                function:(const char *)function
-                  format:(NSString *)format args:(va_list)args {
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                   format:(NSString *)format args:(va_list)args {
     // open the log file
     if (!_LCLLogFile_isActive) {
         [LCLLogFile open];
@@ -646,7 +646,7 @@ static void _LCLLogFile_log(const char *component, uint32_t level,
         NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
         
         // write log message
-        _LCLLogFile_log(component, level, path, line, function, message);
+        _LCLLogFile_log(identifier, level, path, line, function, message);
         
         // release local objects
         [message release];
@@ -654,10 +654,10 @@ static void _LCLLogFile_log(const char *component, uint32_t level,
 }
 
 // Writes the given log message to the log file (format & ... var args).
-+ (void)logWithComponent:(const char *)component level:(uint32_t)level
-                    path:(const char *)path line:(uint32_t)line
-                function:(const char *)function
-                  format:(NSString *)format, ... {
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                   format:(NSString *)format, ... {
     // open the log file
     if (!_LCLLogFile_isActive) {
         [LCLLogFile open];
@@ -672,7 +672,7 @@ static void _LCLLogFile_log(const char *component, uint32_t level,
         va_end(args);
         
         // write log message
-        _LCLLogFile_log(component, level, path, line, function, message);
+        _LCLLogFile_log(identifier, level, path, line, function, message);
         
         // release local objects
         [message release];

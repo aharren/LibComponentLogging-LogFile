@@ -189,18 +189,18 @@
 + (NSString *)version;
 
 // Writes the given log message to the log file.
-+ (void)logWithComponent:(const char *)component level:(uint32_t)level
-                    path:(const char *)path line:(uint32_t)line
-                function:(const char *)function
-                 message:(NSString *)message;
-+ (void)logWithComponent:(const char *)component level:(uint32_t)level
-                    path:(const char *)path line:(uint32_t)line
-                function:(const char *)function
-                  format:(NSString *)format args:(va_list)args;
-+ (void)logWithComponent:(const char *)component level:(uint32_t)level
-                    path:(const char *)path line:(uint32_t)line
-                function:(const char *)function
-                  format:(NSString *)format, ... __attribute__((format(__NSString__, 6, 7)));
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                  message:(NSString *)message;
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                   format:(NSString *)format args:(va_list)args;
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                   format:(NSString *)format, ... __attribute__((format(__NSString__, 6, 7)));
 
 @end
 
@@ -210,16 +210,18 @@
 //
 
 
-// Definition of _lcl_logger.
+// Define the _lcl_logger macro which integrates LCLLogFile as a logging
+// back-end for LibComponentLogging and pass the header of a log component as
+// the identifier to LCLLogFile's log method.
 #define _lcl_logger(_component, _level, _format, ...) {                        \
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];                \
-    [LCLLogFile logWithComponent:_lcl_component_header[_component]             \
-                           level:_level                                        \
-                            path:__FILE__                                      \
-                            line:__LINE__                                      \
-                        function:__FUNCTION__                                  \
-                          format:_format,                                      \
-                              ## __VA_ARGS__];                                 \
+    [LCLLogFile logWithIdentifier:_lcl_component_header[_component]            \
+                            level:_level                                       \
+                             path:__FILE__                                     \
+                             line:__LINE__                                     \
+                         function:__FUNCTION__                                 \
+                           format:_format,                                     \
+                               ## __VA_ARGS__];                                \
     [pool release];                                                            \
 }
 

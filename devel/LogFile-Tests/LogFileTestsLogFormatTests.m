@@ -182,7 +182,7 @@
     [LogFileTestsLoggerConfiguration setShowFunctionNames:YES];
     [LCLLogFile initialize];
     
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vInfo path:NULL line:0 function:NULL format:@"message %s %d %@", "cstring", 123, @"NSString *"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:lcl_vInfo path:NULL line:0 function:NULL format:@"message %s %d %@", "cstring", 123, @"NSString *"];
     {
         NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
         NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
@@ -201,16 +201,16 @@
     [LogFileTestsLoggerConfiguration setShowFunctionNames:NO];
     [LCLLogFile initialize];
     
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:0 path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vCritical path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vError path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vWarning path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vInfo path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vDebug path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:lcl_vTrace path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:7 path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:8 path:NULL line:0 function:NULL format:@"message"];
-    [LCLLogFile logWithComponent:_lcl_component_header[lcl_cMain] level:18 path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:0 path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:lcl_vCritical path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:lcl_vError path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:lcl_vWarning path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:lcl_vInfo path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:lcl_vDebug path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:lcl_vTrace path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:7 path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:8 path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:18 path:NULL line:0 function:NULL format:@"message"];
     {
         NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
         NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
@@ -247,7 +247,7 @@
     [LogFileTestsLoggerConfiguration setShowFunctionNames:NO];
     [LogFileTestsLoggerConfiguration setEscapeSpecialCharacters:YES];
     [LCLLogFile initialize];
-
+    
     lcl_log(lcl_cMain, lcl_vInfo, @"message \\ \n \r \n");
     {
         NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
