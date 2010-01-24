@@ -488,8 +488,8 @@ const char * const _LCLLogFile_levelHeader[] = {
 #define __lcl_version_to_string( _text) __lcl_version_to_string0(_text)
 #define __lcl_version_to_string0(_text) #_text
     return @__lcl_version_to_string(_LCLLOGFILE_VERSION_MAJOR) 
-        "." __lcl_version_to_string(_LCLLOGFILE_VERSION_MINOR)
-        "." __lcl_version_to_string(_LCLLOGFILE_VERSION_BUILD);
+    "."     __lcl_version_to_string(_LCLLOGFILE_VERSION_MINOR)
+    "."     __lcl_version_to_string(_LCLLOGFILE_VERSION_BUILD);
 }
 
 // Writes the given log message to the log file (internal).
