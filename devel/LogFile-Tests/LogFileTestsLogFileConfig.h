@@ -1,6 +1,6 @@
 //
 //
-// lcl_config_logger.h
+// LogFileTestsLogFileConfig.h
 //
 //
 // Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
@@ -27,50 +27,50 @@
 // Rename the LCLLogFile class by adding your application/framework's unique
 // prefix in order to avoid duplicate symbols in the global class namespace.
 #define LCLLogFile                                                             \
-    LogFileTestsFrameworkLCLLogFile
-
-// Use LCLLogFile as the logging back-end.
-#import "LCLLogFile.h"
+    LogFileTestsLCLLogFile
 
 // Tell LCLLogFile the path of the log file as an NSString.
 #define _LCLLogFile_LogFilePath /* (NSString *) */                             \
-    [LCLLogFile defaultPathWithPathPrefix:                                     \
-     [NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs"]]
+    [LogFileTestsLoggerConfiguration logFilePath]
 
 // Tell LCLLogFile whether it should append to an existing log file on startup,
 // instead of creating a new log file.
 #define _LCLLogFile_AppendToExistingLogFile /* (BOOL) */                       \
-    YES
+    [LogFileTestsLoggerConfiguration appendToExistingLogFile]
 
 // Tell LCLLogFile the maximum size of a log file in bytes.
 #define _LCLLogFile_MaxLogFileSizeInBytes /* (size_t) */                       \
-    2 * 1024 * 1024
+    [LogFileTestsLoggerConfiguration maxLogFileSizeInBytes]
 
 // Tell LCLLogFile whether it should mirror the log messages to stderr.
 #define _LCLLogFile_MirrorMessagesToStdErr /* (BOOL) */                        \
-    NO
+    [LogFileTestsLoggerConfiguration mirrorMessagesToStdErr]
 
 // Tell LCLLogFile whether it should escape special characters.
 #define _LCLLogFile_EscapeSpecialCharacters /* BOOL */                         \
-    NO
+    [LogFileTestsLoggerConfiguration escapeSpecialCharacters]
 
 // Tell LCLLogFile the maximum size of a log message in characters.
 #define _LCLLogFile_MaxMessageSizeInCharacters /* NSUInteger */                \
-    0
+    [LogFileTestsLoggerConfiguration maxMessageSize]
 
 // Tell LCLLogFile whether it should show file names.
 #define _LCLLogFile_ShowFileNames /* (BOOL) */                                 \
-    YES
+    [LogFileTestsLoggerConfiguration showFileNames]
 
 // Tell LCLLogFile whether it should show line numbers.
 #define _LCLLogFile_ShowLineNumbers /* (BOOL) */                               \
-    YES
+    [LogFileTestsLoggerConfiguration showLineNumbers]
 
 // Tell LCLLogFile whether it should show function names.
 #define _LCLLogFile_ShowFunctionNames /* (BOOL) */                             \
-    YES
+    [LogFileTestsLoggerConfiguration showFunctionNames]
+
+
+// LogFileTestsLoggerConfiguration holds the configuration data.
+#import "LogFileTestsLoggerConfiguration.h"
 
 
 // Override some global symbols for testing.
-#import "LogFileTestsFrameworkInjections.h"
+#import "LogFileTestsInjections.h"
 

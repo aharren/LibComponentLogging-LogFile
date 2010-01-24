@@ -1,6 +1,6 @@
 //
 //
-// lcl_config_logger.h
+// LCLLogFileConfig.h
 //
 //
 // Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
@@ -24,7 +24,7 @@
 // THE SOFTWARE.
 
 //
-// lcl_config_logger.h template for the LCLLogFile logging back-end.
+// LCLLogFileConfig.h template for the LCLLogFile logging class.
 //
 
 
@@ -34,9 +34,6 @@
 #define LCLLogFile                                                             \
     <UniquePrefix>LCLLogFile
 #endif
-
-// Use LCLLogFile as the logging back-end.
-#import "LCLLogFile.h"
 
 // Tell LCLLogFile the path of the log file.
 #define _LCLLogFile_LogFilePath /* (NSString *) */                             \

@@ -1,6 +1,6 @@
 //
 //
-// lcl_config_logger.h
+// LCLLogFileConfig.h
 //
 //
 // Copyright (c) 2008-2009 Arne Harren <ah@0xc0.de>
@@ -23,6 +23,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// Use LCLLogfile as the LibComponentLogging logging back-end.
-#import "LCLLogFile.h"
+
+#ifdef LOGFILE_TESTS_FRAMEWORK_BUILD
+#include "Framework/LogFileTestsFrameworkLogFileConfig.h"
+#elif LOGFILE_TESTS_TEMPLATES_BUILD
+#include "LCLLogFileConfig.template.h"
+#else
+#include "LogFileTestsLogFileConfig.h"
+#endif
 

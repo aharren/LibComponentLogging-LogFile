@@ -23,7 +23,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "lcl.h"
+#import "LCLLogFile.h"
 
 #ifndef LCLLogFile
 #error  'LCLLogFile' must be defined

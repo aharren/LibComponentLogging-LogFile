@@ -41,7 +41,8 @@
 //
 // The log file gets rotated if a given maximum file size is reached.
 //
-// LCLLogFile is configured via the following #defines:
+// LCLLogFile is configured via the following #defines in LCLLogFileConfig.h
+// (see #import below):
 //
 // - Full path of the log file (type NSString *)
 //   #define _LCLLogFile_LogFilePath <definition>
@@ -70,9 +71,15 @@
 // - Show function names in the log messages? (type BOOL)
 //   #define _LCLLogFile_ShowFunctionNames <definition>
 //
-// When using LCLLogFile as a back-end for LibComponentLogging, these #defines
-// should be specified in the lcl_config_logger.h configuration file.
 //
+// When using LCLLogFile as a back-end for LibComponentLogging, simply add an
+//   #import "LCLLogFile.h"
+// statement to your lcl_config_logger.h file and use the LCLLogFileConfig.h
+// file for detailed configuration of the LCLLogFile class.
+//
+
+
+#import "LCLLogFileConfig.h"
 
 
 //
