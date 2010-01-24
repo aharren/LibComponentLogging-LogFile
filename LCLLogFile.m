@@ -455,10 +455,10 @@ const char * const _LCLLogFile_levelHeader[] = {
                                  orPath:(NSString *)path {
     // get the main bundle and the bundle which corresponds to this class
     NSBundle *pathBundle = [NSBundle mainBundle];
-    NSBundle *fileBunlde = [NSBundle bundleForClass:[LCLLogFile class]];
+    NSBundle *fileBundle = [NSBundle bundleForClass:[LCLLogFile class]];
     
     NSString *pathComponent = [LCLLogFile defaultPathComponentFromPathBundle:pathBundle
-                                                                  fileBundle:fileBunlde
+                                                                  fileBundle:fileBundle
                                                              orPathComponent:nil];
     
     if (pathPrefix != nil && pathComponent != nil) {
