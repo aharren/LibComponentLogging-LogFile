@@ -211,11 +211,12 @@
     [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:7 path:NULL line:0 function:NULL format:@"message"];
     [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:8 path:NULL line:0 function:NULL format:@"message"];
     [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:18 path:NULL line:0 function:NULL format:@"message"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:(uint32_t)-1 path:NULL line:0 function:NULL format:@"message"];
     {
         NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
         NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
         STAssertTrue(0 < [logLines count], nil);
-        STAssertEquals([logLines count] - 1, (NSUInteger)10, nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)11, nil);
         STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
                              @"- Main message", nil);
         STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:1]],
@@ -236,6 +237,8 @@
                              @"8 Main message", nil);
         STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:9]],
                              @"18 Main message", nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:10]],
+                             @"4294967295 Main message", nil);
     }
 }
 
