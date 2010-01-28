@@ -23,6 +23,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// Use LCLLogfile as the LibComponentLogging logging back-end.
+// Use LCLLogFile as the LibComponentLogging logging back-end.
 #import "LCLLogFile.h"
+
+// The detailed configuration of the LCLLogFile class is stored in the
+// LCLLogFileConfig.h file which gets imported by LCLLogFile.h.
 
