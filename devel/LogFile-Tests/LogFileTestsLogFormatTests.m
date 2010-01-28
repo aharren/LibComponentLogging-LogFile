@@ -239,6 +239,31 @@
     }
 }
 
+- (void)testLogFormatLineNumbers {
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
+    [LogFileTestsLoggerConfiguration setShowFileNames:NO];
+    [LogFileTestsLoggerConfiguration setShowLineNumbers:YES];
+    [LogFileTestsLoggerConfiguration setShowFunctionNames:NO];
+    [LCLLogFile initialize];
+    
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:0 path:NULL line:0 function:NULL format:@"message 1"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:0 path:NULL line:10 function:NULL format:@"message 10"];
+    [LCLLogFile logWithIdentifier:_lcl_component_header[lcl_cMain] level:0 path:NULL line:(uint32_t)-1 function:NULL format:@"message -1"];
+    {
+        NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
+        NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
+        STAssertTrue(0 < [logLines count], nil);
+        STAssertEquals([logLines count] - 1, (NSUInteger)3, nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
+                             @"- Main:0 message 1", nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:1]],
+                             @"- Main:10 message 10", nil);
+        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:2]],
+                             @"- Main:4294967295 message -1", nil);
+    }
+}
+
 - (void)testLogFormatEscapedSpecialCharacters {
     [LogFileTestsLoggerConfiguration initialize];
     [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
