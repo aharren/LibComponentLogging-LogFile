@@ -112,6 +112,7 @@
 		E024691C10F5031A006FBB62 /* LogFileTestsConfigComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsConfigComponents.h; path = "LogFile-Tests/LogFileTestsConfigComponents.h"; sourceTree = "<group>"; };
 		E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsConfigurationTests.m; path = "LogFile-Tests/LogFileTestsConfigurationTests.m"; sourceTree = "<group>"; };
 		E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsAllocationTests.m; path = "LogFile-Tests/LogFileTestsAllocationTests.m"; sourceTree = "<group>"; };
+		E034BAC7111227C100333E0E /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = ../lcl_config_logger.h; sourceTree = SOURCE_ROOT; };
 		E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsLoggingTests.m; path = "LogFile-Tests/LogFileTestsLoggingTests.m"; sourceTree = "<group>"; };
 		E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFileRotationTests.m; path = "LogFile-Tests/LogFileTestsFileRotationTests.m"; sourceTree = "<group>"; };
 		E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-iPhoneOS-3.0-Device.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,7 +123,6 @@
 		E06517D81101E2C5003357A7 /* LogFileTestsFrameworkMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFrameworkMain.h; path = "LogFile-Tests/Framework/LogFileTestsFrameworkMain.h"; sourceTree = "<group>"; };
 		E06517D91101E2C5003357A7 /* LogFileTestsFrameworkMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFrameworkMain.m; path = "LogFile-Tests/Framework/LogFileTestsFrameworkMain.m"; sourceTree = "<group>"; };
 		E06517F81101E772003357A7 /* lcl_config_components.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_components.h; path = "LogFile-Tests/lcl_config_components.h"; sourceTree = "<group>"; };
-		E06517F91101E772003357A7 /* lcl_config_logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.h; path = "LogFile-Tests/lcl_config_logger.h"; sourceTree = "<group>"; };
 		E06517FE1101E82F003357A7 /* LogFileTestsFrameworkConfigComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFrameworkConfigComponents.h; path = "LogFile-Tests/Framework/LogFileTestsFrameworkConfigComponents.h"; sourceTree = "<group>"; };
 		E06517FF1101E82F003357A7 /* LogFileTestsFrameworkLogFileConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFrameworkLogFileConfig.h; path = "LogFile-Tests/Framework/LogFileTestsFrameworkLogFileConfig.h"; sourceTree = "<group>"; };
 		E06518001101E8B5003357A7 /* LogFileTestsFrameworkInjections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFrameworkInjections.h; path = "LogFile-Tests/Framework/LogFileTestsFrameworkInjections.h"; sourceTree = "<group>"; };
@@ -240,6 +240,7 @@
 				E0DC99E710F4FE080088653D /* LCLLogFile.h */,
 				E0DC99E810F4FE080088653D /* LCLLogFile.m */,
 				E0C9DEED110C589000370A14 /* LCLLogFileConfig.template.h */,
+				E034BAC7111227C100333E0E /* lcl_config_logger.h */,
 			);
 			name = LogFile;
 			sourceTree = "<group>";
@@ -248,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				E06517F81101E772003357A7 /* lcl_config_components.h */,
-				E06517F91101E772003357A7 /* lcl_config_logger.h */,
 				E0C9DEFB110C5E8200370A14 /* LCLLogFileConfig.h */,
 				E024691C10F5031A006FBB62 /* LogFileTestsConfigComponents.h */,
 				E0B0BD2210F8D179002B788C /* LogFileTestsLogFileConfig.h */,
