@@ -25,22 +25,14 @@ Example:
 
 The Git repository contains the following branches:
 
-* *master*
+* *master*: The *master* branch contains stable builds of the main logging code which are tagged with version numbers.
 
-  The *master* branch contains stable builds of the main logging code which are tagged with version numbers.
-
-* *devel*
-
-  The *devel* branch is the development branch for the logging code which contains an Xcode project with dependent code, e.g. the Core files of LibComponentLogging, and unit tests. The code in this branch is not stable.
+* *devel*: The *devel* branch is the development branch for the logging code which contains an Xcode project with dependent code, e.g. the Core files of LibComponentLogging, and unit tests. The code in this branch is not stable.
 
 ## Related Repositories
 
 The following Git repositories are related to this repository: 
 
-* [http://github.com/aharren/LibComponentLogging-Core](http://github.com/aharren/LibComponentLogging-Core)
+* [http://github.com/aharren/LibComponentLogging-Core](http://github.com/aharren/LibComponentLogging-Core): Core files of LibComponentLogging.  
 
-  Core files of LibComponentLogging.  
-
-* [http://github.com/aharren/LibComponentLogging-LogFile-Example](http://github.com/aharren/LibComponentLogging-LogFile-Example)
-
-  An example Xcode project which uses the LibComponentLogging-LogFile logger.
+* [http://github.com/aharren/LibComponentLogging-LogFile-Example](http://github.com/aharren/LibComponentLogging-LogFile-Example): An example Xcode project which uses the LibComponentLogging-LogFile logger.
