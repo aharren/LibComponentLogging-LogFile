@@ -256,18 +256,10 @@ const char * const _LCLLogFile_levelHeader[] = {
 //
 
 
-// Writes the given log message to the log file (internal).
-static void _LCLLogFile_log(const char *identifier, uint32_t level,
-                            const char *path, uint32_t line,
-                            const char *function,
-                            NSString *message) {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-    // variables for current time
-    struct timeval now;
-    struct tm now_tm;
-    char time_c[24];
-    
+// Creates the log message prefix.
+static NSString *_LCLLogFile_prefix(const char *identifier, uint32_t level,
+                                    const char *path, uint32_t line,
+                                    const char *function) {
     // get file from path
     const char *file_c = "";
     if (_LCLLogFile_showFileName) {
@@ -309,6 +301,24 @@ static void _LCLLogFile_log(const char *identifier, uint32_t level,
                         _LCLLogFile_showFunctionName ? ":" : "",
                         _LCLLogFile_showFunctionName ? function : ""];
     
+    return prefix;
+}
+
+// Writes the given log message to the log file (internal).
+static void _LCLLogFile_log(const char *identifier, uint32_t level,
+                            const char *path, uint32_t line,
+                            const char *function,
+                            NSString *message) {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    // variables for current time
+    struct timeval now;
+    struct tm now_tm;
+    char time_c[24];
+    
+    // create the prefix
+    NSString *prefix = _LCLLogFile_prefix(identifier, level, path, line, function);
+    
     // restrict size of log message
     if (_LCLLogFile_maxMessageSize != 0) {
         NSUInteger message_len = [message length];
@@ -328,8 +338,8 @@ static void _LCLLogFile_log(const char *identifier, uint32_t level,
     }
     
     // create C strings
-    const char *message_c = [message UTF8String];
     const char *prefix_c = [prefix UTF8String];
+    const char *message_c = [message UTF8String];
     
     // get size of log entry
     const int backslash_n_len = 1;
