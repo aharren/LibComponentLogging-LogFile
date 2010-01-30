@@ -257,23 +257,26 @@ const char * const _LCLLogFile_levelHeader[] = {
 
 
 // Creates the log message prefix.
-static NSString *_LCLLogFile_prefix(const char *identifier, uint32_t level,
-                                    const char *path, uint32_t line,
-                                    const char *function) {
-    // get file from path
-    const char *file_c = "";
-    if (_LCLLogFile_showFileName) {
-        file_c = path != NULL ? strrchr(path, '/') : NULL;
-        file_c = (file_c != NULL) ? (file_c + 1) : (path);
+static NSString *_LCLLogFile_prefix(const char *identifier_c, uint32_t level,
+                                    const char *path_c, uint32_t line,
+                                    const char *function_c) {
+    // get settings
+    const int show_file = _LCLLogFile_showFileName;
+    const int show_line = _LCLLogFile_showLineNumber;
+    const int show_function = _LCLLogFile_showFunctionName;
+    
+    // get file name from path
+    const char *file_c = NULL;
+    if (show_file) {
+        file_c = path_c != NULL ? strrchr(path_c, '/') : NULL;
+        file_c = (file_c != NULL) ? (file_c + 1) : (path_c);
     }
     
     // get line
     char line_c[11];
-    if (_LCLLogFile_showLineNumber) {
+    if (show_line) {
         snprintf(line_c, sizeof(line_c), "%u", line);
         line_c[sizeof(line_c) - 1] = '\0';
-    } else {
-        line_c[0] = '\0';
     }
     
     // get the level header
@@ -290,24 +293,29 @@ static NSString *_LCLLogFile_prefix(const char *identifier, uint32_t level,
     
     // create prefix
     NSString *prefix = [NSString stringWithFormat:@" %u:%x %s %s%s%s%s%s%s%s ",
-                        _LCLLogFile_processId,
-                        mach_thread_self(),
-                        level_c,
-                        identifier,
-                        _LCLLogFile_showFileName ? ":" : "",
-                        file_c,
-                        _LCLLogFile_showLineNumber ? ":" : "",
-                        line_c,
-                        _LCLLogFile_showFunctionName ? ":" : "",
-                        _LCLLogFile_showFunctionName ? function : ""];
+                        /*    */
+                        /* %u */ _LCLLogFile_processId,
+                        /* %x */ mach_thread_self(),
+                        /*    */
+                        /* %s */ level_c,
+                        /*    */
+                        /* %s */ identifier_c,
+                        /* %s */ show_file ? ":" : "",
+                        /* %s */ show_file ? file_c : "",
+                        /* %s */ show_line ? ":" : "",
+                        /* %s */ show_line ? line_c : "",
+                        /* %s */ show_function ? ":" : "",
+                        /* %s */ show_function ? function_c : ""
+                        /*    */
+                        ];
     
     return prefix;
 }
 
 // Writes the given log message to the log file (internal).
-static void _LCLLogFile_log(const char *identifier, uint32_t level,
-                            const char *path, uint32_t line,
-                            const char *function,
+static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
+                            const char *path_c, uint32_t line,
+                            const char *function_c,
                             NSString *message) {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -317,7 +325,7 @@ static void _LCLLogFile_log(const char *identifier, uint32_t level,
     char time_c[24];
     
     // create the prefix
-    NSString *prefix = _LCLLogFile_prefix(identifier, level, path, line, function);
+    NSString *prefix = _LCLLogFile_prefix(identifier_c, level, path_c, line, function_c);
     
     // restrict size of log message
     if (_LCLLogFile_maxMessageSize != 0) {
