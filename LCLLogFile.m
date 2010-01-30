@@ -341,7 +341,6 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
         [emessage appendString:message];
         [emessage replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:0 range:NSMakeRange(0, [emessage length])];
         [emessage replaceOccurrencesOfString:@"\n" withString:@"\\n" options:0 range:NSMakeRange(0, [emessage length])];
-        [emessage replaceOccurrencesOfString:@"\r" withString:@"\\r" options:0 range:NSMakeRange(0, [emessage length])];
         message = emessage;
     }
     

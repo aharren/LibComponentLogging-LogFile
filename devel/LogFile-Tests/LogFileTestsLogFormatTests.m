@@ -283,7 +283,7 @@
         STAssertTrue(0 < [logLines count], nil);
         STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
         STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
-                             @"I Main message \\\\ \\n \\r \\n", nil);
+                             @"I Main message \\\\ \\n \r \\n", nil);
     }
 }
 
