@@ -549,7 +549,8 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
 #define __lcl_version_to_string0(_text) #_text
     return @__lcl_version_to_string(_LCLLOGFILE_VERSION_MAJOR)
     "."     __lcl_version_to_string(_LCLLOGFILE_VERSION_MINOR)
-    "."     __lcl_version_to_string(_LCLLOGFILE_VERSION_BUILD);
+    "."     __lcl_version_to_string(_LCLLOGFILE_VERSION_BUILD)
+    ""      _LCLLOGFILE_VERSION_SUFFIX;
 }
 
 // Opens the log file.
