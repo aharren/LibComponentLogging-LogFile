@@ -112,16 +112,16 @@
     STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
 }
 
-- (void)testConfigurationEscapesSpecialCharacters {
+- (void)testConfigurationEscapesLineFeeds {
     [LogFileTestsLoggerConfiguration initialize];
-    [LogFileTestsLoggerConfiguration setEscapeSpecialCharacters:YES];
+    [LogFileTestsLoggerConfiguration setEscapeLineFeeds:YES];
     [LCLLogFile initialize];
-    STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)YES, nil);
+    STAssertEquals((int)[LCLLogFile escapesLineFeeds], (int)YES, nil);
     
     [LogFileTestsLoggerConfiguration initialize];
-    [LogFileTestsLoggerConfiguration setEscapeSpecialCharacters:NO];
+    [LogFileTestsLoggerConfiguration setEscapeLineFeeds:NO];
     [LCLLogFile initialize];
-    STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)NO, nil);
+    STAssertEquals((int)[LCLLogFile escapesLineFeeds], (int)NO, nil);
 }
 
 - (void)testConfigurationMaxMessageSize {

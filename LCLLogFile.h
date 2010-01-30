@@ -57,8 +57,8 @@
 // - Mirror log messages to stderr? (type BOOL)
 //   #define _LCLLogFile_MirrorMessagesToStdErr <definition>
 //
-// - Escape special characters in log messages (type BOOL)
-//   #define _LCLLogFile_EscapeSpecialCharacters <definition>
+// - Escape ('\\' and) '\n' line feed characters in log messages (type BOOL)
+//   #define _LCLLogFile_EscapeLineFeeds <definition>
 //
 // - Maximum size of a log message in characters (type NSUInteger)
 //   #define _LCLLogFile_MaxMessageSizeInCharacters <definition or 0>
@@ -133,8 +133,8 @@
 // Returns whether log messages are mirrored to stderr.
 + (BOOL)mirrorsToStdErr;
 
-// Returns whether special characters are escaped in log messages.
-+ (BOOL)escapesSpecialCharacters;
+// Returns whether ('\\' and) '\n' line feed characters are escaped in log messages.
++ (BOOL)escapesLineFeeds;
 
 // Returns the maximum size of a log message in characters (without prefixes).
 // Returns 0 if there is no maximum size for log messages.

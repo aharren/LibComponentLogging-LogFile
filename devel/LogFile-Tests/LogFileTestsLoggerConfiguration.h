@@ -42,8 +42,8 @@
 + (BOOL)mirrorMessagesToStdErr;
 + (void)setMirrorMessagesToStdErr:(BOOL)mirror;
 
-+ (BOOL)escapeSpecialCharacters;
-+ (void)setEscapeSpecialCharacters:(BOOL)escape;
++ (BOOL)escapeLineFeeds;
++ (void)setEscapeLineFeeds:(BOOL)escape;
 
 + (BOOL)maxMessageSize;
 + (void)setMaxMessageSize:(NSUInteger)size;

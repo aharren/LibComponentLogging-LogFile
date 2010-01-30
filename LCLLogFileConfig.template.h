@@ -56,8 +56,9 @@
 #define _LCLLogFile_MaxMessageSizeInCharacters /* NSUInteger */                \
     0
 
-// Tell LCLLogFile whether it should escape special characters.
-#define _LCLLogFile_EscapeSpecialCharacters /* BOOL */                         \
+// Tell LCLLogFile whether it should escape ('\\' and) '\n' line feed characters
+// in log messages
+#define _LCLLogFile_EscapeLineFeeds /* BOOL */                                 \
     YES
 
 // Tell LCLLogFile whether it should show file names.

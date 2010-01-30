@@ -56,8 +56,8 @@
 #error  '_LCLLogFile_MirrorMessagesToStdErr' must be defined in LCLLogFileConfig.h
 #endif
 
-#ifndef _LCLLogFile_EscapeSpecialCharacters
-#error  '__LCLLogFile_EscapeSpecialCharacters' must be defined in LCLLogFileConfig.h
+#ifndef _LCLLogFile_EscapeLineFeeds
+#error  '_LCLLogFile_EscapeLineFeeds' must be defined in LCLLogFileConfig.h
 #endif
 
 #ifndef _LCLLogFile_MaxMessageSizeInCharacters
@@ -97,8 +97,8 @@ static BOOL _LCLLogFile_appendToExistingLogFile = NO;
 // YES, if log messages should be mirrored to stderr.
 static BOOL _LCLLogFile_mirrorToStdErr = NO;
 
-// YES, if special characters should be escaped in log messages.
-static BOOL _LCLLogFile_escapeSpecialCharacters = NO;
+// YES, if '\\' and '\n' characters should be escaped in log messages.
+static BOOL _LCLLogFile_escapeLineFeeds = NO;
 
 // YES, if the file name should be shown.
 static BOOL _LCLLogFile_showFileName = NO;
@@ -179,8 +179,8 @@ const char * const _LCLLogFile_levelHeader[] = {
     // get whether we should mirror log messages to stderr
     _LCLLogFile_mirrorToStdErr = (_LCLLogFile_MirrorMessagesToStdErr);
     
-    // get whether we should escape special characters in log messages
-    _LCLLogFile_escapeSpecialCharacters = (_LCLLogFile_EscapeSpecialCharacters);
+    // get whether we should escape '\\' and '\n' characters in log messages
+    _LCLLogFile_escapeLineFeeds = (_LCLLogFile_EscapeLineFeeds);
     
     // get max size of a log message
     _LCLLogFile_maxMessageSize = (_LCLLogFile_MaxMessageSizeInCharacters);
@@ -335,8 +335,8 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
         }
     }
     
-    // escape special characters
-    if (_LCLLogFile_escapeSpecialCharacters) {
+    // escape '\\' and '\n' characters
+    if (_LCLLogFile_escapeLineFeeds) {
         NSMutableString *emessage = [[[NSMutableString alloc] initWithCapacity:[message length] * 2] autorelease];
         [emessage appendString:message];
         [emessage replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:0 range:NSMakeRange(0, [emessage length])];
@@ -498,9 +498,9 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
     return _LCLLogFile_mirrorToStdErr;
 }
 
-// Returns whether special characters are escaped in log messages.
-+ (BOOL)escapesSpecialCharacters {
-    return _LCLLogFile_escapeSpecialCharacters;
+// Returns whether ('\\' and) '\n' line feed characters are escaped in log messages.
++ (BOOL)escapesLineFeeds {
+    return _LCLLogFile_escapeLineFeeds;
 }
 
 // Returns the maximum size of a log message in characters (without prefixes).

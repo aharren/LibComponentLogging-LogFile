@@ -48,8 +48,9 @@
 #define _LCLLogFile_MirrorMessagesToStdErr /* (BOOL) */                        \
     NO
 
-// Tell LCLLogFile whether it should escape special characters.
-#define _LCLLogFile_EscapeSpecialCharacters /* BOOL */                         \
+// Tell LCLLogFile whether it should escape ('\\' and) '\n' line feed characters
+// in log messages
+#define _LCLLogFile_EscapeLineFeeds /* BOOL */                                 \
     NO
 
 // Tell LCLLogFile the maximum size of a log message in characters.

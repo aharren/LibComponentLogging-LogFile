@@ -267,13 +267,13 @@
     }
 }
 
-- (void)testLogFormatEscapedSpecialCharacters {
+- (void)testLogFormatEscapedLineFeeds {
     [LogFileTestsLoggerConfiguration initialize];
     [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
     [LogFileTestsLoggerConfiguration setShowFileNames:NO];
     [LogFileTestsLoggerConfiguration setShowLineNumbers:NO];
     [LogFileTestsLoggerConfiguration setShowFunctionNames:NO];
-    [LogFileTestsLoggerConfiguration setEscapeSpecialCharacters:YES];
+    [LogFileTestsLoggerConfiguration setEscapeLineFeeds:YES];
     [LCLLogFile initialize];
     
     lcl_log(lcl_cMain, lcl_vInfo, @"message \\ \n \r \n");

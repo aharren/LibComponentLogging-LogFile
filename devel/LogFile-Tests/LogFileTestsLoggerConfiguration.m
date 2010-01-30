@@ -30,7 +30,7 @@ static NSString *LogFileTestsLoggerConfiguration_logFilePath = nil;
 static BOOL LogFileTestsLoggerConfiguration_appendToExistingLogFile = NO;
 static size_t LogFileTestsLoggerConfiguration_maxLogFileSizeInBytes = 0;
 static BOOL LogFileTestsLoggerConfiguration_mirrorMessagesToStdErr = NO;
-static BOOL LogFileTestsLoggerConfiguration_escapeSpecialCharacters = NO;
+static BOOL LogFileTestsLoggerConfiguration_escapeLineFeeds = NO;
 static BOOL LogFileTestsLoggerConfiguration_maxMessageSize = 0;
 static BOOL LogFileTestsLoggerConfiguration_showFileNames = NO;
 static BOOL LogFileTestsLoggerConfiguration_showLineNumbers = NO;
@@ -45,7 +45,7 @@ static BOOL LogFileTestsLoggerConfiguration_showFunctionNames = NO;
     LogFileTestsLoggerConfiguration_appendToExistingLogFile = NO;
     LogFileTestsLoggerConfiguration_maxLogFileSizeInBytes = 0;
     LogFileTestsLoggerConfiguration_mirrorMessagesToStdErr = NO;
-    LogFileTestsLoggerConfiguration_escapeSpecialCharacters = NO;
+    LogFileTestsLoggerConfiguration_escapeLineFeeds = NO;
     LogFileTestsLoggerConfiguration_maxMessageSize = 0;
     LogFileTestsLoggerConfiguration_showFileNames = YES;
     LogFileTestsLoggerConfiguration_showLineNumbers = YES;
@@ -93,12 +93,12 @@ static BOOL LogFileTestsLoggerConfiguration_showFunctionNames = NO;
     LogFileTestsLoggerConfiguration_maxMessageSize = size;
 }
 
-+ (BOOL)escapeSpecialCharacters {
-    return LogFileTestsLoggerConfiguration_escapeSpecialCharacters;
++ (BOOL)escapeLineFeeds {
+    return LogFileTestsLoggerConfiguration_escapeLineFeeds;
 }
 
-+ (void)setEscapeSpecialCharacters:(BOOL)escape {
-    LogFileTestsLoggerConfiguration_escapeSpecialCharacters = escape;
++ (void)setEscapeLineFeeds:(BOOL)escape {
+    LogFileTestsLoggerConfiguration_escapeLineFeeds = escape;
 }
 
 + (BOOL)showFileNames {

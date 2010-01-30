@@ -46,9 +46,10 @@
 #define _LCLLogFile_MirrorMessagesToStdErr /* (BOOL) */                        \
     [LogFileTestsLoggerConfiguration mirrorMessagesToStdErr]
 
-// Tell LCLLogFile whether it should escape special characters.
-#define _LCLLogFile_EscapeSpecialCharacters /* BOOL */                         \
-    [LogFileTestsLoggerConfiguration escapeSpecialCharacters]
+// Tell LCLLogFile whether it should escape ('\\' and) '\n' line feed characters
+// in log messages
+#define _LCLLogFile_EscapeLineFeeds /* BOOL */                                 \
+    [LogFileTestsLoggerConfiguration escapeLineFeeds]
 
 // Tell LCLLogFile the maximum size of a log message in characters.
 #define _LCLLogFile_MaxMessageSizeInCharacters /* NSUInteger */                \

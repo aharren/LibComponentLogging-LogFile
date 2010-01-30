@@ -59,8 +59,8 @@
     STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
 }
 
-- (void)testConfigurationEscapesSpecialCharacters {
-    STAssertEquals((int)[LCLLogFile escapesSpecialCharacters], (int)YES, nil);
+- (void)testConfigurationEscapesLineFeeds {
+    STAssertEquals((int)[LCLLogFile escapesLineFeeds], (int)YES, nil);
 }
 
 - (void)testConfigurationMaxMessageSize {
