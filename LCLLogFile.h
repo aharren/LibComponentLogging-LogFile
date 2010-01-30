@@ -82,35 +82,45 @@
 #import "LCLLogFileConfig.h"
 
 
-//
-// LCLLogFile class.
-//
-
-
 @interface LCLLogFile : NSObject {
     
 }
+
+
+//
+// Logging methods.
+//
+
+
+// Writes the given log message to the log file.
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                  message:(NSString *)message;
+
+// Writes the given log message to the log file (format and va_list var args).
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                   format:(NSString *)format args:(va_list)args;
+
+// Writes the given log message to the log file (format and ... var args).
++ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
+                     path:(const char *)path line:(uint32_t)line
+                 function:(const char *)function
+                   format:(NSString *)format, ... __attribute__((format(__NSString__, 6, 7)));
+
+
+//
+// Configuration.
+//
+
 
 // Returns the path of the log file as defined by _LCLLogFile_LogFilePath.
 + (NSString *)path;
 
 // Returns the path of the backup log file.
 + (NSString *)path0;
-
-// Opens the log file.
-+ (void)open;
-
-// Closes the log file.
-+ (void)close;
-
-// Resets the log file.
-+ (void)reset;
-
-// Rotates the log file.
-+ (void)rotate;
-
-// Returns the current size of the log file.
-+ (size_t)size;
 
 // Returns the maximum size of the log file as defined by
 // _LCLLogFile_MaxLogFileSizeInBytes.
@@ -138,28 +148,46 @@
 // Returns whether function names are shown.
 + (BOOL)showsFunctionNames;
 
-// Returns the name from the given bundle's Info.plist file. If the name doesn't
-// exist, the bundle's identifier is returned. If the identifier doesn't exist,
-// the given fallback string is returned.
-+ (NSString *)nameOrIdentifierFromBundle:(NSBundle *)bundle
-                                orString:(NSString *)string;
 
-// Returns a default path component for a log file which is based on the given
-// bundles' Info.plist files. The returned path has the form
-//   <path>/<file>.log
+//
+// Status information and internals.
+//
+
+
+// Returns the current size of the log file.
++ (size_t)size;
+
+// Returns the version of LCLLogFile.
++ (NSString *)version;
+
+// Opens the log file.
++ (void)open;
+
+// Closes the log file.
++ (void)close;
+
+// Resets the log file.
++ (void)reset;
+
+// Rotates the log file.
++ (void)rotate;
+
+
+//
+// Methods for creating log file paths.
+//
+
+
+// Returns a default path for a log file which is based on the Info.plist
+// files which are associated with this class. The returned path has the form
+//   ~/Library/Logs/<main>/<this>.log
 // where
-//   <path> is the name (or identifier) of the given path bundle, and
-//   <file> is the name (or identifier) of the given file bundle.
-// If the name or identifier cannot be retrieved from the path bundle, the
-// returned default path has the form
-//   <file>/<file>.<pid>.log
-// where
-//   <pid> is the current process id.
-// If the name or identifier cannot be retrieved from the file bundle, the
-// given fallback path component is returned.
-+ (NSString *)defaultPathComponentFromPathBundle:(NSBundle *)pathBundle
-                                      fileBundle:(NSBundle *)fileBundle
-                                 orPathComponent:(NSString *)pathComponent;
+//   <main> is the name (or identifier) of the application's main bundle, and
+//   <this> is the name (or identifier) of the bundle to which this LCLLogFile
+//          class belongs.
+// This method is a convenience method which calls defaultPathWithPathPrefix
+// with the prefix ~/Library/Logs and the given fallback path.
++ (NSString *)defaultPathInHomeLibraryLogsOrPath:(NSString *)path;
 
 // Returns a default path for a log file which is based on the Info.plist
 // files which are associated with this class. The returned path has the form
@@ -180,33 +208,29 @@
 + (NSString *)defaultPathWithPathPrefix:(NSString *)pathPrefix
                                  orPath:(NSString *)path;
 
-// Returns a default path for a log file which is based on the Info.plist
-// files which are associated with this class. The returned path has the form
-//   ~/Library/Logs/<main>/<this>.log
+// Returns a default path component for a log file which is based on the given
+// bundles' Info.plist files. The returned path has the form
+//   <path>/<file>.log
 // where
-//   <main> is the name (or identifier) of the application's main bundle, and
-//   <this> is the name (or identifier) of the bundle to which this LCLLogFile
-//          class belongs.
-// This method is a convenience method which calls defaultPathWithPathPrefix
-// with the prefix ~/Library/Logs and the given fallback path.
-+ (NSString *)defaultPathInHomeLibraryLogsOrPath:(NSString *)path;
+//   <path> is the name (or identifier) of the given path bundle, and
+//   <file> is the name (or identifier) of the given file bundle.
+// If the name or identifier cannot be retrieved from the path bundle, the
+// returned default path has the form
+//   <file>/<file>.<pid>.log
+// where
+//   <pid> is the current process id.
+// If the name or identifier cannot be retrieved from the file bundle, the
+// given fallback path component is returned.
++ (NSString *)defaultPathComponentFromPathBundle:(NSBundle *)pathBundle
+                                      fileBundle:(NSBundle *)fileBundle
+                                 orPathComponent:(NSString *)pathComponent;
 
-// Returns the version of LCLLogFile.
-+ (NSString *)version;
+// Returns the name from the given bundle's Info.plist file. If the name doesn't
+// exist, the bundle's identifier is returned. If the identifier doesn't exist,
+// the given fallback string is returned.
++ (NSString *)nameOrIdentifierFromBundle:(NSBundle *)bundle
+                                orString:(NSString *)string;
 
-// Writes the given log message to the log file.
-+ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
-                     path:(const char *)path line:(uint32_t)line
-                 function:(const char *)function
-                  message:(NSString *)message;
-+ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
-                     path:(const char *)path line:(uint32_t)line
-                 function:(const char *)function
-                   format:(NSString *)format args:(va_list)args;
-+ (void)logWithIdentifier:(const char *)identifier level:(uint32_t)level
-                     path:(const char *)path line:(uint32_t)line
-                 function:(const char *)function
-                   format:(NSString *)format, ... __attribute__((format(__NSString__, 6, 7)));
 
 @end
 
