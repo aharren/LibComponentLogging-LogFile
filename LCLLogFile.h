@@ -123,31 +123,41 @@
 // Returns the path of the backup log file.
 + (NSString *)path0;
 
-// Returns the maximum size of the log file as defined by
-// _LCLLogFile_MaxLogFileSizeInBytes.
-+ (size_t)maxSize;
-
-// Returns whether log messages get appended to an existing log file on startup.
+// Returns whether log messages get appended to an existing log file on
+// startup.
 + (BOOL)appendsToExistingLogFile;
 
-// Returns whether log messages are mirrored to stderr.
+// Returns/sets the maximum size of the log file (as defined by
+// _LCLLogFile_MaxLogFileSizeInBytes).
++ (size_t)maxSize;
++ (void)setMaxSize:(size_t)value;
+
+// Returns/sets whether log messages are mirrored to stderr.
 + (BOOL)mirrorsToStdErr;
++ (void)setMirrorsToStdErr:(BOOL)value;
 
-// Returns whether ('\\' and) '\n' line feed characters are escaped in log messages.
+// Returns/sets whether ('\\' and) '\n' line feed characters are escaped in
+// log messages.
 + (BOOL)escapesLineFeeds;
++ (void)setEscapesLineFeeds:(BOOL)value;
 
-// Returns the maximum size of a log message in characters (without prefixes).
-// Returns 0 if there is no maximum size for log messages.
+// Returns/sets the maximum size of a log message in characters (without
+// prefixes). The value 0 indicates that there is no maximum size for log
+// messages.
 + (NSUInteger)maxMessageSize;
++ (void)setMaxMessageSize:(NSUInteger)value;
 
-// Returns whether file names are shown.
+// Returns/sets whether file names are shown.
 + (BOOL)showsFileNames;
++ (void)setShowsFileNames:(BOOL)value;
 
-// Returns whether line numbers are shown.
+// Returns/sets whether line numbers are shown.
 + (BOOL)showsLineNumbers;
++ (void)setShowsLineNumbers:(BOOL)value;
 
-// Returns whether function names are shown.
+// Returns/sets whether function names are shown.
 + (BOOL)showsFunctionNames;
++ (void)setShowsFunctionNames:(BOOL)value;
 
 
 //

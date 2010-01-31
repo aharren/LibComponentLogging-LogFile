@@ -46,6 +46,12 @@
     [LogFileTestsLoggerConfiguration setMaxLogFileSizeInBytes:(size_t)(2 * 1024 * 1024)];
     [LCLLogFile initialize];
     STAssertEquals([LCLLogFile maxSize], (size_t)(2 * 1024 * 1024), nil);
+    
+    [LCLLogFile setMaxSize:4000];
+    STAssertEquals([LCLLogFile maxSize], (size_t)(4096), nil);
+    
+    [LCLLogFile setMaxSize:8000];
+    STAssertEquals([LCLLogFile maxSize], (size_t)(8000), nil);
 }
 
 - (void)testConfigurationLogFilePaths {
@@ -110,6 +116,12 @@
     [LogFileTestsLoggerConfiguration setMirrorMessagesToStdErr:NO];
     [LCLLogFile initialize];
     STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
+    
+    [LCLLogFile setMirrorsToStdErr:YES];
+    STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)YES, nil);
+    
+    [LCLLogFile setMirrorsToStdErr:NO];
+    STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
 }
 
 - (void)testConfigurationEscapesLineFeeds {
@@ -121,6 +133,12 @@
     [LogFileTestsLoggerConfiguration initialize];
     [LogFileTestsLoggerConfiguration setEscapeLineFeeds:NO];
     [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile escapesLineFeeds], (int)NO, nil);
+    
+    [LCLLogFile setEscapesLineFeeds:YES];
+    STAssertEquals((int)[LCLLogFile escapesLineFeeds], (int)YES, nil);
+    
+    [LCLLogFile setEscapesLineFeeds:NO];
     STAssertEquals((int)[LCLLogFile escapesLineFeeds], (int)NO, nil);
 }
 
@@ -134,6 +152,12 @@
     [LogFileTestsLoggerConfiguration setMaxMessageSize:100];
     [LCLLogFile initialize];
     STAssertEquals([LCLLogFile maxMessageSize], (NSUInteger)100, nil);
+    
+    [LCLLogFile setMaxMessageSize:200];
+    STAssertEquals([LCLLogFile maxMessageSize], (NSUInteger)200, nil);
+    
+    [LCLLogFile setMaxMessageSize:300];
+    STAssertEquals([LCLLogFile maxMessageSize], (NSUInteger)300, nil);
 }
 
 - (void)testShowsFileNames {
@@ -145,6 +169,12 @@
     [LogFileTestsLoggerConfiguration initialize];
     [LogFileTestsLoggerConfiguration setShowFileNames:NO];
     [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile showsFileNames], (int)NO, nil);
+    
+    [LCLLogFile setShowsFileNames:YES];
+    STAssertEquals((int)[LCLLogFile showsFileNames], (int)YES, nil);
+    
+    [LCLLogFile setShowsFileNames:NO];
     STAssertEquals((int)[LCLLogFile showsFileNames], (int)NO, nil);
 }
 
@@ -158,6 +188,12 @@
     [LogFileTestsLoggerConfiguration setShowLineNumbers:NO];
     [LCLLogFile initialize];
     STAssertEquals((int)[LCLLogFile showsLineNumbers], (int)NO, nil);
+    
+    [LCLLogFile setShowsLineNumbers:YES];
+    STAssertEquals((int)[LCLLogFile showsLineNumbers], (int)YES, nil);
+    
+    [LCLLogFile setShowsLineNumbers:NO];
+    STAssertEquals((int)[LCLLogFile showsLineNumbers], (int)NO, nil);
 }
 
 - (void)testShowsFunctionNames {
@@ -169,6 +205,12 @@
     [LogFileTestsLoggerConfiguration initialize];
     [LogFileTestsLoggerConfiguration setShowFunctionNames:NO];
     [LCLLogFile initialize];
+    STAssertEquals((int)[LCLLogFile showsFunctionNames], (int)NO, nil);
+    
+    [LCLLogFile setShowsFunctionNames:YES];
+    STAssertEquals((int)[LCLLogFile showsFunctionNames], (int)YES, nil);
+    
+    [LCLLogFile setShowsFunctionNames:NO];
     STAssertEquals((int)[LCLLogFile showsFunctionNames], (int)NO, nil);
 }
 

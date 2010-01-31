@@ -483,45 +483,100 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
     return _LCLLogFile_filePath0;
 }
 
-// Returns the maximum size of the log file.
-+ (size_t)maxSize {
-    return _LCLLogFile_fileSizeMax;
-}
-
 // Returns whether log messages get appended to an existing log file on startup.
 + (BOOL)appendsToExistingLogFile {
     return _LCLLogFile_appendToExistingLogFile;
 }
 
-// Returns whether log messages are mirrored to stderr.
+// Returns/sets the maximum size of the log file (as defined by
+// _LCLLogFile_MaxLogFileSizeInBytes).
++ (size_t)maxSize {
+    return _LCLLogFile_fileSizeMax;
+}
++ (void)setMaxSize:(size_t)value {
+    [_LCLLogFile_lock lock];
+    {
+        _LCLLogFile_fileSizeMax = value;
+        if (_LCLLogFile_fileSizeMax < 4 * 1024) {
+            _LCLLogFile_fileSizeMax = 4 * 1024;
+        }
+    }
+    [_LCLLogFile_lock unlock];
+}
+
+// Returns/sets whether log messages are mirrored to stderr.
 + (BOOL)mirrorsToStdErr {
     return _LCLLogFile_mirrorToStdErr;
 }
++ (void)setMirrorsToStdErr:(BOOL)value {
+    [_LCLLogFile_lock lock];
+    {
+        _LCLLogFile_mirrorToStdErr = value;
+    }
+    [_LCLLogFile_lock unlock];
+}
 
-// Returns whether ('\\' and) '\n' line feed characters are escaped in log messages.
+// Returns/sets whether ('\\' and) '\n' line feed characters are escaped in
+// log messages.
 + (BOOL)escapesLineFeeds {
     return _LCLLogFile_escapeLineFeeds;
 }
++ (void)setEscapesLineFeeds:(BOOL)value {
+    [_LCLLogFile_lock lock];
+    {
+        _LCLLogFile_escapeLineFeeds = value;
+    }
+    [_LCLLogFile_lock unlock];
+}
 
-// Returns the maximum size of a log message in characters (without prefixes).
-// Returns 0 if there is no maximum size for log messages.
+// Returns/sets the maximum size of a log message in characters (without
+// prefixes). The value 0 indicates that there is no maximum size for log
+// messages.
 + (NSUInteger)maxMessageSize {
     return _LCLLogFile_maxMessageSize;
 }
++ (void)setMaxMessageSize:(NSUInteger)value {
+    [_LCLLogFile_lock lock];
+    {
+        _LCLLogFile_maxMessageSize = value;
+    }
+    [_LCLLogFile_lock unlock];
+}
 
-// Returns whether file names are shown.
+// Returns/sets whether file names are shown.
 + (BOOL)showsFileNames {
     return _LCLLogFile_showFileName;
 }
++ (void)setShowsFileNames:(BOOL)value {
+    [_LCLLogFile_lock lock];
+    {
+        _LCLLogFile_showFileName = value;
+    }
+    [_LCLLogFile_lock unlock];
+}
 
-// Returns whether line numbers are shown.
+// Returns/sets whether line numbers are shown.
 + (BOOL)showsLineNumbers {
     return _LCLLogFile_showLineNumber;
 }
++ (void)setShowsLineNumbers:(BOOL)value {
+    [_LCLLogFile_lock lock];
+    {
+        _LCLLogFile_showLineNumber = value;
+    }
+    [_LCLLogFile_lock unlock];
+}
 
-// Returns whether function names are shown.
+// Returns/sets whether function names are shown.
 + (BOOL)showsFunctionNames {
     return _LCLLogFile_showFunctionName;
+}
++ (void)setShowsFunctionNames:(BOOL)value {
+    [_LCLLogFile_lock lock];
+    {
+        _LCLLogFile_showFunctionName = value;
+    }
+    [_LCLLogFile_lock unlock];
 }
 
 
