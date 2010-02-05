@@ -80,6 +80,7 @@
 //
 
 
+#import <Foundation/Foundation.h>
 #import "LCLLogFileConfig.h"
 
 
