@@ -1,7 +1,10 @@
+
+
 # LibComponentLogging-LogFile
 
 [http://0xc0.de/LibComponentLogging](http://0xc0.de/LibComponentLogging)    
 [http://github.com/aharren/LibComponentLogging-LogFile](http://github.com/aharren/LibComponentLogging-LogFile)
+
 
 ## Overview
 
@@ -29,6 +32,7 @@ Example:
     2009-02-01 12:38:32.798 4964:10b D component2:main.m:32:-[Class method] Message
     2009-02-01 12:38:32.799 4964:10b D component3:main.m:36:-[Class method] Message
 
+
 ## Repository Branches
 
 The Git repository contains the following branches:
@@ -40,6 +44,7 @@ The Git repository contains the following branches:
   which contains an Xcode project with dependent code, e.g. the Core files of
   LibComponentLogging, and unit tests. The code in this branch is not stable.
 
+
 ## Related Repositories
 
 The following Git repositories are related to this repository: 
@@ -49,3 +54,27 @@ The following Git repositories are related to this repository:
 
 * [http://github.com/aharren/LibComponentLogging-LogFile-Example](http://github.com/aharren/LibComponentLogging-LogFile-Example):
   An example Xcode project which uses the LibComponentLogging-LogFile logger.
+
+
+## Copyright and License
+
+Copyright (c) 2008-2010 Arne Harren <ah@0xc0.de>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
