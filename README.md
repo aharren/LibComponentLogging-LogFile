@@ -66,11 +66,13 @@ In both scenarios, the log file will be opened automatically for you.
 
 The Git repository contains the following branches:
 
-* *master*: The *master* branch contains stable builds of the main logging code
-  which are tagged with version numbers.
+* [master](http://github.com/aharren/LibComponentLogging-LogFile/tree/master):
+  The *master* branch contains stable builds of the main logging code which are
+  tagged with version numbers.
 
-* *devel*: The *devel* branch is the development branch for the logging code
-  which contains an Xcode project with dependent code, e.g. the Core files of
+* [devel](http://github.com/aharren/LibComponentLogging-LogFile/tree/devel):
+  The *devel* branch is the development branch for the logging code which
+  contains an Xcode project with dependent code, e.g. the Core files of
   LibComponentLogging, and unit tests. The code in this branch is not stable.
 
 
