@@ -256,7 +256,7 @@
 // back-end for LibComponentLogging and pass the header of a log component as
 // the identifier to LCLLogFile's log method.
 #define _lcl_logger(_component, _level, _format, ...) {                        \
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];                \
+    NSAutoreleasePool *_lcl_logger_pool = [[NSAutoreleasePool alloc] init];    \
     [LCLLogFile logWithIdentifier:_lcl_component_header[_component]            \
                             level:_level                                       \
                              path:__FILE__                                     \
@@ -264,6 +264,6 @@
                          function:__FUNCTION__                                 \
                            format:_format,                                     \
                                ## __VA_ARGS__];                                \
-    [pool release];                                                            \
+    [_lcl_logger_pool release];                                                \
 }
 

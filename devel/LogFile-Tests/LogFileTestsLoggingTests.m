@@ -252,5 +252,13 @@
     }
 }
 
+- (void)testLoggingWithShadowedLocalVariable {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    lcl_log(lcl_cMain, lcl_vCritical, @"message");
+    
+    [pool release];
+}
+
 @end
 
