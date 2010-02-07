@@ -33,6 +33,35 @@ Example:
     2009-02-01 12:38:32.799 4964:10b D component3:main.m:36:-[Class method] Message
 
 
+## Usage
+
+Before you start, copy the LCLLogFile.h and .m file to your project and create
+a LCLLogFileConfig.h configuration file (based on the packaged template file).
+The configuration file defines the name of the log file, the maximum log file
+size, whether new log messages get appended to an existing log file on startup,
+and much more.
+
+Then, import the LCLLogFile.h in your source files or in your prefix header file
+if you are using LCLLogFile as a standalone logging class, or add an import to
+your lcl_config_logger.h file if you are using the class as logging back-end for
+LibComponentLogging.
+
+In case you are using the LCLLogFile class with LibComponentLogging, you can
+simply start logging to the log file by using the standard logging macro from
+LibComponentLogging, e.g.
+
+    lcl_log(lcl_cMyComponent, lcl_vError, @"message ...");
+
+If you are using the class as a standalone logger, you can simply call one of
+the log... methods from the LCLLogFile class, e.g.
+
+    [LCLLogFile logWithIdentifier:"MyComponent" level:1 ... format:@"message ...", ...];
+
+or you can wrap these calls into your own logging macros.
+
+In both scenarios, the log file will be opened automatically for you.
+
+
 ## Repository Branches
 
 The Git repository contains the following branches:
