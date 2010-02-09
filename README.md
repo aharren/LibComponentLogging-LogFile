@@ -43,8 +43,8 @@ and much more.
 
 Then, import the LCLLogFile.h in your source files or in your prefix header file
 if you are using LCLLogFile as a standalone logging class, or add an import to
-your lcl_config_logger.h file if you are using the class as logging back-end for
-LibComponentLogging.
+your lcl_config_logger.h file if you are using the class as a logging back-end
+for LibComponentLogging.
 
 In case you are using the LCLLogFile class with LibComponentLogging, you can
 simply start logging to the log file by using the standard logging macro from
