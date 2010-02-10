@@ -37,7 +37,7 @@
 @implementation LogFileTestsInformationTests
 
 - (void)testInformationVersion {
-    STAssertEqualObjects([LCLLogFile version], @"1.1.0-devel", nil);
+    STAssertEqualObjects([LCLLogFile version], @"1.1.1", nil);
 }
 
 @end
