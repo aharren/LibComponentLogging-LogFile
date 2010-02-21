@@ -174,7 +174,7 @@
 		E0BD9D1E1114B57D00E32B72 /* LogFileTestsInformationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsInformationTests.m; path = "LogFile-Tests/LogFileTestsInformationTests.m"; sourceTree = "<group>"; };
 		E0C9DEED110C589000370A14 /* LCLLogFileConfig.template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCLLogFileConfig.template.h; path = ../LCLLogFileConfig.template.h; sourceTree = SOURCE_ROOT; };
 		E0C9DEFB110C5E8200370A14 /* LCLLogFileConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCLLogFileConfig.h; path = "LogFile-Tests/LCLLogFileConfig.h"; sourceTree = "<group>"; };
-		E0CBBD61111C17CB0034B4A0 /* LogFile-Tests-Templates.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-Templates.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0CBBD61111C17CB0034B4A0 /* LogFile-Tests-Standalone.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-Standalone.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0CBBD64111C182A0034B4A0 /* LogFileTestsStandaloneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsStandaloneTests.m; path = "LogFile-Tests/LogFileTestsStandaloneTests.m"; sourceTree = "<group>"; };
 		E0DC99E710F4FE080088653D /* LCLLogFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCLLogFile.h; path = ../LCLLogFile.h; sourceTree = SOURCE_ROOT; };
 		E0DC99E810F4FE080088653D /* LCLLogFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCLLogFile.m; path = ../LCLLogFile.m; sourceTree = SOURCE_ROOT; };
@@ -258,7 +258,7 @@
 				E03C9F8310F683B40090E09B /* LogFile-Tests-iPhoneOS-3.0-Device.octest */,
 				E06517B51101E1E8003357A7 /* LogFile-Tests-Framework-MacOSX-10.5.framework */,
 				E06519311101F882003357A7 /* LogFile-Tests-Templates.octest */,
-				E0CBBD61111C17CB0034B4A0 /* LogFile-Tests-Templates.octest */,
+				E0CBBD61111C17CB0034B4A0 /* LogFile-Tests-Standalone.octest */,
 			);
 			name = LogFile;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 			);
 			name = "LogFile-Tests-Standalone";
 			productName = Tests;
-			productReference = E0CBBD61111C17CB0034B4A0 /* LogFile-Tests-Templates.octest */;
+			productReference = E0CBBD61111C17CB0034B4A0 /* LogFile-Tests-Standalone.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		E0EB43E710F4B365009540E4 /* LogFile-Tests */ = {
@@ -1500,7 +1500,7 @@
 					SenTestingKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = "LogFile-Tests-Templates";
+				PRODUCT_NAME = "LogFile-Tests-Standalone";
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1553,7 +1553,7 @@
 					SenTestingKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = "LogFile-Tests-Templates";
+				PRODUCT_NAME = "LogFile-Tests-Standalone";
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
