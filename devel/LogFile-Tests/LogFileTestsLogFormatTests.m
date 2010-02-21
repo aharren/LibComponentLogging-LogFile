@@ -48,16 +48,20 @@
 }
 
 - (NSString *)logLineWithoutTimeProcessAndThread:(NSString *)logLine {
-    NSUInteger timeLength = 24;
-    NSString *processAndThread = [NSString stringWithFormat:@"%u:%x ",
-                                  getpid(),
-                                  mach_thread_self()];
-    NSUInteger processAndThreadLength = [processAndThread length];
-    NSString *logLineWithProcessAndThread = [logLine substringFromIndex:timeLength];
-    STAssertEqualObjects([logLineWithProcessAndThread substringToIndex:processAndThreadLength],
-                         processAndThread, nil);
+    NSUInteger timePrefixLength = 24;
+    NSString *timePrefix = [logLine substringToIndex:timePrefixLength-1];
+    NSPredicate *timePrefixPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES '[0-9]{4}?\\-[0-9]{2}?\\-[0-9]{2}?\\ [0-9]{2}?\\:[0-9]{2}?\\:[0-9]{2}?\\.[0-9]{3}?'"];
+    STAssertTrue([timePrefixPredicate evaluateWithObject:timePrefix], nil);
     
-    return [logLineWithProcessAndThread substringFromIndex:processAndThreadLength];
+    NSString *processAndThreadPrefix = [NSString stringWithFormat:@"%u:%x ",
+                                        getpid(),
+                                        mach_thread_self()];
+    NSUInteger processAndThreadPrefixLength = [processAndThreadPrefix length];
+    NSString *logLineWithProcessAndThreadPrefix = [logLine substringFromIndex:timePrefixLength];
+    STAssertEqualObjects([logLineWithProcessAndThreadPrefix substringToIndex:processAndThreadPrefixLength],
+                         processAndThreadPrefix, nil);
+    
+    return [logLineWithProcessAndThreadPrefix substringFromIndex:processAndThreadPrefixLength];
 }
 
 - (void)testLogFormatWithFullFormat {
@@ -75,7 +79,7 @@
         STAssertTrue(0 < [logLines count], nil);
         STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
         STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
-                             @"I Main:LogFileTestsLogFormatTests.m:71:-[LogFileTestsLogFormatTests testLogFormatWithFullFormat] message cstring 123 NSString *", nil);
+                             @"I Main:LogFileTestsLogFormatTests.m:75:-[LogFileTestsLogFormatTests testLogFormatWithFullFormat] message cstring 123 NSString *", nil);
     }
 }
 
@@ -132,7 +136,7 @@
         STAssertTrue(0 < [logLines count], nil);
         STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
         STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
-                             @"I Main:128 message cstring 123 NSString *", nil);
+                             @"I Main:132 message cstring 123 NSString *", nil);
     }
 }
 
@@ -170,7 +174,7 @@
         STAssertTrue(0 < [logLines count], nil);
         STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
         STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
-                             @"I Main:LogFileTestsLogFormatTests.m:166 message cstring 123 NSString *", nil);
+                             @"I Main:LogFileTestsLogFormatTests.m:170 message cstring 123 NSString *", nil);
     }
 }
 

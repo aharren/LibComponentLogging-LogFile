@@ -76,6 +76,11 @@
 		E0CBBD65111C182A0034B4A0 /* LogFileTestsStandaloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBBD64111C182A0034B4A0 /* LogFileTestsStandaloneTests.m */; };
 		E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 		E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
+		E0EDB7C81131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
+		E0EDB7C91131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
+		E0EDB7CA1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
+		E0EDB7CB1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
+		E0EDB7CC1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +186,7 @@
 		E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX-10.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-MacOSX-10.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EB43A810F4B1EB009540E4 /* LogFile-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "LogFile-Tests-Info.plist"; path = "LogFile-Tests/LogFile-Tests-Info.plist"; sourceTree = "<group>"; };
 		E0EB43E810F4B365009540E4 /* LogFile-Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsStdErrMirroringTests.m; path = "LogFile-Tests/LogFileTestsStdErrMirroringTests.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +324,7 @@
 				E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */,
 				E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */,
 				E0B0BE0C10F90822002B788C /* LogFileTestsLogFormatTests.m */,
+				E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */,
 				E06517911101E0E1003357A7 /* Framework */,
 				E06517941101E137003357A7 /* LogFileTestsFrameworkTests.m */,
 				E06519351101F8D9003357A7 /* LogFileTestsTemplatesTests.m */,
@@ -689,6 +696,7 @@
 				E0BB0FE01100FB91008BAE92 /* LogFileTestsDefaultPathTests.m in Sources */,
 				E065188B1101F0D7003357A7 /* LogFileTestsFrameworkTests.m in Sources */,
 				E0BD9D201114B57D00E32B72 /* LogFileTestsInformationTests.m in Sources */,
+				E0EDB7C91131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +715,7 @@
 				E0BB0FAD1100F744008BAE92 /* LogFileTestsInjections.m in Sources */,
 				E0BB0FE21100FB91008BAE92 /* LogFileTestsDefaultPathTests.m in Sources */,
 				E0BD9D221114B57D00E32B72 /* LogFileTestsInformationTests.m in Sources */,
+				E0EDB7CA1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +755,7 @@
 				E0BB0FAC1100F744008BAE92 /* LogFileTestsInjections.m in Sources */,
 				E0BB0FE11100FB91008BAE92 /* LogFileTestsDefaultPathTests.m in Sources */,
 				E0BD9D211114B57D00E32B72 /* LogFileTestsInformationTests.m in Sources */,
+				E0EDB7CB1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,6 +774,7 @@
 				E0B56BB4112863B7006E4874 /* LogFileTestsInjections.m in Sources */,
 				E0B56BB5112863B7006E4874 /* LogFileTestsDefaultPathTests.m in Sources */,
 				E0B56BB6112863B7006E4874 /* LogFileTestsInformationTests.m in Sources */,
+				E0EDB7C81131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -791,6 +802,7 @@
 				E0BB0FAA1100F744008BAE92 /* LogFileTestsInjections.m in Sources */,
 				E0BB0FDF1100FB91008BAE92 /* LogFileTestsDefaultPathTests.m in Sources */,
 				E0BD9D1F1114B57D00E32B72 /* LogFileTestsInformationTests.m in Sources */,
+				E0EDB7CC1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

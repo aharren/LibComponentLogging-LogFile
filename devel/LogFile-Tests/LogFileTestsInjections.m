@@ -58,3 +58,13 @@ static NSBundle *NSBundle_LogFileTestsInjections_mainBundle = nil;
 
 @end
 
+
+#undef __LCLLogFile_stderr
+
+FILE * LogFileTestsInjections_stderr = NULL;
+
+__attribute__((constructor))
+static void LogFileTestsInjections_stderr_initializer() {
+    LogFileTestsInjections_stderr = stderr;
+}
+
