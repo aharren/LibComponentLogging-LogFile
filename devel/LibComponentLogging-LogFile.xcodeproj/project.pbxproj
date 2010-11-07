@@ -1018,6 +1018,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = "LogFile-Tests/LogFile-Tests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1028,7 +1029,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "LogFile-Tests-iPhoneOS-3.0-Device";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos4.1;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1066,6 +1067,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = "LogFile-Tests/LogFile-Tests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1075,7 +1077,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = "LogFile-Tests-iPhoneOS-3.0-Device";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos4.1;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
