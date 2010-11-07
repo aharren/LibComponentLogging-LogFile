@@ -261,7 +261,7 @@
                             level:_level                                       \
                              path:__FILE__                                     \
                              line:__LINE__                                     \
-                         function:__FUNCTION__                                 \
+                         function:__PRETTY_FUNCTION__                          \
                            format:_format,                                     \
                                ## __VA_ARGS__];                                \
     [_lcl_logger_pool release];                                                \
