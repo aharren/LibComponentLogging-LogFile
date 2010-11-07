@@ -46,5 +46,5 @@ Boolean LogFileTestsInjections_CFStringGetFileSystemRepresentation(CFStringRef s
 // Override __LCLLogFile_stderr
 #define __LCLLogFile_stderr LogFileTestsInjections_stderr
 
-FILE * LogFileTestsInjections_stderr;
+extern FILE * LogFileTestsInjections_stderr;
 

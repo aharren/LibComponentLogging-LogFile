@@ -76,6 +76,10 @@
 		E0CBBD65111C182A0034B4A0 /* LogFileTestsStandaloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBBD64111C182A0034B4A0 /* LogFileTestsStandaloneTests.m */; };
 		E0DC99E910F4FE080088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
 		E0DC99F310F4FE290088653D /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
+		E0ED47331286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = E0ED47321286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm */; };
+		E0ED47341286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = E0ED47321286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm */; };
+		E0ED47351286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = E0ED47321286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm */; };
+		E0ED47361286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = E0ED47321286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm */; };
 		E0EDB7C81131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
 		E0EDB7C91131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
 		E0EDB7CA1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
@@ -186,6 +190,7 @@
 		E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX-10.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-MacOSX-10.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EB43A810F4B1EB009540E4 /* LogFile-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "LogFile-Tests-Info.plist"; path = "LogFile-Tests/LogFile-Tests-Info.plist"; sourceTree = "<group>"; };
 		E0EB43E810F4B365009540E4 /* LogFile-Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0ED47321286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = LogFileTestsObjectiveCPlusPlusTests.mm; path = "LogFile-Tests/LogFileTestsObjectiveCPlusPlusTests.mm"; sourceTree = "<group>"; };
 		E0ED476B1286E98B00ACEDAC /* lcl_config_extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_extensions.h; path = "LogFile-Tests/lcl_config_extensions.h"; sourceTree = "<group>"; };
 		E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsStdErrMirroringTests.m; path = "LogFile-Tests/LogFileTestsStdErrMirroringTests.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -327,6 +332,7 @@
 				E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */,
 				E0B0BE0C10F90822002B788C /* LogFileTestsLogFormatTests.m */,
 				E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */,
+				E0ED47321286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm */,
 				E06517911101E0E1003357A7 /* Framework */,
 				E06517941101E137003357A7 /* LogFileTestsFrameworkTests.m */,
 				E06519351101F8D9003357A7 /* LogFileTestsTemplatesTests.m */,
@@ -703,6 +709,7 @@
 				E065188B1101F0D7003357A7 /* LogFileTestsFrameworkTests.m in Sources */,
 				E0BD9D201114B57D00E32B72 /* LogFileTestsInformationTests.m in Sources */,
 				E0EDB7C91131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
+				E0ED47341286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +769,7 @@
 				E0BB0FE11100FB91008BAE92 /* LogFileTestsDefaultPathTests.m in Sources */,
 				E0BD9D211114B57D00E32B72 /* LogFileTestsInformationTests.m in Sources */,
 				E0EDB7CB1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
+				E0ED47351286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +789,7 @@
 				E0B56BB5112863B7006E4874 /* LogFileTestsDefaultPathTests.m in Sources */,
 				E0B56BB6112863B7006E4874 /* LogFileTestsInformationTests.m in Sources */,
 				E0EDB7C81131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
+				E0ED47361286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,6 +818,7 @@
 				E0BB0FDF1100FB91008BAE92 /* LogFileTestsDefaultPathTests.m in Sources */,
 				E0BD9D1F1114B57D00E32B72 /* LogFileTestsInformationTests.m in Sources */,
 				E0EDB7CC1131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
+				E0ED47331286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
