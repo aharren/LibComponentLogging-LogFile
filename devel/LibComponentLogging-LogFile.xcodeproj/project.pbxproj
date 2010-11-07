@@ -186,6 +186,7 @@
 		E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX-10.5.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-MacOSX-10.5.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EB43A810F4B1EB009540E4 /* LogFile-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "LogFile-Tests-Info.plist"; path = "LogFile-Tests/LogFile-Tests-Info.plist"; sourceTree = "<group>"; };
 		E0EB43E810F4B365009540E4 /* LogFile-Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0ED476B1286E98B00ACEDAC /* lcl_config_extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_extensions.h; path = "LogFile-Tests/lcl_config_extensions.h"; sourceTree = "<group>"; };
 		E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsStdErrMirroringTests.m; path = "LogFile-Tests/LogFileTestsStdErrMirroringTests.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -309,6 +310,7 @@
 			children = (
 				E06517F81101E772003357A7 /* lcl_config_components.h */,
 				E0C9DEFB110C5E8200370A14 /* LCLLogFileConfig.h */,
+				E0ED476B1286E98B00ACEDAC /* lcl_config_extensions.h */,
 				E024691C10F5031A006FBB62 /* LogFileTestsConfigComponents.h */,
 				E0B0BD2210F8D179002B788C /* LogFileTestsLogFileConfig.h */,
 				E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */,
