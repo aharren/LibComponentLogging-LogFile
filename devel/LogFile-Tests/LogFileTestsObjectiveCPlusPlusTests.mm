@@ -42,7 +42,7 @@ void LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(int i, NSString *t
 }
 
 void LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(int i, NSString *t, NSString *s) {
-    lcl_log(lcl_cMain, lcl_vInfo, @"message %s %d %@", "cstring", i, t);
+    lcl_log(lcl_cMain, lcl_vInfo, @"message %s %d %@ %@", "cstring", i, t, s);
 }
 
 
