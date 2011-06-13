@@ -89,14 +89,16 @@ void LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(int i, NSString *t
     [LogFileTestsLoggerConfiguration setShowFunctionNames:YES];
     [LCLLogFile initialize];
     
-    LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(123, @"NSString *");
+    LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(123, @"NSString X");
     {
         NSString *currentLog = [NSString stringWithContentsOfFile:[LCLLogFile path] encoding:NSUTF8StringEncoding error:NULL];
         NSArray *logLines = [currentLog componentsSeparatedByString:@"\n"];
         STAssertTrue(0 < [logLines count], nil);
         STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
-        STAssertEqualObjects([self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]],
-                             @"I Main:41:static void LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(int, NSString*) message cstring 123 NSString *", nil);
+        NSString *line = [[self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]]
+                          stringByReplacingOccurrencesOfString:@"NSString*" withString:@"NSString *"];
+        STAssertEqualObjects(line,
+                             @"I Main:41:static void LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(int, NSString *) message cstring 123 NSString X", nil);
     }
 }
 
