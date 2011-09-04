@@ -88,13 +88,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E03C9F8710F683FF0090E09B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E03C9F7510F683B40090E09B;
-			remoteInfo = "LogFile-Tests-iPhoneOS-3.0-Device";
-		};
 		E06517BC1101E21E003357A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -500,7 +493,6 @@
 				E0EB43F210F4B371009540E4 /* PBXTargetDependency */,
 				E0B0BD0610F8CF91002B788C /* PBXTargetDependency */,
 				E0B56BCA11286406006E4874 /* PBXTargetDependency */,
-				E03C9F8810F683FF0090E09B /* PBXTargetDependency */,
 				E06519401101F96E003357A7 /* PBXTargetDependency */,
 				E0CBBD67111C18390034B4A0 /* PBXTargetDependency */,
 			);
@@ -828,11 +820,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E03C9F8810F683FF0090E09B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-Device */;
-			targetProxy = E03C9F8710F683FF0090E09B /* PBXContainerItemProxy */;
-		};
 		E06517BD1101E21E003357A7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E06517B41101E1E8003357A7 /* LogFile-Tests-Framework */;
