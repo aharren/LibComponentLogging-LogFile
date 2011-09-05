@@ -218,7 +218,7 @@ const char * const _LCLLogFile_levelHeader[] = {
         
         // create the paths' file system representations
         CFIndex path_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path);
-        CFIndex path0_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path);
+        CFIndex path0_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path0);
         
         char *path_c = malloc(path_c_max_len);
         char *path0_c = malloc(path0_c_max_len);
