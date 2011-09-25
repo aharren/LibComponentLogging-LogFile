@@ -118,8 +118,9 @@
 //
 
 
-// Returns the path of the log file as defined by _LCLLogFile_LogFilePath.
+// Returns/sets the path of the log file. Setting the path implies a reset.
 + (NSString *)path;
++ (void)setPath:(NSString *)path;
 
 // Returns the path of the backup log file.
 + (NSString *)path0;

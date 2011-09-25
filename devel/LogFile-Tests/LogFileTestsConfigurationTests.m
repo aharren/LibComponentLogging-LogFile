@@ -66,6 +66,10 @@
     [LCLLogFile initialize];
     STAssertEqualObjects([LCLLogFile path], [NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log"], nil);
     STAssertEqualObjects([LCLLogFile path0], [NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication.log.0"], nil);
+
+    [LCLLogFile setPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication_2.log"]];
+    STAssertEqualObjects([LCLLogFile path], [NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication_2.log"], nil);
+    STAssertEqualObjects([LCLLogFile path0], [NSTemporaryDirectory() stringByAppendingPathComponent:@"Library/Logs/MyApplication/MyApplication_2.log.0"], nil);
 }
 
 - (void)testConfigurationLogFilePathsWithNilPath {
@@ -79,6 +83,18 @@
     
     lcl_configure_by_component(lcl_cMain, lcl_vTrace);
     lcl_log(lcl_cMain, lcl_vInfo, @"message");
+    
+    [LogFileTestsLoggerConfiguration initialize];
+    [LogFileTestsLoggerConfiguration setLogFilePath:@"File.log"];
+    [LCLLogFile initialize];
+    STAssertEqualObjects([LCLLogFile path], @"File.log", nil);
+    STAssertEqualObjects([LCLLogFile path0], @"File.log.0", nil);
+    STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)NO, nil);
+
+    [LCLLogFile setPath:nil];
+    STAssertEquals([LCLLogFile path], (NSString *)nil, nil);
+    STAssertEquals([LCLLogFile path0], (NSString *)nil, nil);
+    STAssertEquals((int)[LCLLogFile mirrorsToStdErr], (int)YES, nil);
 }
 
 - (void)testConfigurationLogFilePathsWithBadPath {

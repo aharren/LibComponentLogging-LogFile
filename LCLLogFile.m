@@ -120,9 +120,9 @@ static size_t _LCLLogFile_fileSize = 0;
 
 // Paths of log files.
 static NSString *_LCLLogFile_filePath = nil;
-static const char *_LCLLogFile_filePath_c = NULL;
+static char *_LCLLogFile_filePath_c = NULL;
 static NSString *_LCLLogFile_filePath0 = nil;
-static const char *_LCLLogFile_filePath0_c = NULL;
+static char *_LCLLogFile_filePath0_c = NULL;
 
 // The process id.
 static pid_t _LCLLogFile_processId = 0;
@@ -138,8 +138,89 @@ const char * const _LCLLogFile_levelHeader[] = {
     "T"
 };
 
+#define _LCLLogFile_var_release(_var)                                          \
+    if (_var != nil) {                                                         \
+        [_var release];                                                        \
+        _var = nil;                                                            \
+    }                                                                          \
+
+#define _LCLLogFile_var_free(_var)                                             \
+    if (_var != NULL) {                                                        \
+        free(_var);                                                            \
+        _var = NULL;                                                           \
+    }                                                                          \
 
 @implementation LCLLogFile
+
+
+//
+// File path.
+//
+
+
+static void _LCLLogFile_setLogFilePath(NSString *path) {
+    // release old path
+    _LCLLogFile_var_release(_LCLLogFile_filePath);
+    _LCLLogFile_var_free(_LCLLogFile_filePath_c);
+    
+    // release old backup path
+    _LCLLogFile_var_release(_LCLLogFile_filePath0);
+    _LCLLogFile_var_free(_LCLLogFile_filePath0_c);
+    
+    if (path != nil) {
+        // standardize the given path
+        path = [path stringByStandardizingPath];
+        
+        // create parent paths
+        NSString *parentpath = [path stringByDeletingLastPathComponent];
+        [[NSFileManager defaultManager] createDirectoryAtPath:parentpath
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:NULL];
+        
+        // create the path of the backup file
+        NSString *path0 = [path stringByAppendingString:@".0"];
+        
+        // create the paths' file system representations
+        CFIndex path_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path);
+        CFIndex path0_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path0);
+        
+        char *path_c = malloc(path_c_max_len);
+        char *path0_c = malloc(path0_c_max_len);
+        
+        if (path_c != NULL && path0_c != NULL) {
+            Boolean path_fsr_created = CFStringGetFileSystemRepresentation((CFStringRef)path, path_c, path_c_max_len);
+            Boolean path0_fsr_created = CFStringGetFileSystemRepresentation((CFStringRef)path0, path0_c, path0_c_max_len);
+            
+            // create local copies of the paths
+            if (path_fsr_created && path0_fsr_created) {
+                _LCLLogFile_filePath = [path copy];
+                _LCLLogFile_filePath_c = strdup(path_c);
+                _LCLLogFile_filePath0 = [path0 copy];
+                _LCLLogFile_filePath0_c = strdup(path0_c);
+            }
+        }
+        
+        _LCLLogFile_var_free(path_c);
+        _LCLLogFile_var_free(path0_c);
+    }
+    
+    // creation of paths failed? clean up and fall back to stderr
+    if (_LCLLogFile_filePath_c == NULL || _LCLLogFile_filePath0_c == NULL) {
+        NSLog(@"error: invalid log file path '%@'", path);
+        
+        // fall back to stderr
+        _LCLLogFile_mirrorToStdErr = YES;
+        
+        // release path
+        _LCLLogFile_var_release(_LCLLogFile_filePath);
+        _LCLLogFile_var_free(_LCLLogFile_filePath_c);
+        
+        // release backup path
+        _LCLLogFile_var_release(_LCLLogFile_filePath0);
+        _LCLLogFile_var_free(_LCLLogFile_filePath0_c);
+    }
+}
 
 
 //
@@ -202,47 +283,7 @@ const char * const _LCLLogFile_levelHeader[] = {
     _LCLLogFile_filePath_c = NULL;
     _LCLLogFile_filePath0 = nil;
     _LCLLogFile_filePath0_c = NULL;
-    if (path != nil) {
-        // standardize the given path
-        path = [path stringByStandardizingPath];
-        
-        // create parent paths
-        NSString *parentpath = [path stringByDeletingLastPathComponent];
-        [[NSFileManager defaultManager] createDirectoryAtPath:parentpath
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:NULL];
-        
-        // create the path of the backup file
-        NSString *path0 = [path stringByAppendingString:@".0"];
-        
-        // create the paths' file system representations
-        CFIndex path_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path);
-        CFIndex path0_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path0);
-        
-        char *path_c = malloc(path_c_max_len);
-        char *path0_c = malloc(path0_c_max_len);
-        
-        Boolean path_fsr_created = CFStringGetFileSystemRepresentation((CFStringRef)path, path_c, path_c_max_len);
-        Boolean path0_fsr_created = CFStringGetFileSystemRepresentation((CFStringRef)path0, path0_c, path0_c_max_len);
-        
-        // create local copies of the paths
-        if (path_fsr_created && path0_fsr_created) {
-            _LCLLogFile_filePath = [path copy];
-            _LCLLogFile_filePath_c = strdup(path_c);
-            _LCLLogFile_filePath0 = [path0 copy];
-            _LCLLogFile_filePath0_c = strdup(path0_c);
-        }
-        
-        free(path_c);
-        free(path0_c);
-    }
-    
-    // creation of paths failed? fall back to stderr
-    if (_LCLLogFile_filePath_c == NULL) {
-        NSLog(@"error: invalid log file path '%@'", path);
-        _LCLLogFile_mirrorToStdErr = YES;
-    }
+    _LCLLogFile_setLogFilePath(path);
     
     // log file size is zero
     _LCLLogFile_fileSize = 0;
@@ -483,6 +524,20 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
 // Returns the path of the backup log file.
 + (NSString *)path0 {
     return _LCLLogFile_filePath0;
+}
+
+// Sets the path of the log file.
++ (void)setPath:(NSString *)path {
+    [_LCLLogFile_lock lock];
+    {
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        
+        [LCLLogFile reset];
+        _LCLLogFile_setLogFilePath(path);
+        
+        [pool release];
+    }
+    [_LCLLogFile_lock unlock];
 }
 
 // Returns whether log messages get appended to an existing log file on startup.
