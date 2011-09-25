@@ -178,7 +178,7 @@
 // Closes the log file.
 + (void)close;
 
-// Resets the log file.
+// Resets the log file. This also deletes the existing log file.
 + (void)reset;
 
 // Rotates the log file.
