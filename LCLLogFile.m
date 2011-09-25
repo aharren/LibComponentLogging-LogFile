@@ -540,9 +540,16 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
     [_LCLLogFile_lock unlock];
 }
 
-// Returns whether log messages get appended to an existing log file on startup.
+// Returns/sets whether log messages get appended to an existing log file on startup.
 + (BOOL)appendsToExistingLogFile {
     return _LCLLogFile_appendToExistingLogFile;
+}
++ (void)setAppendsToExistingLogFile:(BOOL)value {
+    [_LCLLogFile_lock lock];
+    {
+        _LCLLogFile_appendToExistingLogFile = value;
+    }
+    [_LCLLogFile_lock unlock];
 }
 
 // Returns/sets the maximum size of the log file (as defined by

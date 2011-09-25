@@ -120,6 +120,12 @@
     [LogFileTestsLoggerConfiguration setAppendToExistingLogFile:NO];
     [LCLLogFile initialize];
     STAssertEquals((int)[LCLLogFile appendsToExistingLogFile], (int)NO, nil);
+    
+    [LCLLogFile setAppendsToExistingLogFile:YES];
+    STAssertEquals((int)[LCLLogFile appendsToExistingLogFile], (int)YES, nil);
+    
+    [LCLLogFile setAppendsToExistingLogFile:NO];
+    STAssertEquals((int)[LCLLogFile appendsToExistingLogFile], (int)NO, nil);
 }
 
 - (void)testConfigurationMirrorsToStdErr {

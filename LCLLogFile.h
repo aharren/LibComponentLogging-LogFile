@@ -125,9 +125,10 @@
 // Returns the path of the backup log file.
 + (NSString *)path0;
 
-// Returns whether log messages get appended to an existing log file on
+// Returns/sets whether log messages get appended to an existing log file on
 // startup.
 + (BOOL)appendsToExistingLogFile;
++ (void)setAppendsToExistingLogFile:(BOOL)value;
 
 // Returns/sets the maximum size of the log file (as defined by
 // _LCLLogFile_MaxLogFileSizeInBytes).
