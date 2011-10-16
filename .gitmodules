@@ -1,3 +1,0 @@
-[submodule "devel/Core"]
-	path = devel/Core
-	url = git://github.com/aharren/LibComponentLogging-Core.git
