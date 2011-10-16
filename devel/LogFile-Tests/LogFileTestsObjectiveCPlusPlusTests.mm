@@ -97,8 +97,13 @@ void LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(int i, NSString *t
         STAssertEquals([logLines count] - 1, (NSUInteger)1, nil);
         NSString *line = [[self logLineWithoutTimeProcessAndThread:[logLines objectAtIndex:0]]
                           stringByReplacingOccurrencesOfString:@"NSString*" withString:@"NSString *"];
+#       if !__has_feature(objc_arc)
         STAssertEqualObjects(line,
                              @"I Main:41:static void LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(int, NSString *) message cstring 123 NSString X", nil);
+#       else
+        STAssertEqualObjects(line,
+                             @"I Main:41:static void LogFileTestsObjectiveCPlusPlusTestsClass::logAtLevelInfo(int, NSString *__strong) message cstring 123 NSString X", nil);
+#       endif
     }
 }
 

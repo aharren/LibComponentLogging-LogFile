@@ -40,7 +40,9 @@ static BOOL LogFileTestsLoggerConfiguration_showFunctionNames = NO;
 
 + (void)initialize {
     NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"LogFile-Tests.log"];
+#   if !__has_feature(objc_arc)
     [LogFileTestsLoggerConfiguration_logFilePath release];
+#   endif
     LogFileTestsLoggerConfiguration_logFilePath = [path copy];
     LogFileTestsLoggerConfiguration_appendToExistingLogFile = NO;
     LogFileTestsLoggerConfiguration_maxLogFileSizeInBytes = 0;
@@ -57,7 +59,9 @@ static BOOL LogFileTestsLoggerConfiguration_showFunctionNames = NO;
 }
 
 + (void)setLogFilePath:(NSString *)path {
+#   if !__has_feature(objc_arc)
     [LogFileTestsLoggerConfiguration_logFilePath release];
+#   endif
     LogFileTestsLoggerConfiguration_logFilePath = [path copy];
 }
 

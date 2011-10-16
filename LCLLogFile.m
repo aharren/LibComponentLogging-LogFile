@@ -138,17 +138,48 @@ const char * const _LCLLogFile_levelHeader[] = {
     "T"
 };
 
+
+// ARC defines for non-ARC builds
+#if !__has_feature(objc_arc)
+#ifndef __bridge
+#define __bridge
+#endif
+#endif
+
+
+// ARC/non-ARC autorelease pool
+#if __has_feature(objc_arc)
+#define _LCLLogFile_autoreleasepool_begin                                      \
+    @autoreleasepool {
+#define _LCLLogFile_autoreleasepool_end                                        \
+    }
+#else
+#define _LCLLogFile_autoreleasepool_begin                                      \
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+#define _LCLLogFile_autoreleasepool_end                                        \
+    [pool release];
+#endif
+
+
+#if __has_feature(objc_arc)
+#define _LCLLogFile_var_release(_var)                                          \
+    if (_var != nil) {                                                         \
+        _var = nil;                                                            \
+    }
+#else
 #define _LCLLogFile_var_release(_var)                                          \
     if (_var != nil) {                                                         \
         [_var release];                                                        \
         _var = nil;                                                            \
-    }                                                                          \
+    }
+#endif
 
 #define _LCLLogFile_var_free(_var)                                             \
     if (_var != NULL) {                                                        \
         free(_var);                                                            \
         _var = NULL;                                                           \
     }                                                                          \
+
 
 @implementation LCLLogFile
 
@@ -182,15 +213,15 @@ static void _LCLLogFile_setLogFilePath(NSString *path) {
         NSString *path0 = [path stringByAppendingString:@".0"];
         
         // create the paths' file system representations
-        CFIndex path_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path);
-        CFIndex path0_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((CFStringRef)path0);
+        CFIndex path_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((__bridge CFStringRef)path);
+        CFIndex path0_c_max_len = CFStringGetMaximumSizeOfFileSystemRepresentation((__bridge CFStringRef)path0);
         
         char *path_c = malloc(path_c_max_len);
         char *path0_c = malloc(path0_c_max_len);
         
         if (path_c != NULL && path0_c != NULL) {
-            Boolean path_fsr_created = CFStringGetFileSystemRepresentation((CFStringRef)path, path_c, path_c_max_len);
-            Boolean path0_fsr_created = CFStringGetFileSystemRepresentation((CFStringRef)path0, path0_c, path0_c_max_len);
+            Boolean path_fsr_created = CFStringGetFileSystemRepresentation((__bridge CFStringRef)path, path_c, path_c_max_len);
+            Boolean path0_fsr_created = CFStringGetFileSystemRepresentation((__bridge CFStringRef)path0, path0_c, path0_c_max_len);
             
             // create local copies of the paths
             if (path_fsr_created && path0_fsr_created) {
@@ -240,7 +271,7 @@ static void _LCLLogFile_setLogFilePath(NSString *path) {
     if (self != [LCLLogFile class])
         return;
     
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    _LCLLogFile_autoreleasepool_begin
     
     // create the lock
     _LCLLogFile_lock = [[NSRecursiveLock alloc] init];
@@ -288,7 +319,7 @@ static void _LCLLogFile_setLogFilePath(NSString *path) {
     // log file size is zero
     _LCLLogFile_fileSize = 0;
     
-    [pool release];
+    _LCLLogFile_autoreleasepool_end
 }
 
 
@@ -358,7 +389,7 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
                             const char *path_c, uint32_t line,
                             const char *function_c,
                             NSString *message) {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    _LCLLogFile_autoreleasepool_begin
     
     // create the prefix
     NSString *prefix = _LCLLogFile_prefix(identifier_c, level, path_c, line, function_c);
@@ -373,7 +404,10 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
     
     // escape '\\' and '\n' characters
     if (_LCLLogFile_escapeLineFeeds) {
-        NSMutableString *emessage = [[[NSMutableString alloc] initWithCapacity:[message length] * 2] autorelease];
+        NSMutableString *emessage = [[NSMutableString alloc] initWithCapacity:[message length] * 2];
+#       if !__has_feature(objc_arc)
+        [emessage autorelease];
+#       endif
         [emessage appendString:message];
         [emessage replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:0 range:NSMakeRange(0, [emessage length])];
         [emessage replaceOccurrencesOfString:@"\n" withString:@"\\n" options:0 range:NSMakeRange(0, [emessage length])];
@@ -441,7 +475,7 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
     // ... done
     [_LCLLogFile_lock unlock];
     
-    [pool release];
+    _LCLLogFile_autoreleasepool_end
 }
 
 // Writes the given log message to the log file (message).
@@ -480,7 +514,9 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
         _LCLLogFile_log(identifier, level, path, line, function, message);
         
         // release local objects
+#       if !__has_feature(objc_arc)
         [message release];
+#       endif
     }
 }
 
@@ -506,7 +542,9 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
         _LCLLogFile_log(identifier, level, path, line, function, message);
         
         // release local objects
+#       if !__has_feature(objc_arc)
         [message release];
+#       endif
     }
 }
 
@@ -530,12 +568,12 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
 + (void)setPath:(NSString *)path {
     [_LCLLogFile_lock lock];
     {
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        _LCLLogFile_autoreleasepool_begin
         
         [LCLLogFile reset];
         _LCLLogFile_setLogFilePath(path);
         
-        [pool release];
+        _LCLLogFile_autoreleasepool_end
     }
     [_LCLLogFile_lock unlock];
 }

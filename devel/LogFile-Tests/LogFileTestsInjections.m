@@ -26,10 +26,18 @@
 #import "LogFileTestsInjections.h"
 
 
+// ARC defines for non-ARC builds
+#if !__has_feature(objc_arc)
+#ifndef __bridge
+#define __bridge
+#endif
+#endif
+
+
 #undef CFStringGetFileSystemRepresentation
 
 Boolean LogFileTestsInjections_CFStringGetFileSystemRepresentation(CFStringRef string, char *buffer, CFIndex maxBufLen) {
-    if ([(NSString *)string isEqualToString:@"bad-file-path"]) {
+    if ([(__bridge NSString *)string isEqualToString:@"bad-file-path"]) {
         return false;
     }
     
@@ -45,15 +53,21 @@ static NSBundle *NSBundle_LogFileTestsInjections_mainBundle = nil;
 
 + (NSBundle *)LogFileTestsInjections_mainBundle {
     if (NSBundle_LogFileTestsInjections_mainBundle != nil) {
-        return [[NSBundle_LogFileTestsInjections_mainBundle retain] autorelease];
+#       if !__has_feature(objc_arc)
+        [[NSBundle_LogFileTestsInjections_mainBundle retain] autorelease];
+#       endif
+        return NSBundle_LogFileTestsInjections_mainBundle;
     }
     
     return [NSBundle mainBundle];
 }
 
 + (void)setMainBundle:(NSBundle *)bundle {
+#   if !__has_feature(objc_arc)
     [NSBundle_LogFileTestsInjections_mainBundle release];
-    NSBundle_LogFileTestsInjections_mainBundle = [bundle retain];
+    [bundle retain];
+#   endif
+    NSBundle_LogFileTestsInjections_mainBundle = bundle;
 }
 
 @end

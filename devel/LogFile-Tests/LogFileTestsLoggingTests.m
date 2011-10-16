@@ -288,12 +288,27 @@
     }
 }
 
-- (void)testLoggingWithShadowedLocalVariable {
+
+// ARC/non-ARC autorelease pool
+#if __has_feature(objc_arc)
+#define _LogFileTests_autoreleasepool_begin                                    \
+    @autoreleasepool {
+#define _LogFileTests_autoreleasepool_end                                      \
+    }
+#else
+#define _LogFileTests_autoreleasepool_begin                                    \
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+#define _LogFileTests_autoreleasepool_end                                      \
+    [pool release];
+#endif
+
+
+- (void)testLoggingWithTwoAutoreleasePools {
+    _LogFileTests_autoreleasepool_begin
     
     lcl_log(lcl_cMain, lcl_vCritical, @"message");
     
-    [pool release];
+    _LogFileTests_autoreleasepool_end
 }
 
 @end
