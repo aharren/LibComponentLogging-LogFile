@@ -1146,7 +1146,7 @@
 				);
 				PRODUCT_NAME = "LogFile-Tests-iPhoneOS-Device";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = "";
+				SDKROOT = iphoneos;
 				TEST_AFTER_BUILD = YES;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = octest;
@@ -1194,7 +1194,7 @@
 				);
 				PRODUCT_NAME = "LogFile-Tests-iPhoneOS-Device";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = "";
+				SDKROOT = iphoneos;
 				TEST_AFTER_BUILD = YES;
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = octest;
