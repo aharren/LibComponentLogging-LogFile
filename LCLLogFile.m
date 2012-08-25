@@ -514,7 +514,18 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
     // write log message if the log file is opened or mirroring is enabled
     if (_LCLLogFile_fileHandle || _LCLLogFile_mirrorToStdErr) {
         // create log message
+#       ifndef _LCL_NO_IGNORE_WARNINGS
+#           ifdef __clang__
+#           pragma clang diagnostic push
+#           pragma clang diagnostic ignored "-Wformat-nonliteral"
+#           endif
+#       endif
         NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+#       ifndef _LCL_NO_IGNORE_WARNINGS
+#           ifdef __clang__
+#           pragma clang diagnostic pop
+#           endif
+#       endif
         
         // write log message
         _LCLLogFile_log(identifier, level, path, line, function, message);
