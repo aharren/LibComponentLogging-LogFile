@@ -12,6 +12,20 @@
 		E024694B10F50648006FBB62 /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
 		E024694C10F5064F006FBB62 /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
 		E024696F10F507E6006FBB62 /* LogFileTestsAllocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */; };
+		E031425A15E972DD00640E0E /* lcl.m in Sources */ = {isa = PBXBuildFile; fileRef = E024691110F502E9006FBB62 /* lcl.m */; };
+		E031425B15E972DD00640E0E /* LCLLogFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E0DC99E810F4FE080088653D /* LCLLogFile.m */; };
+		E031425C15E972DD00640E0E /* LogFileTestsLoggerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0BD2410F8D1F0002B788C /* LogFileTestsLoggerConfiguration.m */; };
+		E031425D15E972DD00640E0E /* LogFileTestsAllocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */; };
+		E031425E15E972DD00640E0E /* LogFileTestsConfigurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */; };
+		E031425F15E972DD00640E0E /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
+		E031426015E972DD00640E0E /* LogFileTestsFileRotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */; };
+		E031426115E972DD00640E0E /* LogFileTestsLogFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B0BE0C10F90822002B788C /* LogFileTestsLogFormatTests.m */; };
+		E031426215E972DD00640E0E /* LogFileTestsInjections.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BB0FA91100F744008BAE92 /* LogFileTestsInjections.m */; };
+		E031426315E972DD00640E0E /* LogFileTestsDefaultPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BB0FDE1100FB91008BAE92 /* LogFileTestsDefaultPathTests.m */; };
+		E031426415E972DD00640E0E /* LogFileTestsInformationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BD9D1E1114B57D00E32B72 /* LogFileTestsInformationTests.m */; };
+		E031426515E972DD00640E0E /* LogFileTestsStdErrMirroringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0EDB7C71131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m */; };
+		E031426615E972DD00640E0E /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = E0ED47321286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm */; };
+		E031426715E972DD00640E0E /* LogFileTestsSetPathTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E09C0DF0142F7C3700533FBE /* LogFileTestsSetPathTests.m */; };
 		E03C9E3F10F5218F0090E09B /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
 		E03C9F6210F682FF0090E09B /* LogFileTestsAllocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */; };
 		E03C9F6310F682FF0090E09B /* LogFileTestsLoggingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */; };
@@ -107,6 +121,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E031427015E9733E00640E0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E031425715E972DD00640E0E;
+			remoteInfo = "LogFile-Tests-Warnings";
+		};
 		E06517BC1101E21E003357A7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -172,6 +193,7 @@
 		E024691C10F5031A006FBB62 /* LogFileTestsConfigComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsConfigComponents.h; path = "LogFile-Tests/LogFileTestsConfigComponents.h"; sourceTree = "<group>"; };
 		E024694A10F50648006FBB62 /* LogFileTestsConfigurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsConfigurationTests.m; path = "LogFile-Tests/LogFileTestsConfigurationTests.m"; sourceTree = "<group>"; };
 		E024696E10F507E6006FBB62 /* LogFileTestsAllocationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsAllocationTests.m; path = "LogFile-Tests/LogFileTestsAllocationTests.m"; sourceTree = "<group>"; };
+		E031426D15E972DD00640E0E /* LogFile-Tests-Warnings.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-Warnings.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E034BAC7111227C100333E0E /* lcl_config_logger.template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lcl_config_logger.template.h; path = ../lcl_config_logger.template.h; sourceTree = SOURCE_ROOT; };
 		E03C9E3E10F5218F0090E09B /* LogFileTestsLoggingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsLoggingTests.m; path = "LogFile-Tests/LogFileTestsLoggingTests.m"; sourceTree = "<group>"; };
 		E03C9F6A10F683690090E09B /* LogFileTestsFileRotationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFileRotationTests.m; path = "LogFile-Tests/LogFileTestsFileRotationTests.m"; sourceTree = "<group>"; };
@@ -224,6 +246,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E06517BE1101E228003357A7 /* LogFile-Tests-Framework-MacOSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E031426815E972DD00640E0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +331,7 @@
 				E06519311101F882003357A7 /* LogFile-Tests-Templates.octest */,
 				E0CBBD61111C17CB0034B4A0 /* LogFile-Tests-Standalone.octest */,
 				E0DEE475144B3CC400F6ADBC /* LogFile-Tests-MacOSX-ARC.octest */,
+				E031426D15E972DD00640E0E /* LogFile-Tests-Warnings.octest */,
 			);
 			name = LogFile;
 			sourceTree = "<group>";
@@ -408,6 +438,24 @@
 			name = "LogFile-Tests-MacOSX";
 			productName = Tests;
 			productReference = E0EB42EF10F4AC57009540E4 /* LogFile-Tests-MacOSX.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		E031425715E972DD00640E0E /* LogFile-Tests-Warnings */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E031426A15E972DD00640E0E /* Build configuration list for PBXNativeTarget "LogFile-Tests-Warnings" */;
+			buildPhases = (
+				E031425815E972DD00640E0E /* Resources */,
+				E031425915E972DD00640E0E /* Sources */,
+				E031426815E972DD00640E0E /* Frameworks */,
+				E031426915E972DD00640E0E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LogFile-Tests-Warnings";
+			productName = Tests;
+			productReference = E031426D15E972DD00640E0E /* LogFile-Tests-Warnings.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		E03C9F7510F683B40090E09B /* LogFile-Tests-iPhoneOS-Device */ = {
@@ -555,6 +603,7 @@
 				E0B56BCA11286406006E4874 /* PBXTargetDependency */,
 				E06519401101F96E003357A7 /* PBXTargetDependency */,
 				E0CBBD67111C18390034B4A0 /* PBXTargetDependency */,
+				E031427115E9733E00640E0E /* PBXTargetDependency */,
 			);
 			name = "LogFile-Tests";
 			productName = "LogFile-Tests";
@@ -590,12 +639,20 @@
 				E06517B41101E1E8003357A7 /* LogFile-Tests-Framework */,
 				E065191B1101F882003357A7 /* LogFile-Tests-Templates */,
 				E0CBBD56111C17CB0034B4A0 /* LogFile-Tests-Standalone */,
+				E031425715E972DD00640E0E /* LogFile-Tests-Warnings */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E00B95E00F2C88F800309460 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E031425815E972DD00640E0E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -662,6 +719,19 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		E00B95E30F2C88F800309460 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		E031426915E972DD00640E0E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -787,6 +857,27 @@
 				E0EDB7C91131D88F00F73151 /* LogFileTestsStdErrMirroringTests.m in Sources */,
 				E0ED47341286E53A00ACEDAC /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */,
 				E09C0DF2142F7C3700533FBE /* LogFileTestsSetPathTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E031425915E972DD00640E0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E031425A15E972DD00640E0E /* lcl.m in Sources */,
+				E031425B15E972DD00640E0E /* LCLLogFile.m in Sources */,
+				E031425C15E972DD00640E0E /* LogFileTestsLoggerConfiguration.m in Sources */,
+				E031425D15E972DD00640E0E /* LogFileTestsAllocationTests.m in Sources */,
+				E031425E15E972DD00640E0E /* LogFileTestsConfigurationTests.m in Sources */,
+				E031425F15E972DD00640E0E /* LogFileTestsLoggingTests.m in Sources */,
+				E031426015E972DD00640E0E /* LogFileTestsFileRotationTests.m in Sources */,
+				E031426115E972DD00640E0E /* LogFileTestsLogFormatTests.m in Sources */,
+				E031426215E972DD00640E0E /* LogFileTestsInjections.m in Sources */,
+				E031426315E972DD00640E0E /* LogFileTestsDefaultPathTests.m in Sources */,
+				E031426415E972DD00640E0E /* LogFileTestsInformationTests.m in Sources */,
+				E031426515E972DD00640E0E /* LogFileTestsStdErrMirroringTests.m in Sources */,
+				E031426615E972DD00640E0E /* LogFileTestsObjectiveCPlusPlusTests.mm in Sources */,
+				E031426715E972DD00640E0E /* LogFileTestsSetPathTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +1018,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E031427115E9733E00640E0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E031425715E972DD00640E0E /* LogFile-Tests-Warnings */;
+			targetProxy = E031427015E9733E00640E0E /* PBXContainerItemProxy */;
+		};
 		E06517BD1101E21E003357A7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E06517B41101E1E8003357A7 /* LogFile-Tests-Framework */;
@@ -1105,6 +1201,121 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		E031426B15E972DD00640E0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LogFile-Tests/LogFileTests.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = _LCL_NO_IGNORE_WARNINGS;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				INFOPLIST_FILE = "LogFile-Tests/LogFile-Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "LogFile-Tests-Warnings";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = "";
+				TEST_AFTER_BUILD = YES;
+				VALID_ARCHS = x86_64;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E031426C15E972DD00640E0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LogFile-Tests/LogFileTests.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = _LCL_NO_IGNORE_WARNINGS;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_VALUE = YES;
+				INFOPLIST_FILE = "LogFile-Tests/LogFile-Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "LogFile-Tests-Warnings";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = "";
+				TEST_AFTER_BUILD = YES;
+				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Weverything",
@@ -1938,6 +2149,15 @@
 			buildConfigurations = (
 				E00B95E70F2C88F900309460 /* Debug */,
 				E00B95E80F2C88F900309460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E031426A15E972DD00640E0E /* Build configuration list for PBXNativeTarget "LogFile-Tests-Warnings" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E031426B15E972DD00640E0E /* Debug */,
+				E031426C15E972DD00640E0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
