@@ -271,6 +271,15 @@
         [_lcl_logger_autoreleasepool release];
 #endif
 
+#ifndef _LCL_NO_IGNORE_WARNINGS
+#   ifdef __clang__
+    // Ignore some warnings about variadic macros when using '-Weverything'.
+#   pragma clang diagnostic push
+#   pragma clang diagnostic ignored "-Wunknown-pragmas"
+#   pragma clang diagnostic ignored "-Wvariadic-macros"
+#   pragma clang diagnostic ignored "-Wpedantic"
+#   endif
+#endif
 
 // Define the _lcl_logger macro which integrates LCLLogFile as a logging
 // back-end for LibComponentLogging and pass the header of a log component as
@@ -286,4 +295,10 @@
                                ## __VA_ARGS__];                                \
     _lcl_logger_autoreleasepool_end                                            \
 }
+
+#ifndef _LCL_NO_IGNORE_WARNINGS
+#   ifdef __clang__
+#   pragma clang diagnostic pop
+#   endif
+#endif
 
