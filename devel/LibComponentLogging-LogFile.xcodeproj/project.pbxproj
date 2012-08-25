@@ -1044,7 +1044,11 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1099,7 +1103,11 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1234,6 +1242,11 @@
 				PRODUCT_NAME = "LogFile-Tests-Framework-MacOSX";
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 			};
 			name = Debug;
 		};
@@ -1266,6 +1279,11 @@
 				PRODUCT_NAME = "LogFile-Tests-Framework-MacOSX";
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1321,7 +1339,11 @@
 				PRODUCT_NAME = "LogFile-Tests-Templates";
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1375,7 +1397,11 @@
 				PRODUCT_NAME = "LogFile-Tests-Templates";
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1429,7 +1455,11 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1480,7 +1510,11 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1534,7 +1568,11 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1585,7 +1623,11 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1642,7 +1684,11 @@
 				PRODUCT_NAME = "LogFile-Tests-Standalone";
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1696,7 +1742,11 @@
 				PRODUCT_NAME = "LogFile-Tests-Standalone";
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
@@ -1750,7 +1800,11 @@
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
 				VALID_ARCHS = x86_64;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -1801,7 +1855,11 @@
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
 				VALID_ARCHS = x86_64;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Weverything",
+					"-fdiagnostics-show-category=id",
+				);
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
