@@ -189,6 +189,7 @@
 		E06518011101E8B5003357A7 /* LogFileTestsFrameworkInjections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsFrameworkInjections.m; path = "LogFile-Tests/Framework/LogFileTestsFrameworkInjections.m"; sourceTree = "<group>"; };
 		E06519311101F882003357A7 /* LogFile-Tests-Templates.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-Templates.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E06519351101F8D9003357A7 /* LogFileTestsTemplatesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsTemplatesTests.m; path = "LogFile-Tests/LogFileTestsTemplatesTests.m"; sourceTree = "<group>"; };
+		E091786915E93CA40065E460 /* LogFileTestsFramework.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTestsFramework.pch; path = "LogFile-Tests/Framework/LogFileTestsFramework.pch"; sourceTree = "<group>"; };
 		E09C0DF0142F7C3700533FBE /* LogFileTestsSetPathTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogFileTestsSetPathTests.m; path = "LogFile-Tests/LogFileTestsSetPathTests.m"; sourceTree = "<group>"; };
 		E09F2CAE10F4B75E00246AAA /* LogFileTests.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogFileTests.pch; path = "LogFile-Tests/LogFileTests.pch"; sourceTree = "<group>"; };
 		E0B0BD0010F8CEF2002B788C /* LogFile-Tests-MacOSX-ClangLLVM.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LogFile-Tests-MacOSX-ClangLLVM.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				E06517BB1101E205003357A7 /* LogFile-Tests-Framework-Info.plist */,
+				E091786915E93CA40065E460 /* LogFileTestsFramework.pch */,
 				E06517FE1101E82F003357A7 /* LogFileTestsFrameworkConfigComponents.h */,
 				E06517FF1101E82F003357A7 /* LogFileTestsFrameworkLogFileConfig.h */,
 				E06517931101E10C003357A7 /* LogFileTestsFramework.h */,
@@ -1230,7 +1232,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "";
+				GCC_PREFIX_HEADER = "LogFile-Tests/Framework/LogFileTestsFramework.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = LOGFILE_TESTS_FRAMEWORK_BUILD;
 				INFOPLIST_FILE = "LogFile-Tests/Framework/LogFile-Tests-Framework-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
@@ -1267,7 +1269,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "";
+				GCC_PREFIX_HEADER = "LogFile-Tests/Framework/LogFileTestsFramework.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = LOGFILE_TESTS_FRAMEWORK_BUILD;
 				INFOPLIST_FILE = "LogFile-Tests/Framework/LogFile-Tests-Framework-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
