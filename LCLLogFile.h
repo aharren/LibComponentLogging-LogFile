@@ -171,9 +171,6 @@
 // Returns the current size of the log file.
 + (size_t)size;
 
-// Returns the version of LCLLogFile.
-+ (NSString *)version;
-
 // Opens the log file.
 + (void)open;
 

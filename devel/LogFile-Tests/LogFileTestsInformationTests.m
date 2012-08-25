@@ -37,7 +37,15 @@
 @implementation LogFileTestsInformationTests
 
 - (void)testInformationVersion {
-    STAssertEqualObjects([LCLLogFile version], @"1.2.0-dev", nil);
+#define __lcl_version_to_string( _text) __lcl_version_to_string0(_text)
+#define __lcl_version_to_string0(_text) #_text
+    NSString *version =
+        @   __lcl_version_to_string(_LCLLOGFILE_VERSION_MAJOR)
+        "." __lcl_version_to_string(_LCLLOGFILE_VERSION_MINOR)
+        "." __lcl_version_to_string(_LCLLOGFILE_VERSION_BUILD)
+        ""  _LCLLOGFILE_VERSION_SUFFIX;
+    
+    STAssertEqualObjects(version, @"1.2.0-dev", nil);
 }
 
 @end
