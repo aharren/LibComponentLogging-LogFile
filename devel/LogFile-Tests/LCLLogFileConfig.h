@@ -24,9 +24,9 @@
 // THE SOFTWARE.
 
 
-#ifdef LOGFILE_TESTS_FRAMEWORK_BUILD
+#if defined(LOGFILE_TESTS_FRAMEWORK_BUILD)
 #include "Framework/LogFileTestsFrameworkLogFileConfig.h"
-#elif LOGFILE_TESTS_TEMPLATES_BUILD
+#elif defined(LOGFILE_TESTS_TEMPLATES_BUILD)
 #include "LCLLogFileConfig.template.h"
 #else
 #include "LogFileTestsLogFileConfig.h"
