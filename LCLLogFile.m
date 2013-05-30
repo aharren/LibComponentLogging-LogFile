@@ -517,6 +517,7 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
 #       ifndef _LCL_NO_IGNORE_WARNINGS
 #           ifdef __clang__
 #           pragma clang diagnostic push
+#           pragma clang diagnostic ignored "-Wunknown-pragmas"
 #           pragma clang diagnostic ignored "-Wformat-nonliteral"
 #           endif
 #       endif
