@@ -415,8 +415,20 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
         [emessage autorelease];
 #       endif
         [emessage appendString:message];
+#       ifndef _LCL_NO_IGNORE_WARNINGS
+#           ifdef __clang__
+#           pragma clang diagnostic push
+#           pragma clang diagnostic ignored "-Wunknown-pragmas"
+#           pragma clang diagnostic ignored "-Wassign-enum"
+#           endif
+#       endif
         [emessage replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:0 range:NSMakeRange(0, [emessage length])];
         [emessage replaceOccurrencesOfString:@"\n" withString:@"\\n" options:0 range:NSMakeRange(0, [emessage length])];
+#       ifndef _LCL_NO_IGNORE_WARNINGS
+#           ifdef __clang__
+#           pragma clang diagnostic pop
+#           endif
+#       endif
         message = emessage;
     }
     
