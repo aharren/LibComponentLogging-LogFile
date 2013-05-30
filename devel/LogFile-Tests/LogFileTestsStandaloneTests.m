@@ -32,6 +32,8 @@
 #pragma clang diagnostic ignored "-Wunknown-pragmas"
 #pragma clang diagnostic ignored "-Wvariadic-macros"
 #pragma clang diagnostic ignored "-Wpedantic"
+// Ignore some warnings about deprecated ivar declaration when using '-Weverything'.
+#pragma clang diagnostic ignored "-Wobjc-interface-ivars"
 #endif
 
 #import <SenTestingKit/SenTestingKit.h>
