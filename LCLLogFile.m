@@ -437,9 +437,9 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
     const char *message_c = [message UTF8String];
     
     // get size of log entry
-    const int time_c_len = 24;
+    char time_c[24];
     const int backslash_n_len = 1;
-    size_t entry_len = time_c_len + strlen(prefix_c) + strlen(message_c) + backslash_n_len;
+    size_t entry_len = sizeof(time_c) + strlen(prefix_c) + strlen(message_c) + backslash_n_len;
     
     // under lock protection ...
     [_LCLLogFile_lock lock];
@@ -458,7 +458,6 @@ static void _LCLLogFile_log(const char *identifier_c, uint32_t level,
         // get current time
         struct timeval now;
         struct tm now_tm;
-        char time_c[time_c_len];
         gettimeofday(&now, NULL);
         localtime_r(&now.tv_sec, &now_tm);
         snprintf(time_c, sizeof(time_c), "%04d-%02d-%02d %02d:%02d:%02d.%03d",
