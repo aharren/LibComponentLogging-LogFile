@@ -45,7 +45,7 @@
         "." __lcl_version_to_string(_LCLLOGFILE_VERSION_BUILD)
         ""  _LCLLOGFILE_VERSION_SUFFIX;
     
-    STAssertEqualObjects(version, @"1.2.2", nil);
+    STAssertEqualObjects(version, @"1.2.3", nil);
 }
 
 @end
