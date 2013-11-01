@@ -128,7 +128,7 @@ static char *_LCLLogFile_filePath0_c = NULL;
 static pid_t _LCLLogFile_processId = 0;
 
 // The log level headers we use.
-const char * const _LCLLogFile_levelHeader[] = {
+static const char * const _LCLLogFile_levelHeader[] = {
     "-",
     "C",
     "E",
